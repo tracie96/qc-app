@@ -1,13 +1,63 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  opacity: 0;
+}
+
+.app-padding {
+  padding-left: 80px;
+  padding-right: 70px;
+}
+
+@font-face {
+  font-family: generalFont;
+  src: url(./assets/fonts/fonta/Inter-Regular.ttf);
+}
+
+@font-face {
+  font-family: boldFont;
+  src: url(./assets/fonts/fonta/Inter-Regular.ttf);
+}
+
+* {
+  font-family: generalFont;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: boldFont;
+}
+
+.slick-list {
+  /* padding: 0 60% 0 0 !important; */
+}
+
+/* .slick-list .slick-track {
+  padding-left: 12.5%;
+} */
