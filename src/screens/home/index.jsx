@@ -50,8 +50,9 @@ export default function Index() {
 
           <div className="homepage-header-col1t3">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              We provide quick access to your finance needs.
+              <br /> we support both businesses and individuals alike. <br />
+              apply today and enjoy our quick processing times.
             </p>
           </div>
 

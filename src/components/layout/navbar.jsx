@@ -46,7 +46,7 @@ export default function Navbar() {
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
             }`}
           >
-            <Link to="/menu">
+            <Link to="/">
               <button
                 style={{
                   background: "transparent",
@@ -68,7 +68,7 @@ export default function Navbar() {
               location.pathname == "/hcontact" ? "activeNvaLink" : ""
             }`}
           >
-            <Link to="/menu">
+            <Link to="/">
               <button
                 style={{
                   background: "#013D79",
