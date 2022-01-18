@@ -16,47 +16,35 @@ export default function Navbar() {
 
         <ul className="right-links">
           <li
-            className={`${location.pathname == "/menu" ? "activeNvaLink" : ""}`}
-          >
-            <Link to="/menu">About Us</Link>
-          </li>
-
-          <li
             className={`${
-              location.pathname == "/contact" ? "activeNvaLink" : ""
+              location.pathname == "/hmenu" ? "activeNvaLink" : ""
             }`}
           >
-            <Link to="/contact">How it Works</Link>
+            <Link to="/">About Us</Link>
           </li>
 
-          <li
-            className={`${
-              location.pathname == "/contact" ? "activeNvaLink" : ""
-            }`}
-          >
-            <Link to="/contact">Investment</Link>
+          <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
+            <Link to="/">How it Works</Link>
           </li>
 
-          <li
-            className={`${
-              location.pathname == "/contact" ? "activeNvaLink" : ""
-            }`}
-          >
-            <Link to="/contact">Support</Link>
+          <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
+            <Link to="/">Investment</Link>
           </li>
 
-          <li
-            className={`${
-              location.pathname == "/contact" ? "activeNvaLink" : ""
-            }`}
-          >
-            <Link to="/contact">FAQs</Link>
+          <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
+            <Link to="/">Support</Link>
+          </li>
+
+          <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
+            <Link to="/">FAQs</Link>
           </li>
         </ul>
 
         <ul className="right-links">
           <li
-            className={`${location.pathname == "/menu" ? "activeNvaLink" : ""}`}
+            className={`${
+              location.pathname == "/hmenu" ? "activeNvaLink" : ""
+            }`}
           >
             <Link to="/menu">
               <button
@@ -77,7 +65,7 @@ export default function Navbar() {
           </li>
           <li
             className={`${
-              location.pathname == "/contact" ? "activeNvaLink" : ""
+              location.pathname == "/hcontact" ? "activeNvaLink" : ""
             }`}
           >
             <Link to="/menu">

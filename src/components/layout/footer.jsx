@@ -57,7 +57,7 @@ const Footer = () => {
                   fill="white"
                 />
               </svg>
-              <span>hello@avantgarde.com</span>{" "}
+              <span>hello@street-credit.com</span>{" "}
             </li>
           </ul>
         </div>
