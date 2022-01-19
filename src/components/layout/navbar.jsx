@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 export default function Navbar() {
   let location = useLocation();
   return (
-    <div className="navbar-ch-con">
+    <div className="navbar-ch-con" style={{}}>
       <div className="navbarChild">
         <div className="navbar-logo" style={{ cursor: "pointer" }}>
           <Link to="/">

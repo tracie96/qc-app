@@ -43,7 +43,7 @@ function App() {
           <AppLoad />
         </div>
 
-        <div style={loading ? { display: "none" } : { display: "block" }}>
+        <div style={loading ? { display: "none" } : { display: "block",height:"100%",width:"100%" }}>
           <Routes />
         </div>
       </div>

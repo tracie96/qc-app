@@ -1,8 +1,8 @@
 .app-wrapper {
   background-color: #e5e5e5;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
 }
 
 .app-navbar {
@@ -15,6 +15,7 @@
 
 .layout-children {
   height: 100%;
+  width: 100%;
   display: flex;
 }
 
@@ -24,6 +25,7 @@
   width: 100%;
   height: 100%;
   padding-bottom: 40px;
+  overflow: hidden !important;
 }
 .navbarChild {
   display: flex;
@@ -109,14 +111,15 @@
 }
 .layout-ch {
   /* background-color: red; */
-  width: 100vw;
-  height: calc(100% - 70px);
-  position: absolute;
-  top: 70px;
+  width: 100%;
+  height: 100%;
+  /* height: calc(100% - 70px);
+  position: absolute; */
+  margin-top: 70px;
   right: 0;
 
-  overflow: hidden;
-  overflow-y: scroll;
+  /* overflow: hidden; */
+  /* overflow-y: scroll; */
 }
 
 .footer-wrap {
@@ -201,11 +204,12 @@ ul {
   .hideOnMobile {
     display: none;
   }
-  .mobileLinks {
+  /* .mobileLinks {
     background-color: red;
     position: absolute;
     width: 100%;
-  }
+    overflow: hidden;
+  } */
 }
 
 @media (max-width: 700px) {

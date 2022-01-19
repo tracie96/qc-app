@@ -236,7 +236,7 @@ export default function Index() {
       </div>
       <div
         // className="container"
-        style={{ width: "100%", background: "#edf6ff" }}
+        style={{ width: "100%", background: "#edf6ff", overflow: "hidden " }}
       >
         <Slider {...settings}>
           <div className="col3-home-slideChild">
