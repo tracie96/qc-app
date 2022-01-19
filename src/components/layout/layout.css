@@ -23,15 +23,16 @@
   padding-left: 70px;
   padding-right: 70px;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   padding-bottom: 40px;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+  /* position: relative; */
 }
 .navbarChild {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: 70px;
   align-items: "center";
   padding-top: 40px;
   /* padding-bottom: 90px; */
@@ -196,7 +197,10 @@ ul {
 
 @media (min-width: 829px) {
   .HideOnDesktop {
-    display: none;
+    display: none !important;
+  }
+  .mobileLinks {
+    display: none !important;
   }
 }
 
@@ -204,12 +208,42 @@ ul {
   .hideOnMobile {
     display: none;
   }
-  /* .mobileLinks {
-    background-color: red;
+  .mobileLinks {
+    background-color: #edf6ff;
+    height: 300px;
+    width: calc(100vw - 10vw);
+    /* overflow: hidden; */
     position: absolute;
-    width: 100%;
-    overflow: hidden;
-  } */
+    z-index: 444;
+    /* left: 0; */
+    /* height: 100vh; */
+    padding: 40px;
+    border-radius: 10px;
+    -webkit-filter: drop-shadow(1px 5px 5px rgba(128, 128, 128, 0.336));
+    filter: drop-shadow(1px 5px 5px rgba(128, 128, 128, 0.336));
+    margin-top: 32px;
+  }
+
+  .mobileLinks ul {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height: 100%;
+  }
+
+  .mobileLinks ul li {
+    margin-bottom: 30px;
+    list-style-type: none;
+  }
+
+  .mobileLinks ul li a {
+    text-decoration: none;
+    color: #013d79;
+  }
+  .navbar-ch-con {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 @media (max-width: 700px) {
