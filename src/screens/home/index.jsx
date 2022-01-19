@@ -36,9 +36,19 @@ export default function Index() {
     dots: false,
     centerMode: true,
     // centerPadding: $(".slick").find(".col3-home-slideChild").outerWidth() / 2,
-    infinite: true,
+    // infinite: true,
     slidesToShow: 2,
     slidesToScroll: 2,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
   return (
     <>

@@ -14,7 +14,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <ul className="right-links">
+        <ul className="right-links hideOnMobile">
           <li
             className={`${
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
@@ -30,17 +30,10 @@ export default function Navbar() {
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
             <Link to="/">Investment</Link>
           </li>
-
-          {/* <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
-            <Link to="/">Support</Link>
-          </li>
-
-          <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
-            <Link to="/">FAQs</Link>
-          </li> */}
         </ul>
+        <p className="HideOnDesktop">Toggle</p>
 
-        <ul className="right-links">
+        <ul className="right-links hideOnMobile">
           <li
             className={`${
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
@@ -85,6 +78,12 @@ export default function Navbar() {
               </button>
             </Link>
           </li>
+        </ul>
+      </div>
+
+      <div className="mobileLinks">
+        <ul>
+          <li>Link 1</li>
         </ul>
       </div>
     </div>

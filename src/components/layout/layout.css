@@ -187,7 +187,25 @@ ul {
 .socilalinksFooter svg {
   margin-right: 50px;
   width: 20px;
+
   cursor: pointer;
+}
+
+@media (min-width: 829px) {
+  .HideOnDesktop {
+    display: none;
+  }
+}
+
+@media (max-width: 829px) {
+  .hideOnMobile {
+    display: none;
+  }
+  .mobileLinks {
+    background-color: red;
+    position: absolute;
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
