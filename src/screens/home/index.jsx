@@ -56,7 +56,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="homepage-header-col1t4">
+          <div className="homepage-header-col1t4" style={{ display: "flex" }}>
             <img src={d1} alt="" />
             <img src={d2} alt="" />
           </div>
