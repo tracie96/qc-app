@@ -70,9 +70,8 @@ export default function Index() {
         <div className="col2-home-col1">
           <h2>Simple Steps to Access Loans</h2>
           <p>
-            the boundaries between art and design are blurred, largely due to a
-            range of <br />
-            applications both for the different terms available.
+            Download the App - Register - Apply - Get Approval - Get Funds in
+            your Account
           </p>
         </div>
 
@@ -85,8 +84,8 @@ export default function Index() {
             <div className="col2-home-col2grid-col2">
               <h2>Sign Up</h2>
               <p>
-                a design approach is a general philosophy that may or may not
-                include a guide for specific methods.
+                Fill a simple form with your personal information that will
+                <br /> be verified by our system
               </p>
             </div>
           </div>
@@ -97,10 +96,7 @@ export default function Index() {
 
             <div className="col2-home-col2grid-col2">
               <h2>Apply for Loan</h2>
-              <p>
-                a design approach is a general philosophy that may or may not
-                include a guide for specific methods.
-              </p>
+              <p>Make a loan request and get responce in minutes</p>
             </div>
           </div>{" "}
           <div className="col2-home-col2grid">
@@ -110,10 +106,7 @@ export default function Index() {
 
             <div className="col2-home-col2grid-col2">
               <h2>Get Instant Credit</h2>
-              <p>
-                a design approach is a general philosophy that may or may not
-                include a guide for specific methods.
-              </p>
+              <p>Get approved and recieve funds instantly</p>
             </div>
           </div>{" "}
           <div className="col2-home-col2grid">
@@ -124,8 +117,9 @@ export default function Index() {
             <div className="col2-home-col2grid-col2">
               <h2>Quick & Simple</h2>
               <p>
-                a design approach is a general philosophy that may or may not
-                include a guide for specific methods.
+                Our process is designed to reduce stress and hassle. try it out
+                <br />
+                and see
               </p>
             </div>
           </div>
@@ -142,10 +136,8 @@ export default function Index() {
             App makes it easier.
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            <br />
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. <br />{" "}
-            Neque viverra justo nec ultrices dui sapien eget.{" "}
+            Our application is friendly and easy to use, apply for a loan
+            <br /> in a few simple steps
           </p>
           <button>Get App Now</button>
         </div>
@@ -159,16 +151,18 @@ export default function Index() {
           <div className="col5-home-col2-col1">
             <h2>Why StreetCredit?</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              Street Credit is your finance partner as we continue to seek ways
               <br />
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              to make your business more productive through access to finanace
+              <br />
+              and funding support on projects
             </p>
           </div>
 
           <div className="col5-home-grid">
             <div>
               <Col5Svg1 />
-              <h2>No Sign Up Hassle</h2>
+              <h2>No collataral</h2>
             </div>
             <div>
               <Col5Svg2 />
@@ -176,11 +170,11 @@ export default function Index() {
             </div>{" "}
             <div>
               <Col5Svg3 />
-              <h2>No Sign Up Hassle</h2>
+              <h2>No Delays</h2>
             </div>{" "}
             <div>
               <Col5Svg4 />
-              <h2>No Sign Up Hassle</h2>
+              <h2> Instant Credit</h2>
             </div>
           </div>
         </div>
@@ -190,9 +184,9 @@ export default function Index() {
         <div className="col6-home-col1">
           <h2>Our Loan process is easy-peazy</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            <br />
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            We have made ur processs seamless to allow you focus on <br />
+            what you need the credit for. Our application operates <br />
+            on a simple end to end process.
           </p>
           <button>Get started</button>
         </div>
@@ -205,12 +199,10 @@ export default function Index() {
       <div className="col7-home app-padding" style={{ paddingRight: 0 }}>
         <div className="col7-home-col1">
           <h2>Invest and get monthly returns.</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            <br />
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque
-            <br />
-            viverra justo nec ultrices dui sapien eget.{" "}
+          <p style={{ textAlign: "center" }}>
+            Invest with us today and take advantage of our <br />
+            rovust risk managent systems to get good returns <br />
+            on a monthly basis
           </p>
           <button style={{ marginTop: "40px" }}>Start investing</button>
         </div>
@@ -226,10 +218,9 @@ export default function Index() {
       >
         <div className="col3-home-header">
           <h2>Testimonials</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            <br />
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <p style={{ textAlign: "center" }}>
+            See what our customers are saying, customers who have tried our
+            <br /> platform with first hand experiences
           </p>
         </div>
       </div>

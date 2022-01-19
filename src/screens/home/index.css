@@ -134,15 +134,21 @@
 .col2-home-col2grid {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 50px;
 }
 
 .col2-home-col2grid-col1 {
   margin-right: 30px;
+  width: 20%;
+  /* background-color: red; */
 }
 .col2-home-col2grid-col1 svg {
   width: 100px;
+}
+
+.col2-home-col2grid-col2 {
+  width: 80%;
 }
 
 .col2-home-col2grid-col2 h2 {

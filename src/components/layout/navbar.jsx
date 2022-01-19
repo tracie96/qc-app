@@ -31,13 +31,13 @@ export default function Navbar() {
             <Link to="/">Investment</Link>
           </li>
 
-          <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
+          {/* <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
             <Link to="/">Support</Link>
           </li>
 
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
             <Link to="/">FAQs</Link>
-          </li>
+          </li> */}
         </ul>
 
         <ul className="right-links">
@@ -59,7 +59,7 @@ export default function Navbar() {
                   fontSize: "13px",
                 }}
               >
-                Apply Now
+                Sign up
               </button>
             </Link>
           </li>
