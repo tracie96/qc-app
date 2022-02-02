@@ -1,5 +1,5 @@
 .app-wrapper {
-  background-color: #e5e5e5;
+  background-color: var(--base-color);
   height: 100%;
   width: 100%;
   /* overflow: hidden; */
@@ -8,7 +8,7 @@
 .app-navbar {
   height: 70px;
   width: 100%;
-  background-color: #fafbfd;
+  background-color: var(--base-color);
   position: absolute;
   right: 0;
 }
@@ -46,7 +46,12 @@
   display: flex;
   align-items: center;
 }
-
+.navbarDownloadLink li a {
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
+  cursor: pointer;
+}
 .navbar-logo svg {
   width: 90%;
   height: 70%;

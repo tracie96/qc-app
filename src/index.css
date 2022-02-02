@@ -85,6 +85,9 @@ h6 {
 /* .slick-list .slick-track {
   padding-left: 12.5%;
 } */
+:root {
+  --base-color: #f9f4ea;
+}
 
 @media (max-width: 600px) {
   .app-padding {

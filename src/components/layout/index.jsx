@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, Route } from "react-router-dom";
-import Navbar from "./navbar";
-import Sidebar from "./sidebar";
 import "./layout.css";
-import Footer from "./footer";
+import Navbar from "./navbar";
 export default function Index({ children, ...props }) {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
@@ -17,7 +15,7 @@ export default function Index({ children, ...props }) {
           <Route {...props}>
             {isAuthenticated ? children : <Redirect to="/signin" />}
           </Route>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     </div>
