@@ -57,12 +57,12 @@ code {
 
 @font-face {
   font-family: generalFont;
-  src: url(./assets/fonts/fonta/Inter-Regular.ttf);
+  src: url(./assets/fonts/FontsFree-Net-Gilroy3.ttf);
 }
 
 @font-face {
   font-family: boldFont;
-  src: url(./assets/fonts/fonta/Inter-Regular.ttf);
+  src: url(./assets/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf);
 }
 
 * {
