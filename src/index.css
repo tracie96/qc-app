@@ -1,0 +1,97 @@
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box !important;
+}
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  overflow: hidden;
+  overflow-y: scroll;
+  /* background-color: pink; */
+  box-sizing: border-box !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box !important;
+  position: relative;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+  /* position: relative;
+  z-index: 1; */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  opacity: 0;
+}
+
+.app-padding {
+  padding-left: 80px;
+  padding-right: 70px;
+}
+
+@font-face {
+  font-family: generalFont;
+  src: url(./assets/fonts/FontsFree-Net-Gilroy3.ttf);
+}
+
+@font-face {
+  font-family: boldFont;
+  src: url(./assets/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf);
+}
+
+* {
+  font-family: generalFont;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: boldFont;
+}
+
+.slick-list {
+  /* padding: 0 60% 0 0 !important; */
+}
+
+/* .slick-list .slick-track {
+  padding-left: 12.5%;
+} */
+:root {
+  --base-color: #f9f4ea;
+}
+
+@media (max-width: 600px) {
+  .app-padding {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
