@@ -200,6 +200,50 @@ ul {
   cursor: pointer;
 }
 
+.inAppNavbar {
+  width: 100vw;
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .inAppNavbarCol1 {
+    height: 100%;
+    ul {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      li {
+        color: white;
+        margin-left: 25px;
+        font-size: 14px;
+        color: #000000;
+        cursor: pointer;
+        svg {
+          height: 60%;
+          width: 140px;
+        }
+      }
+      li:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .inAppNavbarCol2 {
+    button {
+      padding: 10px 20px;
+      border: none;
+      border: 1px solid #4169e2;
+      color: #4169e2;
+      font-size: 14px;
+      background-color: transparent;
+      border-radius: 4px;
+    }
+  }
+}
+
 @media (min-width: 829px) {
   .HideOnDesktop {
     display: none !important;

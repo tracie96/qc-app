@@ -55,6 +55,11 @@ code {
   padding-right: 70px;
 }
 
+.app-padding2 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 @font-face {
   font-family: generalFont;
   src: url(./assets/fonts/FontsFree-Net-Gilroy3.ttf);
