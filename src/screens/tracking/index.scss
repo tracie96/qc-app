@@ -56,7 +56,7 @@
 .where-right-address {
   display: flex;
   justify-content: space-between;
-  padding: 5px 20px;
+  padding: 10px 20px;
   background: #f2f2f2;
   border: 1px solid #c7c7c7;
   box-sizing: border-box;
@@ -365,6 +365,7 @@
   font-weight: bold;
   font-size: 16px;
   color: #4169e2;
+  margin-top: -10px;
 }
 
 .package-location p {
@@ -377,4 +378,62 @@
 .package-location-cont {
   width: 440px;
   margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  // padding: 8px 20px;
+  background: #f2f2f2;
+  border: 1px solid #c7c7c7;
+  // box-sizing: border-box;
+}
+
+.tracking-sub-right {
+  margin-top: 5px;
+  line-height: 20px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.city-hours-head {
+  padding: 15px 25px;
+  background-color: #4169e2;
+  color: #fff;
+  font-size: 16px;
+  line-height: 23px;
+  margin-top: 20px;
+}
+
+.city-street-cont {
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 23px;
+}
+.city-street-bold {
+  font-weight: bold;
+}
+
+.city-address-display {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 70px;
+  margin-bottom: 200px;
+}
+
+.city-address-list {
+  font-size: 16px;
+  line-height: 23px;
+  margin-top: 30px;
+  margin-right: 90px;
+}
+
+.city-street-number {
+  font-size: 16px;
+  line-height: 23px;
+  position: absolute;
+  left: 808px;
+  bottom: 130px;
+  // margin-bottom: 500px;
+}
+
+.city-street-number-bold {
+  font-weight: bold;
 }

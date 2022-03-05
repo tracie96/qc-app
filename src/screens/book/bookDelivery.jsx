@@ -23,10 +23,11 @@ export default function BookDelivery() {
         </h2>
         <p className="where-right-sub">Fill in your origin pickup address</p>
         <div className="where-right-address">
-          <p>
-            Plot 122, No 1, Banana Island, Victoria Island, <br />
-            Lagos, Nigeria. 100292
-          </p>
+          <div>
+            <p>Plot 122, No 1, Banana Island, Victoria Island, </p>
+
+            <p className="where-right-address-under"> Lagos, Nigeria. 100292</p>
+          </div>
           <div className="where-right-address-checked">
             <input type="checkbox" checked="checked" />
             <span class="checkmark"></span>

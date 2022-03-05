@@ -1,8 +1,9 @@
 import React from "react";
 import "./index.scss";
-import mainhalf from "../../assets/mainhalf.png";
+import trackingfleximg from "../../assets/trackingfleximg.png";
 import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
+import TrackingPageSlot from "./TrackingPageSlot";
 import greatervec from "../../assets/greatervec.png";
 
 export default function TrackingPage3() {
@@ -13,72 +14,46 @@ export default function TrackingPage3() {
           <img src={arrowvec} />
         </div>
         <div className="where-left-main">
-          <img src={mainhalf} />
+          <img src={trackingfleximg} />
         </div>
       </div>
       <div className="where-right-main">
         <img className="where-right-main-img" src={cancelvec} />
         <h2>Drop off Hubs</h2>
-        <p className="where-right-sub">
+        <p className="where-right-sub tracking-sub-right">
           Locate a drop off hub near you. When you book <br /> deliveries, you
           can drop off at any of the locations below
         </p>
-        <div className="where-right-address package-location-cont">
-          <div className="package-location">
-            <h2>Lagos State</h2>
-            <p>Nigeria</p>
-          </div>
-          <div className="where-right-address-checked">
-            <img src={greatervec} />
-          </div>
-        </div>
-
-        <div className="where-right-address package-location-cont">
-          <div className="package-location">
-            <h2>Lagos State</h2>
-            <p>Nigeria</p>
-          </div>
-          <div className="where-right-address-checked">
-            <img src={greatervec} />
-          </div>
-        </div>
-
-        <div className="where-right-address package-location-cont">
-          <div className="package-location">
-            <h2>Lagos State</h2>
-            <p>Nigeria</p>
-          </div>
-          <div className="where-right-address-checked">
-            <img src={greatervec} />
-          </div>
-        </div>
-        <div className="where-right-address package-location-cont">
-          <div className="package-location">
-            <h2>Lagos State</h2>
-            <p>Nigeria</p>
-          </div>
-          <div className="where-right-address-checked">
-            <img src={greatervec} />
-          </div>
-        </div>
-        <div className="where-right-address package-location-cont">
-          <div className="package-location">
-            <h2>Lagos State</h2>
-            <p>Nigeria</p>
-          </div>
-          <div className="where-right-address-checked">
-            <img src={greatervec} />
-          </div>
-        </div>
-        <div className="where-right-address package-location-cont">
-          <div className="package-location">
-            <h2>Lagos State</h2>
-            <p>Nigeria</p>
-          </div>
-          <div className="where-right-address-checked">
-            <img src={greatervec} />
-          </div>
-        </div>
+        <TrackingPageSlot
+          image={greatervec}
+          state="Lagos State"
+          country="Nigeria"
+        />
+        <TrackingPageSlot
+          image={greatervec}
+          state="Lagos State"
+          country="Nigeria"
+        />
+        <TrackingPageSlot
+          image={greatervec}
+          state="Lagos State"
+          country="Nigeria"
+        />
+        <TrackingPageSlot
+          image={greatervec}
+          state="Lagos State"
+          country="Nigeria"
+        />
+        <TrackingPageSlot
+          image={greatervec}
+          state="Lagos State"
+          country="Nigeria"
+        />
+        <TrackingPageSlot
+          image={greatervec}
+          state="Lagos State"
+          country="Nigeria"
+        />
       </div>
     </div>
   );

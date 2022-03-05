@@ -16,17 +16,20 @@ export default function BookDeliverySecond() {
         </div>
       </div>
       <div className="where-right-main">
-        <img src={cancelvec} />
+        <div className="where-right-main-img">
+          <img src={cancelvec} />
+        </div>
         <h2>
           Where will we be <br />
           delivering to?
         </h2>
         <p className="where-right-sub">Fill in your destination address</p>
         <div className="where-right-address">
-          <p>
-            Plot 122, No 1, Banana Island, Victoria Island, <br />
-            Lagos, Nigeria. 100292
-          </p>
+          <div>
+            <p>Plot 122, No 1, Banana Island, Victoria Island, </p>
+
+            <p className="where-right-address-under"> Lagos, Nigeria. 100292</p>
+          </div>
           <div className="where-right-address-checked">
             <input type="checkbox" checked="checked" />
             <span class="checkmark"></span>

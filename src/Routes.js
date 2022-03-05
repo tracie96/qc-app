@@ -22,6 +22,9 @@ import BookDeliveryEight from "./screens/book/bookDeliveryEight";
 import TrackingPage1 from "./screens/tracking/trackingPage1";
 import TrackingPage2 from "./screens/tracking/trackingPage2";
 import TrackingPage3 from "./screens/tracking/trackingPage3";
+import TrackingPage4 from "./screens/tracking/trackingPage4";
+import TrackingPage5 from "./screens/tracking/trackingPage5";
+import ReferFriend from "./screens/refer/referFriend";
 
 function Routes() {
   return (
@@ -93,6 +96,18 @@ function Routes() {
 
         <ProtectedRoutes exact path="/tracking_page3">
           <TrackingPage3 />
+        </ProtectedRoutes>
+
+        <ProtectedRoutes exact path="/tracking_page4">
+          <TrackingPage4 />
+        </ProtectedRoutes>
+
+        <ProtectedRoutes exact path="/tracking_page5">
+          <TrackingPage5 />
+        </ProtectedRoutes>
+
+        <ProtectedRoutes exact path="/refer_friend">
+          <ReferFriend />
         </ProtectedRoutes>
       </Switch>
     </Router>
