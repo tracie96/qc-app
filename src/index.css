@@ -104,3 +104,8 @@ h6 {
 button {
   cursor: pointer;
 }
+input,
+select {
+  outline: none !important;
+  border: none;
+}

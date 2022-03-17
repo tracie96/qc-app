@@ -9,7 +9,7 @@ export const axiosCalls = async (path, method, data = null) => {
       method,
       url: `${baseUrl}/${path}`,
       data,
-      timeout: timoutReq,
+      // timeout: timoutReq,
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res) {

@@ -5,7 +5,9 @@ import Ds3 from "../../assets/ds3.png";
 import Ds4 from "../../assets/ds4.png";
 import InAppNavbar from "../../components/layout/inAppNavbar";
 import "./index.scss";
+import { useHistory } from "react-router-dom";
 export default function Index() {
+  const history = useHistory();
   return (
     <div>
       <InAppNavbar />
@@ -15,7 +17,7 @@ export default function Index() {
         </div>
 
         <div className="dashbordCard1">
-          <div className="card">
+          <div className="card" onClick={() => history.push(`/book_delivery`)}>
             <img src={Ds1} alt="" />
             <h2>Book Delivery</h2>
             <p>
@@ -35,7 +37,7 @@ export default function Index() {
               />
             </svg>
           </div>
-          <div className="card">
+          <div className="card" onClick={() => history.push(`/tracking_page1`)}>
             <img src={Ds2} alt="" />
             <h2>Track Delivery</h2>
             <p>
@@ -55,7 +57,7 @@ export default function Index() {
               />
             </svg>
           </div>
-          <div className="card">
+          <div className="card" onClick={() => history.push(`/locate_hub`)}>
             <img src={Ds3} alt="" />
             <h2>Locate Hub</h2>
             <p>

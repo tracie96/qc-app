@@ -10,11 +10,7 @@ import { hideLoader, showLoader } from "../../components/loader";
 const Auth = () => {
   const history = useHistory();
   const [auth, setAuth] = useState({
-    firstname: "",
-    lastname: "",
-    othernames: "",
     email: "",
-    username: "",
     password: "",
   });
   const [appLoading, setAppLoading] = useState(false);
@@ -55,7 +51,7 @@ const Auth = () => {
         return;
       }
       NotificationManager.success("Success", res.message);
-
+      history.push(`/app`);
       console.log(res);
     }
   };

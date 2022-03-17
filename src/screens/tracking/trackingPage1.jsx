@@ -8,9 +8,9 @@ export default function TrackingPage1() {
   return (
     <div className="where-cont">
       <div className="where-left-flex">
-        <div className="where-left-arrow">
+        {/* <div className="where-left-arrow">
           <img src={arrowvec} />
-        </div>
+        </div> */}
         <div className="where-left-main">
           <img src={trackingmain} />
         </div>

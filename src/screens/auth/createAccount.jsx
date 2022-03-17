@@ -16,6 +16,7 @@ const Auth = () => {
     email: "",
     username: "",
     password: "",
+    mobile: "",
   });
   const [appLoading, setAppLoading] = useState(false);
 
@@ -39,6 +40,11 @@ const Auth = () => {
     if (auth.username == "") {
       setAppLoading(false);
       return NotificationManager.error("Error", "Username name is required");
+    }
+
+    if (auth.mobile == "") {
+      setAppLoading(false);
+      return NotificationManager.error("Error", "Mobile  number is required");
     }
 
     if (auth.othernames == "") {
@@ -65,6 +71,7 @@ const Auth = () => {
         return;
       }
       NotificationManager.success("Success", res.message);
+      history.push(`/login`);
 
       console.log(res);
     }
@@ -146,6 +153,19 @@ const Auth = () => {
                   setAuth({
                     ...auth,
                     email: e.target.value,
+                  });
+                }}
+                type="text"
+              />
+            </div>
+
+            <div className="inputWrap">
+              <label htmlFor="">Mobile Number</label>
+              <input
+                onChange={(e) => {
+                  setAuth({
+                    ...auth,
+                    mobile: e.target.value,
                   });
                 }}
                 type="text"

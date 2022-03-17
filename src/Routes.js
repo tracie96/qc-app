@@ -98,7 +98,7 @@ function Routes() {
           <TrackingPage3 />
         </ProtectedRoutes>
 
-        <ProtectedRoutes exact path="/tracking_page4">
+        <ProtectedRoutes exact path="/locate_hub">
           <TrackingPage4 />
         </ProtectedRoutes>
 

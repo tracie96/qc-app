@@ -67,6 +67,27 @@
   list-style-type: none;
 }
 
+.right-links-btn {
+  li {
+    button {
+      padding: 10px 25px;
+      margin-left: 10px;
+      border-radius: 3px;
+      border: none;
+    }
+    button:nth-child(1) {
+      background-color: black;
+      color: white;
+    }
+
+    button:nth-child(2) {
+      border: 1px solid black;
+      color: black;
+      background-color: transparent;
+    }
+  }
+}
+
 .right-links li {
   margin-left: 25px;
   font-size: 14px;
