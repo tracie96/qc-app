@@ -25,13 +25,14 @@ import TrackingPage3 from "./screens/tracking/trackingPage3";
 import TrackingPage4 from "./screens/tracking/trackingPage4";
 import TrackingPage5 from "./screens/tracking/trackingPage5";
 import ReferFriend from "./screens/refer/referFriend";
+import AllBooks from "./screens/book/allBooks";
 
 function Routes() {
   return (
     <Router>
       <Switch>
         <LandingPage exact path="/">
-          <Home />
+          <Dashboard />
         </LandingPage>
 
         <LandingPage exact path="/home">
@@ -62,8 +63,8 @@ function Routes() {
           <BookDelivery />
         </ProtectedRoutes>
 
-        <ProtectedRoutes exact path="/book_delivery_second">
-          <BookDeliverySecond />
+        <ProtectedRoutes exact path="/all_bookings">
+          <AllBooks />
         </ProtectedRoutes>
 
         <ProtectedRoutes exact path="/book_delivery_third">

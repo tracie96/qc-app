@@ -53,7 +53,14 @@ const Auth = () => {
       NotificationManager.success("Success", res.message);
       history.push(`/app`);
       console.log(res);
+      // getUser(res.user.userid);
     }
+  };
+
+  const getUser = async (id) => {
+    // alert(id);
+    let res = await axiosCalls(`users/${id}`, "GET");
+    console.log(res);
   };
 
   return (

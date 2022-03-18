@@ -10,7 +10,9 @@ export const axiosCalls = async (path, method, data = null) => {
       url: `${baseUrl}/${path}`,
       data,
       // timeout: timoutReq,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     if (res) {
       return res.data;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo2 } from "../../assets/svg";
+import { Logo } from "../../assets/svg";
 
 export default function InAppNavbar() {
   return (
@@ -7,7 +7,7 @@ export default function InAppNavbar() {
       <div className="inAppNavbarCol1">
         <ul>
           <li>
-            <Logo2 />
+            <Logo />
           </li>
           <li>Dashboard</li>
           <li>Shipments</li>
