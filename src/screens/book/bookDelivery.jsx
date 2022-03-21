@@ -41,10 +41,6 @@ export default function BookDelivery() {
         return NotificationManager.error("Error", "From address is required");
       }
 
-      if (delivery.zone == "") {
-        return NotificationManager.error("Error", "Country is required");
-      }
-
       if (delivery.state == "") {
         return NotificationManager.error("Error", "state is required");
       }
@@ -58,6 +54,10 @@ export default function BookDelivery() {
 
     if (tab == "tab2") {
       if (delivery.deliverylocation == "") {
+        if (delivery.zone == "") {
+          return NotificationManager.error("Error", "Country is required");
+        }
+
         return NotificationManager.error(
           "Error",
           "Delivery location is required"
@@ -153,14 +153,7 @@ export default function BookDelivery() {
           ""
         )}
 
-        {tab == "tab2" ? (
-          <h2>
-            Where will we be <br />
-            delivering to?
-          </h2>
-        ) : (
-          ""
-        )}
+        {tab == "tab2" ? <h2>Pick up location</h2> : ""}
 
         {tab == "tab3" ? (
           <h2>
@@ -185,27 +178,28 @@ export default function BookDelivery() {
           {tab == "tab1" ? " Fill in your benefitor info" : ""}
         </p>
         {tab == "tab1" ? (
-          <div className="where-right-address">
-            <div>
-              <p>Plot 122, No 1, Banana Island, Victoria Island, </p>
-
-              <p className="where-right-address-under">
-                {" "}
-                Lagos, Nigeria. 100292
-              </p>
-            </div>
-            <div className="where-right-address-checked">
-              <input required type="checkbox" checked="checked" />
-              <span class="checkmark"></span>
-            </div>
-          </div>
+          <></>
         ) : (
+          // <div className="where-right-address">
+          //   <div>
+          //     <p>Plot 122, No 1, Banana Island, Victoria Island, </p>
+
+          //     <p className="where-right-address-under">
+          //       {" "}
+          //       Lagos, Nigeria. 100292
+          //     </p>
+          //   </div>
+          //   <div className="where-right-address-checked">
+          //     <input required type="checkbox" checked="checked" />
+          //     <span class="checkmark"></span>
+          //   </div>
+          // </div>
           ""
         )}
 
         {tab == "tab1" ? (
           <div className="where-right-form-header">
-            <h3>Add new address</h3>
+            {/* <h3>Add new address</h3> */}
 
             <form>
               <div className="inputWrapBook">
@@ -218,23 +212,6 @@ export default function BookDelivery() {
                   value={delivery.fromaddress}
                   onChange={handleChange}
                 />
-              </div>
-
-              <div className="inputWrapBook">
-                <label htmlFor="">Country</label>
-
-                <select
-                  className="where-address-input-option"
-                  name="zone"
-                  onChange={handleChange}
-                  value={delivery.zone}
-                  required
-                >
-                  <option value="">Select country</option>
-                  {contries.map((data) => {
-                    return <option value={data.Zone}>{data.Countries}</option>;
-                  })}
-                </select>
               </div>
 
               {/* <div className="inputWrapBook">
@@ -258,7 +235,7 @@ export default function BookDelivery() {
                 <input
                   required
                   type="text"
-                  placeholder="Lagos"
+                  placeholder="Input state"
                   name="state"
                   onChange={handleChange}
                   value={delivery.state}
@@ -270,7 +247,7 @@ export default function BookDelivery() {
                 <input
                   required
                   type="text"
-                  placeholder="Sururlere"
+                  placeholder="Input city"
                   name="city"
                   value={delivery.city}
                   onChange={handleChange}
@@ -298,6 +275,23 @@ export default function BookDelivery() {
         {tab == "tab2" ? (
           <div className="where-right-form-header">
             <form>
+              <div className="inputWrapBook">
+                <label htmlFor="">Country</label>
+
+                <select
+                  className="where-address-input-option"
+                  name="zone"
+                  onChange={handleChange}
+                  value={delivery.zone}
+                  required
+                >
+                  <option value="">Select country</option>
+                  {contries.map((data) => {
+                    return <option value={data.Zone}>{data.Countries}</option>;
+                  })}
+                </select>
+              </div>
+
               <div className="inputWrapBook">
                 <label htmlFor="">House/APT/Flat Number</label>
                 <input
