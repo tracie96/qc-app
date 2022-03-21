@@ -263,7 +263,7 @@ export default function BookDelivery() {
                   Save to Address Book
                 </label>
               </div>
-              <div>
+              <div className="btnsfd">
                 <button onClick={handleTab} className="where-address-button">
                   Continue
                 </button>
@@ -434,7 +434,7 @@ export default function BookDelivery() {
                 />
               </div> */}
 
-              <div>
+              <div className="btnsfd">
                 <button onClick={handleTab} className="where-address-button">
                   Continue
                 </button>
@@ -484,7 +484,7 @@ export default function BookDelivery() {
                 />
               </div>
 
-              <div>
+              <div className="btnsfd">
                 <button onClick={handleTab} className="where-address-button">
                   Continue
                 </button>
@@ -567,7 +567,7 @@ export default function BookDelivery() {
               <button
                 onClick={() => {
                   NotificationManager.success("Success");
-                  history.push("/all_bookings");
+                  history.push("/app");
                 }}
                 className="where-address-button"
                 style={{
