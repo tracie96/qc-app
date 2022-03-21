@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import contries from "../../components/countries";
 import "./index.scss";
-import mainhalf from "../../assets/mainhalf.png";
+import mainhalf from "../../assets/qc1.jpg";
 import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
 import { NotificationManager } from "react-notifications";
