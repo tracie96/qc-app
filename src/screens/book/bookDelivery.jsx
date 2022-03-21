@@ -3,6 +3,7 @@ import contries from "../../components/countries";
 import "./index.scss";
 import mainhalf from "../../assets/qc4.jpg";
 import arrowvec from "../../assets/arrowvec.png";
+import { PaystackButton } from "react-paystack";
 import cancelvec from "../../assets/cancelvec.png";
 import { NotificationManager } from "react-notifications";
 import { hideLoader, showLoader } from "../../components/loader";
@@ -34,6 +35,47 @@ export default function BookDelivery() {
   const [total, setTotal] = useState(0);
 
   const [prohabittedItem, setprohabittedItem] = useState(false);
+
+  const [payementDetails, setPaymentDetails] = useState({});
+
+  const makePaymentBackend = () => {
+    const data = {
+      amount: payementDetails.Amount,
+      email: "elizabeth@digicomme.com",
+    };
+    const res = axiosCalls(`ship/${payementDetails.quoteid}`, "Post", data);
+    if (res) {
+      if (res.er) {
+        return;
+      }
+      return res;
+    }
+  };
+
+  const getticket = (ticketId) => {
+    const res = axiosCalls(`fixture/${ticketId}`, "GET");
+    if (res) {
+      if (res.er) {
+        return;
+      }
+      return res;
+    }
+  };
+
+  const handleOnSuccess = (e) => {
+    console.log(e);
+    // Call payment buy ticket api
+    // access transaction ID using e.trxref or e.reference
+
+    // submitTicket(e);
+    makePaymentBackend();
+  };
+
+  const handleOnClose = () => {
+    // Optional
+    // Do any custom action like show modal or log cart
+    NotificationManager.error("Payment error", "Please retry again");
+  };
 
   const toggleProhabittedModal = () => {
     setprohabittedItem(!prohabittedItem);
@@ -145,6 +187,8 @@ export default function BookDelivery() {
       NotificationManager.success("Success", res.message);
       console.log(res);
       setTotal(res.Amount);
+      setPaymentDetails(res);
+      // makePaymentBackend(res.Amount, res.quoteid);
     }
   };
 
@@ -616,7 +660,7 @@ export default function BookDelivery() {
               </div>
 
               <div>
-                <button
+                {/* <button
                   onClick={() => {
                     NotificationManager.success("Success");
                     history.push("/app");
@@ -628,7 +672,18 @@ export default function BookDelivery() {
                   }}
                 >
                   Pay now
-                </button>
+                </button> */}
+                <div className="paymentTotalbtn">
+                  <PaystackButton
+                    reference={new Date().getTime().toString()}
+                    email={"frostandy41@gmail.com"}
+                    amount={Number(total) * 100}
+                    publicKey={process.env.REACT_APP_PAYSTACK_KEY}
+                    text="PROCEED TO PAYMENT"
+                    onSuccess={handleOnSuccess}
+                    onClose={handleOnClose} // Optional
+                  />
+                </div>
               </div>
             </div>
           ) : (
