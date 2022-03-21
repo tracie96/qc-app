@@ -23,6 +23,8 @@ export default function BookDelivery() {
     recipientnumber: "",
     state: "",
     city: "",
+    rCity: "",
+    rState: "",
   });
 
   const [tab, setTab] = useState("tab1");
@@ -305,6 +307,30 @@ export default function BookDelivery() {
               </div>
 
               <div className="inputWrapBook">
+                <label htmlFor="">State</label>
+                <input
+                  required
+                  type="text"
+                  placeholder="Input state"
+                  name="rState"
+                  onChange={handleChange}
+                  value={delivery.rState}
+                />
+              </div>
+
+              <div className="inputWrapBook">
+                <label htmlFor="">City</label>
+                <input
+                  required
+                  type="text"
+                  placeholder="Input city"
+                  name="rCity"
+                  value={delivery.rCity}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="inputWrapBook">
                 <label htmlFor="">Recipient name</label>
                 <input
                   required
@@ -510,7 +536,7 @@ export default function BookDelivery() {
                   fill="#FF0000"
                 />
               </svg>
-              <span>{delivery.fromaddress}</span>
+              <span>{`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}</span>
             </div>
 
             <div className="databdd">
@@ -527,7 +553,7 @@ export default function BookDelivery() {
                 />
               </svg>
 
-              <span>{delivery.deliverylocation}</span>
+              <span>{`${delivery.deliverylocation} ${delivery.rCity} ${delivery.rState}`}</span>
             </div>
 
             <div className="acceptText">
