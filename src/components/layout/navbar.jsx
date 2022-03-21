@@ -10,7 +10,7 @@ export default function Navbar() {
     <div className="navbar-ch-con" style={{}}>
       <div className="navbarChild">
         <div className="navbar-logo" style={{ cursor: "pointer" }}>
-          <Link to="/">
+          <Link to="/home">
             <Logo />
           </Link>
         </div>

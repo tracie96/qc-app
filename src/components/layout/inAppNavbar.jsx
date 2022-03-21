@@ -1,12 +1,14 @@
 import React from "react";
 import { Logo } from "../../assets/svg";
+import { useHistory } from "react-router-dom";
 
 export default function InAppNavbar() {
+  const his = useHistory();
   return (
     <div className="inAppNavbar app-padding2">
       <div className="inAppNavbarCol1">
         <ul>
-          <li>
+          <li onClick={() => his.push(`/home`)}>
             <Logo />
           </li>
           <li>Dashboard</li>
