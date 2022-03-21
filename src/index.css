@@ -109,3 +109,7 @@ select {
   outline: none !important;
   border: none;
 }
+
+.react-responsive-modal-modal {
+  border-radius: 5px !important;
+}

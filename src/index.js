@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "react-notifications/lib/notifications.css";
+import "react-responsive-modal/styles.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
