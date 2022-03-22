@@ -1,14 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { Logo } from "../../assets/svg";
 export default function Navbar() {
   let location = useLocation();
+  let history = useHistory();
   const [showNav, setShowNav] = React.useState(false);
   return (
     <div className="navbar-ch-con" style={{}}>
       <div className="navbarChild">
         <div className="navbar-logo" style={{ cursor: "pointer" }}>
-          <Link to="/">
+          <Link to="/home">
             <Logo />
           </Link>
         </div>
@@ -45,13 +47,15 @@ export default function Navbar() {
           ></i>
         </p>
 
-        <ul className="right-links hideOnMobile">
+        <ul className="right-links hideOnMobile right-links-btn">
           <li
             className={`${
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
             }`}
           >
-            <Link to="/">Download Now</Link>
+            <button onClick={() => history.push(`/signup`)}>Sign Up</button>
+
+            <button onClick={() => history.push(`/login`)}>Sign In</button>
           </li>
         </ul>
       </div>
