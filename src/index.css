@@ -55,6 +55,11 @@ code {
   padding-right: 70px;
 }
 
+.app-padding2 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 @font-face {
   font-family: generalFont;
   src: url(./assets/fonts/FontsFree-Net-Gilroy3.ttf);
@@ -94,4 +99,13 @@ h6 {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
+}
+
+button {
+  cursor: pointer;
+}
+input,
+select {
+  outline: none !important;
+  border: none;
 }
