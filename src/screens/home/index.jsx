@@ -99,9 +99,8 @@ export default function Index() {
 
           <div className="homepage-header-col1t3">
             <p>
-              We help you with local and international deliveries to your
-              <br />
-              customers anywhere in the world.
+              Welcome to our world of seamless and simplified delivery <br />
+              of your shipments locally and internationally
             </p>
           </div>
 

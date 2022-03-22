@@ -68,6 +68,7 @@ export default function BookDelivery() {
     // access transaction ID using e.trxref or e.reference
 
     // submitTicket(e);
+    history.push(`/app`);
     makePaymentBackend();
   };
 
