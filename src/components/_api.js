@@ -3,14 +3,16 @@ import { NotificationManager } from "react-notifications";
 export const token = localStorage.getItem("token");
 export const baseUrl = "https://qc-express.herokuapp.com/api/v1";
 export let timoutReq = 10000;
+
 export const axiosCalls = async (path, method, data = null) => {
   try {
     let res = await axios({
       method,
       url: `${baseUrl}/${path}`,
       data,
-      // timeout: timoutReq,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     if (res) {
       return res.data;

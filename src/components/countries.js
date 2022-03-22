@@ -1,3 +1,20 @@
+function dynamicSort(property) {
+  var sortOrder = 1;
+
+  if (property[0] === "-") {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+
+  return function (a, b) {
+    if (sortOrder == -1) {
+      return b[property].localeCompare(a[property]);
+    } else {
+      return a[property].localeCompare(b[property]);
+    }
+  };
+}
+
 const contries = [
   { Countries: "Guernsey (GG)", Zone: "zone1" },
   { Countries: "Ireland, Rep. Of (IE)", Zone: "zone1" },
@@ -232,6 +249,7 @@ const contries = [
   { Countries: "Venezuela (VE)", Zone: "zone8" },
   { Countries: "Virgin Islands-British (VG)", Zone: "zone8" },
   { Countries: "Virgin Islands-US (VI)", Zone: "zone8" },
-];
+].sort();
 
+contries.sort(dynamicSort("Countries"));
 export default contries;
