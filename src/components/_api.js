@@ -10,7 +10,6 @@ export const axiosCalls = async (path, method, data = null) => {
       method,
       url: `${baseUrl}/${path}`,
       data,
-      // timeout: timoutReq,
       headers: {
         "Content-Type": "application/json",
       },
