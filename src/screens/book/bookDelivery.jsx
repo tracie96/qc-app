@@ -606,12 +606,17 @@ export default function BookDelivery() {
 
                 <li>
                   <span>Weight</span>
-                  <span>{delivery.weight}</span>
+                  <span>{delivery.weight}KG</span>
                 </li>
 
                 <li>
                   <span>Length</span>
-                  <span>{delivery.length}</span>
+                  <span>{delivery.length}CM</span>
+                </li>
+
+                <li>
+                  <span>Width</span>
+                  <span>{delivery.breath}CM</span>
                 </li>
 
                 <li>
