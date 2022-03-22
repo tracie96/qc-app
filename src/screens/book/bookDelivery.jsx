@@ -546,7 +546,7 @@ export default function BookDelivery() {
             <div className="where-right-form-header">
               <form>
                 <div className="inputWrapBook">
-                  <label htmlFor="">Weight</label>
+                  <label htmlFor="">Weight (KG)</label>
                   <input
                     required
                     type="number"
@@ -558,7 +558,7 @@ export default function BookDelivery() {
                 </div>
 
                 <div className="inputWrapBook">
-                  <label htmlFor="">Length</label>
+                  <label htmlFor="">Length (CM)</label>
                   <input
                     required
                     type="number"
@@ -570,7 +570,7 @@ export default function BookDelivery() {
                 </div>
 
                 <div className="inputWrapBook">
-                  <label htmlFor="">Breath</label>
+                  <label htmlFor="">Width (CM)</label>
                   <input
                     required
                     type="number"
