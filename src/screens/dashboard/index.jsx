@@ -16,10 +16,7 @@ export default function Index() {
   const location = useLocation();
 
   const history = useHistory();
-  var retrievedObject = localStorage.getItem('user');
 
-var user= JSON.parse(retrievedObject);
-console.log(user.lastname)
 
   return (
     <div>
