@@ -1,6 +1,6 @@
 .home-page {
   height: calc(100vh - 70px);
-  background-color: var(--base-color);
+  /* background-color: var(--base-color); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,11 +30,13 @@
 }
 
 .homepage-header-col1 .homepage-header-col1t1 {
-  color: #013d79;
+  color:#4169E2;
+  ;
 }
 
 .homepage-header-col1 .homepage-header-col1t1 {
   margin-bottom: 20px;
+  top: 100px;
 }
 
 .homepage-header-col1 .homepage-header-col1t1 h2 {

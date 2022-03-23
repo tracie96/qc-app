@@ -15,28 +15,30 @@ export default function Navbar() {
           </Link>
         </div>
 
+      <div style={{marginLeft:"-50%",color:"#0000"}}>
         <ul className="right-links hideOnMobile">
           <li
             className={`${
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
             }`}
           >
-            <a href="#features">Features</a>
+            <a href="#features"  style={{color:"#000"}}>Features</a>
           </li>
 
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
-            <a href="#testimonials">Testimonials</a>
+            <a href="#testimonials" style={{color:"#000"}}>Testimonials</a>
           </li>
 
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
-            <Link to="/">Awards</Link>
+            <Link to="/" style={{color:"#000"}}>Awards</Link>
           </li>
 
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
-            <a href="#faq">FAQs</a>
+            <a href="#faq" style={{color:"#000"}}>FAQs</a>
             {/* <Link to="/"></Link> */}
           </li>
         </ul>
+        </div>
         <p className="HideOnDesktop">
           <i
             style={{ fontSize: "25px", color: "#013d79" }}

@@ -6,21 +6,30 @@ import cancelvec from "../../assets/cancelvec.png";
 import arrowdown from "../../assets/arrowdown.png";
 import arrowup from "../../assets/arrowup.png";
 import money1 from "../../assets/money1.png";
+import { useHistory } from "react-router-dom";
+
 
 export default function BookDeliveryEight() {
+  const history = useHistory();
+
   return (
     <div className="where-cont">
       <div className="where-left-flex">
         <div className="where-left-arrow">
-          <img src={arrowvec} />
+          <img src={arrowvec}   onClick={() => {
+              history.goBack();
+            }}/>
         </div>
         <div className="where-left-main">
           <img src={mainhalf} />
         </div>
       </div>
       <div className="where-right-main">
-        <div className="where-right-main-img">
-          <img src={cancelvec} />
+        <div className="where-right-main-img" >
+          <img src={cancelvec}   onClick={() => {
+              history.goBack();
+            }}/>
+
         </div>
         <h2>Make Payment</h2>
         <p className="where-right-sub payment-package-sub">

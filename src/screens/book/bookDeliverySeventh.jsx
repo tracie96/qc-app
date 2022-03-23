@@ -5,13 +5,18 @@ import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
 import arrowdown from "../../assets/arrowdown.png";
 import arrowup from "../../assets/arrowup.png";
+import { useHistory } from "react-router-dom";
 
 export default function BookDeliverySeventh() {
+  const history = useHistory();
+
   return (
     <div className="where-cont">
       <div className="where-left-flex">
         <div className="where-left-arrow">
-          <img src={arrowvec} />
+          <img src={arrowvec}   onClick={() => {
+              history.goBack();
+            }}/>
         </div>
         <div className="where-left-main">
           <img src={mainhalf} />
@@ -19,7 +24,9 @@ export default function BookDeliverySeventh() {
       </div>
       <div className="where-right-main">
         <div className="where-right-main-img">
-          <img src={cancelvec} />
+          <img src={cancelvec}   onClick={() => {
+              history.goBack();
+            }}/>
         </div>
         <h2>
           Package and <br />

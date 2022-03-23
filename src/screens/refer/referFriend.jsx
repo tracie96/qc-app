@@ -5,16 +5,23 @@ import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
 import refergift from "../../assets/refergift.png";
 // import greatervec from "../../assets/greatervec.png";
+import { useHistory } from "react-router-dom";
 
 export default function ReferFriend() {
+  const history = useHistory();
+
   return (
     <div className="refer-friend-cont">
       <div className="refer-friend-arrow">
         <div className="refer-arrow">
-          <img src={arrowvec} />
+          <img src={arrowvec} onClick={() => {
+              history.goBack();
+            }}/>
         </div>
         <div className="refer-cancel">
-          <img src={cancelvec} />
+          <img src={cancelvec} onClick={() => {
+              history.goBack();
+            }}/>
         </div>
       </div>
       <div className="refer-friend-state-cont">

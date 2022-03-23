@@ -11,7 +11,7 @@ export default function InAppNavbar() {
           <li onClick={() => his.push(`/home`)}>
             <Logo />
           </li>
-          <li>Dashboard</li>
+          <li>Cockpit</li>
           <li>Shipments</li>
           <li>Payments</li>
           <li>Imports</li>

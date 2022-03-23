@@ -94,7 +94,7 @@ export default function Index() {
       <div style={{ paddingTop: "30px" }} className="home-page app-padding">
         <div className="homepage-header-col1">
           <div className="homepage-header-col1t1">
-            <h2>Manage your package delivery like never before</h2>
+            <h2>Welcome to our world of seamless and simplified delivery</h2>
           </div>
 
           <div className="homepage-header-col1t3">

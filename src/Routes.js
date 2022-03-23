@@ -25,6 +25,7 @@ import TrackingPage3 from "./screens/tracking/trackingPage3";
 import TrackingPage4 from "./screens/tracking/trackingPage4";
 import TrackingPage5 from "./screens/tracking/trackingPage5";
 import ReferFriend from "./screens/refer/referFriend";
+import Track from "./screens/book/track.js"
 import AllBooks from "./screens/book/allBooks";
 
 function Routes() {
@@ -109,6 +110,9 @@ function Routes() {
 
         <ProtectedRoutes exact path="/refer_friend">
           <ReferFriend />
+        </ProtectedRoutes>
+        <ProtectedRoutes exact path="/track">
+          <Track />
         </ProtectedRoutes>
       </Switch>
     </Router>

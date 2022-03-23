@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import contries from "../../components/countries";
 import "./index.scss";
-import mainhalf from "../../assets/qc4.jpg";
+import mainhalf from "../../assets/mainhalf.png";
 import arrowvec from "../../assets/arrowvec.png";
 import { PaystackButton } from "react-paystack";
 import cancelvec from "../../assets/cancelvec.png";
@@ -26,8 +26,10 @@ export default function BookDelivery() {
     recipientnumber: "",
     state: "",
     city: "",
+    number: "",
     rCity: "",
     rState: "",
+    postcode: "",
   });
 
   const [tab, setTab] = useState("tab1");
@@ -68,7 +70,7 @@ export default function BookDelivery() {
     // access transaction ID using e.trxref or e.reference
 
     // submitTicket(e);
-    history.push(`/app`);
+    history.push(`/track`);
     makePaymentBackend();
   };
 
@@ -106,91 +108,96 @@ export default function BookDelivery() {
     }
 
     if (tab == "tab2") {
-      if (delivery.deliverylocation == "") {
-        if (delivery.zone == "") {
-          return NotificationManager.error("Error", "Country is required");
-        }
+      // if (delivery.deliverylocation == "") {
+      //   if (delivery.zone == "") {
+      //     return NotificationManager.error("Error", "Country is required");
+      //   }
 
-        return NotificationManager.error(
-          "Error",
-          "Delivery location is required"
-        );
-      }
+      //   return NotificationManager.error(
+      //     "Error",
+      //     "Delivery location is required"
+      //   );
+      // }
 
-      if (delivery.recipientname == "") {
-        return NotificationManager.error("Error", "Recipient name is required");
-      }
+      // if (delivery.recipientname == "") {
+      //   return NotificationManager.error("Error", "Recipient name is required");
+      // }
 
-      if (delivery.recipientnumber == "") {
-        return NotificationManager.error(
-          "Error",
-          "Recipient number is required"
-        );
-      }
+      // if (delivery.recipientnumber == "") {
+      //   return NotificationManager.error(
+      //     "Error",
+      //     "Recipient number is required"
+      //   );
+      // }
 
-      if (delivery.itemname == "") {
-        return NotificationManager.error(
-          "Error",
-          "Item description is required"
-        );
-      }
+      // if (delivery.itemname == "") {
+      //   return NotificationManager.error(
+      //     "Error",
+      //     "Item description is required"
+      //   );
+      // }
       e.preventDefault();
 
       setTab("tab3");
     }
 
     if (tab == "tab3") {
-      if (delivery.weight == "") {
-        return NotificationManager.error("Error", "weight is required");
-      }
+      // if (delivery.weight == "") {
+      //   return NotificationManager.error("Error", "weight is required");
+      // }
 
-      if (delivery.length == "") {
-        return NotificationManager.error("Error", "Length is required");
-      }
+      // if (delivery.length == "") {
+      //   return NotificationManager.error("Error", "Length is required");
+      // }
 
-      if (delivery.breath == "") {
-        return NotificationManager.error("Error", "Breath is required");
-      }
+      // if (delivery.breath == "") {
+      //   return NotificationManager.error("Error", "Breath is required");
+      // }
       e.preventDefault();
       BookDel();
     }
   };
 
   const BookDel = async (e) => {
-    showLoader();
+    // showLoader();
     const data = {
-      fromaddress: delivery.fromaddress,
-      zone: delivery.zone,
-      weight: delivery.weight,
-      length: delivery.length,
-      breath: delivery.breath,
-      deliverylocation: delivery.deliverylocation,
-      itemname: delivery.itemname,
-      recipientname: delivery.recipientname,
-      recipientnumber: delivery.recipientnumber,
+      fromaddress: delivery.fromaddress?delivery.fromaddress:"Fara Park",
+      zone: delivery.zone?delivery.zone:"South East",
+      weight: 3.5,
+      length: delivery.length?delivery.length:3.5,
+      breath: delivery.breath?delivery.breath:3.5,
+      deliverylocation: delivery.deliverylocation?delivery.deliverylocation:"Fara Park",
+      itemname: delivery.itemname?delivery.itemname:"Shoe",
+      recipientname: delivery.recipientname?delivery.recipientname:"Tracy",
+      recipientnumber: delivery.recipientnumber?delivery.recipientnumber:"08169530309",
     };
-    const res = await axiosCalls("quote", "POST", data);
-    if (res) {
-      hideLoader();
-      if (res?.er) {
-        if (res?.er === "slowNetwork") {
-          NotificationManager.error(
-            "Error",
-            "Opps your network is slow please try again"
-          );
-          return;
-        }
-        console.error(res.er.error);
-        NotificationManager.error("Error", res.er.error);
-        return;
-      }
       setTab("tab4");
-      NotificationManager.success("Success", res.message);
-      console.log(res);
-      setTotal(res.Amount);
-      setPaymentDetails(res);
-      // makePaymentBackend(res.Amount, res.quoteid);
-    }
+      // NotificationManager.success("Success");
+
+    setPaymentDetails(1000000);
+
+    // const res = await axiosCalls("quote", "POST", data);
+    // if (res) {
+    //   hideLoader();
+    //   if (res?.er) {
+    //     if (res?.er === "slowNetwork") {
+    //       NotificationManager.error(
+    //         "Error",
+    //         "Opps your network is slow please try again"
+    //       );
+    //       return;
+    //     }
+    //     console.error(res.er.error);
+    //     NotificationManager.error("Error", res.er.error);
+    //     return;
+    //   }
+    //   setTab("tab4");
+    //   NotificationManager.success("Success", res.message);
+    //   console.log(res);
+    //   setTotal(res.Amount);
+    //   setPaymentDetails(res);
+    //   // makePaymentBackend(res.Amount, res.quoteid);
+    // }
   };
 
   return (
@@ -209,16 +216,9 @@ export default function BookDelivery() {
           <img src={mainhalf} />
         </div>
         <div className="where-right-main">
-          {tab == "tab1" ? (
-            <h2>
-              Where will we <br />
-              be picking up from ?
-            </h2>
-          ) : (
-            ""
-          )}
+          {tab == "tab1" ? <h2>Pick up location</h2> : ""}
 
-          {tab == "tab2" ? <h2>Delivery Location</h2> : ""}
+          {tab == "tab2" ? <h2>Add Delivery Location</h2> : ""}
 
           {tab == "tab3" ? (
             <h2>
@@ -237,49 +237,147 @@ export default function BookDelivery() {
             ""
           )}
 
-          <p className="where-right-sub">
+          <p className="where-right-sub" style={{ textAlign: "center" }}>
             {tab == "tab1" ? " Fill in your origin pickup address" : ""}
-
-            {tab == "tab1" ? " Fill in your benefitor info" : ""}
           </p>
+     
           {tab == "tab1" ? (
-            <></>
-          ) : (
-            // <div className="where-right-address">
-            //   <div>
-            //     <p>Plot 122, No 1, Banana Island, Victoria Island, </p>
+            <div style={{ alignSelf: "center" }}>
+              <div className="where-right-form-header">
+                {/* <h3>Add new address</h3> */}
 
-            //     <p className="where-right-address-under">
-            //       {" "}
-            //       Lagos, Nigeria. 100292
-            //     </p>
-            //   </div>
-            //   <div className="where-right-address-checked">
-            //     <input required type="checkbox" checked="checked" />
-            //     <span class="checkmark"></span>
-            //   </div>
-            // </div>
-            ""
-          )}
+                <form style={{ width: "480px" }}>
+                  <div className="where-right-address">
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "16px",
+                          color: "#434343",
+                          padding: "15px",
+                        }}
+                      >
+                        Plot 122, No 1, Banana Island, Victoria Island,Lagos,
+                        Nigeria. 100292
+                      </p>
+                    </div>
+                    <div className="where-right-address-checked">
+                      <input type="checkbox" checked="checked" />
+                      <span className="checkmark"></span>
+                    </div>
+                  </div>
+                  <div>
+                    <p
+                      style={{
+                        fontSize: "24px",
+                        color: "#4169E2",
+                        fontWeight: "800",
+                        fontFamily: "Playfair Display",
+                        padding: "15px 0 0 0",
+                      }}
+                    >
+                      Add new address
+                    </p>
+                  </div>
+                  <div className="row">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">House/APT/Flat Number</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="34a, Ago Iwoye"
+                        name="fromaddress"
+                        value={delivery.fromaddress}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">City</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Input city"
+                          name="city"
+                          value={delivery.city}
+                          onChange={handleChange}
+                        />
+                      </div>{" "}
+                    </div>
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Select state</label>
 
-          {tab == "tab1" ? (
-            <div className="where-right-form-header">
-              {/* <h3>Add new address</h3> */}
+                        <select
+                          className="where-address-input-option"
+                          name="state"
+                          onChange={handleChange}
+                          value={delivery.state}
+                          required
+                        >
+                          <option value="">Select state</option>
+                          {NIGStates.map((data) => {
+                            return <option value={data}>{data}</option>;
+                          })}
+                        </select>
+                      </div>{" "}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Country</label>
 
-              <form>
-                <div className="inputWrapBook">
-                  <label htmlFor="">House/APT/Flat Number</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="34a, Ago Iwoye"
-                    name="fromaddress"
-                    value={delivery.fromaddress}
-                    onChange={handleChange}
-                  />
-                </div>
+                        <select
+                          className="where-address-input-option"
+                          name="zone"
+                          onChange={handleChange}
+                          value={delivery.zone}
+                          required
+                        >
+                          <option value="">Select country</option>
+                          {contries.map((data) => {
+                            return (
+                              <option value={data.Zone}>
+                                {data.Countries}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </div>
 
-                {/* <div className="inputWrapBook">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Post code</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="0039282"
+                          onChange={({ target }) => {
+                            setDelivery({
+                              ...delivery,
+                              postcode: target.value,
+                            });
+                          }}
+                          value={delivery.postcode}
+                        />
+                      </div>
+                    </div>
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Phone Number</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="Input Phone Number"
+                        name="number"
+                        value={delivery.number}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  {/* <div className="inputWrapBook">
                 <label htmlFor="">Post code</label>
                 <input
                   required
@@ -295,24 +393,7 @@ export default function BookDelivery() {
                 />
               </div> */}
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">Select state</label>
-
-                  <select
-                    className="where-address-input-option"
-                    name="state"
-                    onChange={handleChange}
-                    value={delivery.state}
-                    required
-                  >
-                    <option value="">Select state</option>
-                    {NIGStates.map((data) => {
-                      return <option value={data}>{data}</option>;
-                    })}
-                  </select>
-                </div>
-
-                {/* <div className="inputWrapBook">
+                  {/* <div className="inputWrapBook">
                 <label htmlFor="">State</label>
                 <input
                   required
@@ -324,219 +405,209 @@ export default function BookDelivery() {
                 />
               </div> */}
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">City</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Input city"
-                    name="city"
-                    value={delivery.city}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                {/* <div className="where-address-save-check">
+                  {/* <div className="where-address-save-check">
                   <label>
                     {" "}
                     <input required type="checkbox" />
                     Save to Address Book
                   </label>
                 </div> */}
-                <div className="btnsfd">
-                  <button onClick={handleTab} className="where-address-button">
-                    Continue
-                  </button>
-                </div>
-              </form>
+                  <div className="btnsfd">
+                    <button
+                      onClick={handleTab}
+                      className="where-address-button"
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           ) : (
             ""
           )}
 
           {tab == "tab2" ? (
-            <div className="where-right-form-header">
-              <form>
-                <div className="inputWrapBook">
-                  <label htmlFor="">Country</label>
+            <div style={{ alignSelf: "center" }}>
+              <div className="where-right-form-header">
+                {/* <h3>Add new address</h3> */}
 
-                  <select
-                    className="where-address-input-option"
-                    name="zone"
-                    onChange={handleChange}
-                    value={delivery.zone}
-                    required
-                  >
-                    <option value="">Select country</option>
-                    {contries.map((data) => {
-                      return (
-                        <option value={data.Zone}>{data.Countries}</option>
-                      );
-                    })}
-                  </select>
-                </div>
+                <form style={{ width: "480px" }}>
+                  <div className="where-right-address">
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "16px",
+                          color: "#434343",
+                          padding: "15px",
+                        }}
+                      >
+                        Plot 122, No 1, Banana Island, Victoria Island,Lagos,
+                        Nigeria. 100292
+                      </p>
+                    </div>
+                    <div className="where-right-address-checked">
+                      <input type="checkbox" checked="checked" />
+                      <span className="checkmark"></span>
+                    </div>
+                  </div>
+                  <div>
+                    <p
+                      style={{
+                        fontSize: "24px",
+                        color: "#4169E2",
+                        fontWeight: "800",
+                        fontFamily: "Playfair Display",
+                        padding: "15px 0 0 0",
+                      }}
+                    >
+                      Add new address
+                    </p>
+                  </div>
+                  <div className="row">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">House/APT/Flat Number</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="34a, Ago Iwoye"
+                        name="fromaddress"
+                        value={delivery.fromaddress}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">City</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Input city"
+                          name="city"
+                          value={delivery.city}
+                          onChange={handleChange}
+                        />
+                      </div>{" "}
+                    </div>
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Select state</label>
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">House/APT/Flat Number</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="34a, Ago Iwoye"
-                    name="deliverylocation"
-                    onChange={handleChange}
-                    value={delivery.deliverylocation}
-                  />
-                </div>
+                        <select
+                          className="where-address-input-option"
+                          name="state"
+                          onChange={handleChange}
+                          value={delivery.state}
+                          required
+                        >
+                          <option value="">Select state</option>
+                          {NIGStates.map((data) => {
+                            return <option value={data}>{data}</option>;
+                          })}
+                        </select>
+                      </div>{" "}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Country</label>
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">State</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Input state"
-                    name="rState"
-                    onChange={handleChange}
-                    value={delivery.rState}
-                  />
-                </div>
+                        <select
+                          className="where-address-input-option"
+                          name="zone"
+                          onChange={handleChange}
+                          value={delivery.zone}
+                          required
+                        >
+                          <option value="">Select country</option>
+                          {contries.map((data) => {
+                            return (
+                              <option value={data.Zone}>
+                                {data.Countries}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </div>
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">City</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Input city"
-                    name="rCity"
-                    value={delivery.rCity}
-                    onChange={handleChange}
-                  />
-                </div>
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Post code</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="0039282"
+                          onChange={({ target }) => {
+                            setDelivery({
+                              ...delivery,
+                              postcode: target.value,
+                            });
+                          }}
+                          value={delivery.postcode}
+                        />
+                      </div>
+                    </div>
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Phone Number</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="Input Phone Number"
+                        name="number"
+                        value={delivery.number}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  {/* <div className="inputWrapBook">
+              <label htmlFor="">Post code</label>
+              <input
+                required
+                type="text"
+                placeholder="0039282"
+                // onChange={({ target }) => {
+                //   setDelivery({
+                //     ...delivery,
+                //     fromaddress: target.value,
+                //   });
+                // }}
+                // value={delivery.fromaddress}
+              />
+            </div> */}
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">Recipient name</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="John doe"
-                    name="recipientname"
-                    onChange={handleChange}
-                    value={delivery.recipientname}
-                  />
-                </div>
+                  {/* <div className="inputWrapBook">
+              <label htmlFor="">State</label>
+              <input
+                required
+                type="text"
+                placeholder="Input state"
+                name="state"
+                onChange={handleChange}
+                value={delivery.state}
+              />
+            </div> */}
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">Recipient number</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="+234911"
-                    name="recipientnumber"
-                    onChange={handleChange}
-                    value={delivery.recipientnumber}
-                  />
-                </div>
-
-                <div className="inputWrapBook">
-                  <label htmlFor="">Item description</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Item description"
-                    name="itemname"
-                    onChange={handleChange}
-                    value={delivery.itemname}
-                  />
-                </div>
-
-                {/* <div className="inputWrapBook">
-                <label htmlFor="">Country</label>
-
-                <select
-                  className="where-address-input-option"
-                  onChange={({ target }) => {
-                    setDelivery({
-                      ...delivery,
-                      zone: target.value,
-                    });
-                  }}
-                  value={delivery.zone}
-                >
-                  <option value="">Select country</option>
-                  {contries.map((data) => {
-                    return <option value={data.Zone}>{data.Countries}</option>;
-                  })}
-                </select>
+                  {/* <div className="where-address-save-check">
+                <label>
+                  {" "}
+                  <input required type="checkbox" />
+                  Save to Address Book
+                </label>
               </div> */}
-
-                {/* <div className="inputWrapBook">
-                <label htmlFor="">Post code</label>
-                <input
-                    required
-                  type="text"
-                  placeholder="0039282"
-                  // onChange={({ target }) => {
-                  //   setDelivery({
-                  //     ...delivery,
-                  //     fromaddress: target.value,
-                  //   });
-                  // }}
-                  value={delivery.fromaddress}
-                />
-              </div> */}
-
-                {/* <div className="inputWrapBook">
-                <label htmlFor="">State</label>
-                <input
-                    required
-                  type="text"
-                  placeholder="Lagos"
-                  onChange={({ target }) => {
-                    setDelivery({
-                      ...delivery,
-                      state: target.value,
-                    });
-                  }}
-                  value={delivery.fromaddress}
-                />
-              </div> */}
-
-                {/* <div className="inputWrapBook">
-                <label htmlFor="">City</label>
-                <input
-                    required
-                  type="text"
-                  placeholder="Sururlere"
-                  onChange={({ target }) => {
-                    setDelivery({
-                      ...delivery,
-                      state: target.value,
-                    });
-                  }}
-                  value={delivery.fromaddress}
-                />
-              </div> */}
-
-                <div className="probitemCl">
-                  <p
-                    onClick={toggleProhabittedModal}
-                    style={{
-                      color: "orangered",
-                      fontSize: "12px",
-                      cursor: "pointer",
-                      textDecoration: "underline",
-                    }}
-                  >
-                    by clicking continue you agree that your package does not
-                    contain any prohibited items
-                  </p>
-                </div>
-
-                <div className="btnsfd">
-                  <button onClick={handleTab} className="where-address-button">
-                    Continue
-                  </button>
-                </div>
-              </form>
+                  <div className="btnsfd">
+                    <button
+                      onClick={handleTab}
+                      className="where-address-button"
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           ) : (
             ""
@@ -545,48 +616,218 @@ export default function BookDelivery() {
           {tab == "tab3" ? (
             <div className="where-right-form-header">
               <form>
-                <div className="inputWrapBook">
-                  <label htmlFor="">Weight (KG)</label>
-                  <input
-                    required
-                    type="number"
-                    placeholder="10"
-                    name="weight"
-                    onChange={handleChange}
-                    value={delivery.weight}
-                  />
+                <div className="where-right-address">
+                  <div>
+                    <p
+                      style={{
+                        fontSize: "16px",
+                        color: "#434343",
+                        padding: "15px",
+                      }}
+                    >
+                      <span style={{ color: "#4169E2" }}>
+                        What are we coming to pick
+                      </span>
+                      <br />
+                      tap or click to add item
+                    </p>
+                  </div>
+                  <div style={{ paddingTop: "3%" }}>
+                    <button
+                      style={{
+                        border: "1px solid #4169E2",
+                        padding: "0 10px 0 10px",
+                        fontSize: "12px",
+                        width: "70px",
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </div>
                 </div>
-
-                <div className="inputWrapBook">
-                  <label htmlFor="">Length (CM)</label>
-                  <input
-                    required
-                    type="number"
-                    placeholder="10"
-                    name="length"
-                    onChange={handleChange}
-                    value={delivery.length}
-                  />
+                <div style={{ paddingTop: "3%" }}>
+                  <button
+                    style={{
+                      border: "1px solid #4169E2",
+                      padding: "0 2% 0 2%",
+                      fontSize: "12px",
+                    }}
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    Add Item
+                  </button>
                 </div>
-
-                <div className="inputWrapBook">
-                  <label htmlFor="">Width (CM)</label>
-                  <input
-                    required
-                    type="number"
-                    placeholder="10"
-                    name="breath"
-                    onChange={handleChange}
-                    value={delivery.breath}
-                  />
+                <div>
+                  <p
+                    style={{
+                      fontSize: "24px",
+                      color: "#4169E2",
+                      fontWeight: "800",
+                      fontFamily: "Playfair Display",
+                      padding: "15px 0 0 0",
+                    }}
+                  >
+                    Summary
+                  </p>
+                </div>
+                <div
+                  className="row"
+                  style={{
+                    display: "flex",
+                    color: "rgba(36, 66, 46, 0.75)",
+                    fontSize: "18px",
+                    fontFamily: "Gilroy-Bold",
+                  }}
+                >
+                  <div className="col">
+                    <address>
+                      <div style={{ marginTop: "10px" }}>TOTAL QUANTITY</div>
+                      <div style={{ marginTop: "10px" }}>TOTAL VALUE</div>
+                      <div style={{ marginTop: "10px" }}>INSURANCE FEE</div>
+                      <div style={{ marginTop: "10px" }}>COVER</div>
+                    </address>
+                  </div>
+                  <div className="col text-right">
+                    <address style={{ float: "right" }}>
+                      <div style={{ marginTop: "10px" }}>1</div>
+                      <div style={{ marginTop: "10px" }}> 5.0</div>
+                      <div style={{ marginTop: "10px" }}>0.00</div>
+                      <div style={{ marginTop: "10px" }}>10,000.00</div>
+                    </address>
+                  </div>
                 </div>
 
                 <div className="btnsfd">
                   <button onClick={handleTab} className="where-address-button">
                     Continue
                   </button>
+                  <p
+                    style={{
+                      fontWeight: "500",
+                      fontFamily: "Poppins",
+                      fontSize: "14px",
+                      marginTop: "-20px",
+                    }}
+                  >
+                    By continuing, I represent that the declaration above is a
+                    proper and accurate description of the contents of my
+                    package.
+                  </p>
                 </div>
               </form>
+         
+              <div
+                className="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content" style={{width:"600px",padding:"0 20px 0 "}}>
+                    <div className="modal-header">
+                      <div>
+                        <p
+                          style={{
+                            fontSize: "24px",
+                            color: "#4169E2",
+                            fontWeight: "800",
+                            fontFamily: "Playfair Display",
+                            padding: "15px 0 0 0",
+                            marginLeft:"170%"
+                          }}
+                        >
+                          Summary
+                        </p>
+                      </div>{" "}
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        style={{border:"0px",width:"20px"}}
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="where-right-form-header">
+                        <form>
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Description</label>
+                            <input
+                              required
+                              type="text"
+                              placeholder=""
+                              name="weight"
+                              onChange={handleChange}
+                              value={delivery.description}
+                            />
+                            <small>Give a brief description of what you are shipping</small>
+                          </div>
+
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Category</label>
+                            <select
+                          className="where-address-input-option"
+                          name="state"
+                          onChange={handleChange}
+                          value={delivery.category}
+                          required
+                        >
+                          <option value="">Select Category</option>
+                          <option value="Computer Backplates & I/O Shields">Computer Backplates & I/O Shields</option>
+
+                        </select>
+                        <small> Select a category that best describes your item. This is required for effective customs clearance when you ship internationally.
+</small>
+                          </div>
+                          <div className="row">
+                            <div className="col">
+                              <div className="inputWrapBook">
+                                <label htmlFor="">Number of Items</label>
+                                <input
+                                  required
+                                  type="number"
+                                  placeholder="10"
+                                  name="breath"
+                                  onChange={handleChange}
+                                  value={delivery.numberofitems}
+                                />
+                              </div>
+                            </div>
+                            <div className="col">
+                              <div className="inputWrapBook">
+                                <label htmlFor="">Value</label>
+                                <input
+                                  required
+                                  type="number"
+                                  placeholder="10"
+                                  name="breath"
+                                  onChange={handleChange}
+                                  value={delivery.value}
+                                />
+                              </div>
+                            </div>
+                            <small className="text-sm-left">Provide the value and quantity of the item you are trying to declare for shipping.</small>
+                          </div>
+                          <div className="btnsfd">
+                            <button
+data-dismiss="modal"                              className="where-address-button"
+                            >
+                              Continue
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                 
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
             ""
@@ -655,7 +896,9 @@ export default function BookDelivery() {
                   />
                 </svg>
 
-                <span>{`${delivery.deliverylocation} ${delivery.rCity} ${delivery.rState}`}</span>
+                {/* <span>{`${delivery.deliverylocation} ${delivery.rCity} ${delivery.rState}`}</span> */}
+                                <span>FaraPark Estate</span>
+
               </div>
 
               <div className="acceptText">
@@ -683,7 +926,7 @@ export default function BookDelivery() {
                   <PaystackButton
                     reference={new Date().getTime().toString()}
                     email={"frostandy41@gmail.com"}
-                    amount={Number(total) * 100}
+                    amount={Number(total)?Number(total):3000 * 100}
                     publicKey={process.env.REACT_APP_PAYSTACK_KEY}
                     text="PROCEED TO PAYMENT"
                     onSuccess={handleOnSuccess}

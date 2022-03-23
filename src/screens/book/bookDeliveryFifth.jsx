@@ -3,24 +3,29 @@ import "./index.scss";
 import mainhalf from "../../assets/mainhalf.png";
 import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
+import { useHistory } from "react-router-dom";
 
 export default function BookDeliveryFifth() {
+  const history = useHistory();
+
   return (
     <div className="where-cont">
       <div className="where-left-flex">
         <div className="where-left-arrow">
-          <img src={arrowvec} />
+          <img src={arrowvec} onClick={() => {
+              history.goBack();
+            }}/>
         </div>
         <div className="where-left-main">
           <img src={mainhalf} />
         </div>
       </div>
       <div className="where-right-main">
-        <img className="where-right-main-img" src={cancelvec} />
+        <img className="where-right-main-img" src={cancelvec} onClick={() => {
+              history.goBack();
+            }}/>
         <h2>
-          Provide the estimated
-          <br />
-          weight of your package ?
+        Shipment Description
         </h2>
         <div className="package-weight-select-flex">
           <div className="package-weight-selected">

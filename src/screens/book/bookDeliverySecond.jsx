@@ -3,13 +3,18 @@ import "./index.scss";
 import mainhalf from "../../assets/mainhalf.png";
 import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
+import { useHistory } from "react-router-dom";
 
 export default function BookDeliverySecond() {
+  const history = useHistory();
+
   return (
     <div className="where-cont">
       <div className="where-left-flex">
         <div className="where-left-arrow">
-          <img src={arrowvec} />
+          <img src={arrowvec}     onClick={() => {
+              history.goBack();
+            }}/>
         </div>
         <div className="where-left-main">
           <img src={mainhalf} />
@@ -17,7 +22,9 @@ export default function BookDeliverySecond() {
       </div>
       <div className="where-right-main">
         <div className="where-right-main-img">
-          <img src={cancelvec} />
+          <img src={cancelvec}    onClick={() => {
+              history.goBack();
+            }} />
         </div>
         <h2>
           Where will we be <br />
