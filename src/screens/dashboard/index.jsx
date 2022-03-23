@@ -23,7 +23,7 @@ export default function Index() {
       <InAppNavbar />
       <div className="app-padding">
         <div className="dashboardHeader">
-          <h2>Hello, {location.state.detail}</h2>
+          <h2>Hello {location.state.detail?location.state.detail:"User"},</h2>
         </div>
 
       <div style={{marginTop:"50px"}}>The Cockpit helps you navigate through your transactions with QC Express</div>
