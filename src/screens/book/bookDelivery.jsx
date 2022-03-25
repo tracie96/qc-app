@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import contries from "../../components/countries";
 import "./index.scss";
+import "./button.css";
+
 import mainhalf from "../../assets/mainhalf.png";
 import arrowvec from "../../assets/arrowvec.png";
 import { PaystackButton } from "react-paystack";
@@ -20,6 +22,7 @@ export default function BookDelivery() {
     weight: "",
     length: "",
     breath: "",
+    height: "",
     deliverylocation: "",
     itemname: "",
     recipientname: "",
@@ -31,8 +34,8 @@ export default function BookDelivery() {
     rState: "",
     postcode: "",
   });
-
-  const [tab, setTab] = useState("tab1");
+  const [modalConfirm, setModalConfirm] = useState(false);
+  const [tab, setTab] = useState(1);
 
   const [total, setTotal] = useState(0);
 
@@ -70,10 +73,12 @@ export default function BookDelivery() {
     // access transaction ID using e.trxref or e.reference
 
     // submitTicket(e);
-    history.push(`/track`);
+    setModalConfirm(true);
     makePaymentBackend();
   };
+  var retrievedObject = localStorage.getItem("user");
 
+  var auth = JSON.parse(retrievedObject);
   const handleOnClose = () => {
     // Optional
     // Do any custom action like show modal or log cart
@@ -91,23 +96,23 @@ export default function BookDelivery() {
 
   const handleTab = (e) => {
     e.preventDefault();
-    if (tab == "tab1") {
-      if (delivery.fromaddress == "") {
-        return NotificationManager.error("Error", "From address is required");
-      }
+    if (tab == 1) {
+      // if (delivery.fromaddress == "") {
+      //   return NotificationManager.error("Error", "From address is required");
+      // }
 
-      if (delivery.state == "") {
-        return NotificationManager.error("Error", "state is required");
-      }
+      // if (delivery.state == "") {
+      //   return NotificationManager.error("Error", "state is required");
+      // }
 
-      if (delivery.city == "") {
-        return NotificationManager.error("Error", "city is required");
-      }
+      // if (delivery.city == "") {
+      //   return NotificationManager.error("Error", "city is required");
+      // }
       e.preventDefault();
-      setTab("tab2");
+      setTab(2);
     }
 
-    if (tab == "tab2") {
+    if (tab == 2) {
       // if (delivery.deliverylocation == "") {
       //   if (delivery.zone == "") {
       //     return NotificationManager.error("Error", "Country is required");
@@ -138,10 +143,10 @@ export default function BookDelivery() {
       // }
       e.preventDefault();
 
-      setTab("tab3");
+      setTab(3);
     }
 
-    if (tab == "tab3") {
+    if (tab == 3) {
       // if (delivery.weight == "") {
       //   return NotificationManager.error("Error", "weight is required");
       // }
@@ -154,6 +159,37 @@ export default function BookDelivery() {
       //   return NotificationManager.error("Error", "Breath is required");
       // }
       e.preventDefault();
+      setTab(4);
+    }
+    if (tab == 4) {
+      // if (delivery.weight == "") {
+      //   return NotificationManager.error("Error", "weight is required");
+      // }
+
+      // if (delivery.length == "") {
+      //   return NotificationManager.error("Error", "Length is required");
+      // }
+
+      // if (delivery.breath == "") {
+      //   return NotificationManager.error("Error", "Breath is required");
+      // }
+      e.preventDefault();
+      setTab(5);
+    }
+    if (tab == 5) {
+      // if (delivery.weight == "") {
+      //   return NotificationManager.error("Error", "weight is required");
+      // }
+
+      // if (delivery.length == "") {
+      //   return NotificationManager.error("Error", "Length is required");
+      // }
+
+      // if (delivery.breath == "") {
+      //   return NotificationManager.error("Error", "Breath is required");
+      // }
+      e.preventDefault();
+
       BookDel();
     }
   };
@@ -161,18 +197,22 @@ export default function BookDelivery() {
   const BookDel = async (e) => {
     // showLoader();
     const data = {
-      fromaddress: delivery.fromaddress?delivery.fromaddress:"Fara Park",
-      zone: delivery.zone?delivery.zone:"South East",
+      fromaddress: delivery.fromaddress ? delivery.fromaddress : "Fara Park",
+      zone: delivery.zone ? delivery.zone : "South East",
       weight: 3.5,
-      length: delivery.length?delivery.length:3.5,
-      breath: delivery.breath?delivery.breath:3.5,
-      deliverylocation: delivery.deliverylocation?delivery.deliverylocation:"Fara Park",
-      itemname: delivery.itemname?delivery.itemname:"Shoe",
-      recipientname: delivery.recipientname?delivery.recipientname:"Tracy",
-      recipientnumber: delivery.recipientnumber?delivery.recipientnumber:"08169530309",
+      length: delivery.length ? delivery.length : 3.5,
+      breath: delivery.breath ? delivery.breath : 3.5,
+      deliverylocation: delivery.deliverylocation
+        ? delivery.deliverylocation
+        : "Fara Park",
+      itemname: delivery.itemname ? delivery.itemname : "Shoe",
+      recipientname: delivery.recipientname ? delivery.recipientname : "Tracy",
+      recipientnumber: delivery.recipientnumber
+        ? delivery.recipientnumber
+        : "08169530309",
     };
-      setTab("tab4");
-      // NotificationManager.success("Success");
+    setTab(4);
+    // NotificationManager.success("Success");
 
     setPaymentDetails(1000000);
 
@@ -191,7 +231,7 @@ export default function BookDelivery() {
     //     NotificationManager.error("Error", res.er.error);
     //     return;
     //   }
-    //   setTab("tab4");
+    //   setTab(4);
     //   NotificationManager.success("Success", res.message);
     //   console.log(res);
     //   setTotal(res.Amount);
@@ -203,32 +243,45 @@ export default function BookDelivery() {
   return (
     <>
       <div className="where-cont">
-        <div className="cancelBtn">
-          <img
-            src={arrowvec}
-            alt=""
+        {tab > 1 ? (
+          <div
+            className="cancelBtn"
             onClick={() => {
-              history.goBack();
+              setTab(tab - 1);
             }}
-          />
-        </div>
+          >
+            <img
+              src={arrowvec}
+              alt=""
+              onClick={() => {
+                setTab(tab - 1);
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            className="cancelBtn"
+            onClick={() => {
+              history.push({
+                pathname: "/app",
+                state: { detail: auth.lastname },
+              });
+            }}
+          >
+            <img src={cancelvec} alt="" />
+          </div>
+        )}
         <div className="where-left-flex">
           <img src={mainhalf} />
         </div>
         <div className="where-right-main">
-          {tab == "tab1" ? <h2>Pick up location</h2> : ""}
+          {tab == 1 ? <h2>Get Started</h2> : ""}
 
-          {tab == "tab2" ? <h2>Add Delivery Location</h2> : ""}
+          {tab == 2 ? <h2>Add PickUp Location</h2> : ""}
 
-          {tab == "tab3" ? (
-            <h2>
-              Provide the estimated <br /> weight of your package?
-            </h2>
-          ) : (
-            ""
-          )}
+          {tab == 3 ? <h2>Add Delivery Location</h2> : ""}
 
-          {tab == "tab4" ? (
+          {tab == 4 ? (
             <h2>
               Package and <br />
               Delivery Review
@@ -238,15 +291,167 @@ export default function BookDelivery() {
           )}
 
           <p className="where-right-sub" style={{ textAlign: "center" }}>
-            {tab == "tab1" ? " Fill in your origin pickup address" : ""}
+            {tab == 1 ? " Get Started" : ""}
           </p>
-     
-          {tab == "tab1" ? (
+
+          {tab == 1 ? (
+            <div className="where-right-form-header">
+              <form>
+                <div className="inputWrapBook">
+                  <label htmlFor="">What are you shipping</label>
+                  <select
+                    className="where-address-input-option"
+                    name="state"
+                    onChange={handleChange}
+                    value={delivery.category}
+                    required
+                  >
+                    <option value="">Select Document Type</option>
+                    <option value="Document">Document</option>
+                    <option value="Document">Non Document</option>
+                  </select>
+                </div>
+                <div className="inputWrapBook">
+                  <label htmlFor="">Weight (KG)</label>
+                  <input
+                    required
+                    type="number"
+                    placeholder="10"
+                    name="weight"
+                    onChange={handleChange}
+                    value={delivery.weight}
+                  />
+                </div>
+
+                <div className="row">
+                  <div className="col">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Length (CM)</label>
+                      <input
+                        required
+                        type="number"
+                        placeholder="10"
+                        name="length"
+                        onChange={handleChange}
+                        value={delivery.length}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Width (CM)</label>
+                      <input
+                        required
+                        type="number"
+                        placeholder="10"
+                        name="breath"
+                        onChange={handleChange}
+                        value={delivery.breath}
+                      />
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Height (CM)</label>
+                      <input
+                        required
+                        type="number"
+                        placeholder="10"
+                        name="height"
+                        onChange={handleChange}
+                        value={delivery.height}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="inputWrapBook">
+                  <label htmlFor="">Description</label>
+                  <input
+                    required
+                    type="text"
+                    placeholder=""
+                    name="weight"
+                    onChange={handleChange}
+                    value={delivery.description}
+                  />
+                  <small>
+                    Give a brief description of what you are shipping
+                  </small>
+                </div>
+
+                <div className="inputWrapBook">
+                  <label htmlFor="">Category</label>
+                  <select
+                    className="where-address-input-option"
+                    name="state"
+                    onChange={handleChange}
+                    value={delivery.category}
+                    required
+                  >
+                    <option value="">Select Category</option>
+                    <option value="Computer Backplates & I/O Shields">
+                      Computer Backplates & I/O Shields
+                    </option>
+                  </select>
+                  <small>
+                    {" "}
+                    Select a category that best describes your item. This is
+                    required for effective customs clearance when you ship
+                    internationally.
+                  </small>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Number of Items</label>
+                      <input
+                        required
+                        type="number"
+                        placeholder="10"
+                        name="breath"
+                        onChange={handleChange}
+                        value={delivery.numberofitems}
+                      />
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Value</label>
+                      <input
+                        required
+                        type="number"
+                        placeholder="10"
+                        name="breath"
+                        onChange={handleChange}
+                        value={delivery.value}
+                      />
+                    </div>
+                  </div>
+                  <div className="inputWrapBook">
+
+                  <button type="button" onClick={()=>{setprohabittedItem(true)}} className="btn-danger" style={{width:"30%"}}>
+                    Prohibitted Items
+                  </button>                  
+                  </div>
+                </div>
+                <div className="btnsfd">
+                  <button onClick={handleTab} className="where-address-button">
+                    Continue
+                  </button>
+                </div>
+              </form>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {tab == 2 ? (
             <div style={{ alignSelf: "center" }}>
               <div className="where-right-form-header">
                 {/* <h3>Add new address</h3> */}
 
-                <form style={{ width: "480px" }}>
+                <form>
                   <div className="where-right-address">
                     <div>
                       <p
@@ -255,10 +460,7 @@ export default function BookDelivery() {
                           color: "#434343",
                           padding: "15px",
                         }}
-                      >
-                        Plot 122, No 1, Banana Island, Victoria Island,Lagos,
-                        Nigeria. 100292
-                      </p>
+                      ></p>
                     </div>
                     <div className="where-right-address-checked">
                       <input type="checkbox" checked="checked" />
@@ -336,7 +538,7 @@ export default function BookDelivery() {
                           value={delivery.zone}
                           required
                         >
-                          <option value="">Select country</option>
+                          <option value="">Nigeria</option>
                           {contries.map((data) => {
                             return (
                               <option value={data.Zone}>
@@ -427,15 +629,15 @@ export default function BookDelivery() {
             ""
           )}
 
-          {tab == "tab2" ? (
+          {tab == 3 ? (
             <div style={{ alignSelf: "center" }}>
               <div className="where-right-form-header">
                 {/* <h3>Add new address</h3> */}
 
-                <form style={{ width: "480px" }}>
+                <form>
                   <div className="where-right-address">
                     <div>
-                      <p
+                      {/* <p
                         style={{
                           fontSize: "16px",
                           color: "#434343",
@@ -444,7 +646,7 @@ export default function BookDelivery() {
                       >
                         Plot 122, No 1, Banana Island, Victoria Island,Lagos,
                         Nigeria. 100292
-                      </p>
+                      </p> */}
                     </div>
                     <div className="where-right-address-checked">
                       <input type="checkbox" checked="checked" />
@@ -522,7 +724,7 @@ export default function BookDelivery() {
                           value={delivery.zone}
                           required
                         >
-                          <option value="">Select country</option>
+                          <option value="">Nigeria</option>
                           {contries.map((data) => {
                             return (
                               <option value={data.Zone}>
@@ -563,41 +765,7 @@ export default function BookDelivery() {
                       />
                     </div>
                   </div>
-                  {/* <div className="inputWrapBook">
-              <label htmlFor="">Post code</label>
-              <input
-                required
-                type="text"
-                placeholder="0039282"
-                // onChange={({ target }) => {
-                //   setDelivery({
-                //     ...delivery,
-                //     fromaddress: target.value,
-                //   });
-                // }}
-                // value={delivery.fromaddress}
-              />
-            </div> */}
 
-                  {/* <div className="inputWrapBook">
-              <label htmlFor="">State</label>
-              <input
-                required
-                type="text"
-                placeholder="Input state"
-                name="state"
-                onChange={handleChange}
-                value={delivery.state}
-              />
-            </div> */}
-
-                  {/* <div className="where-address-save-check">
-                <label>
-                  {" "}
-                  <input required type="checkbox" />
-                  Save to Address Book
-                </label>
-              </div> */}
                   <div className="btnsfd">
                     <button
                       onClick={handleTab}
@@ -612,8 +780,8 @@ export default function BookDelivery() {
           ) : (
             ""
           )}
-
-          {tab == "tab3" ? (
+          {/* 
+          {tab == 3 ? (
             <div className="where-right-form-header">
               <form>
                 <div className="where-right-address">
@@ -717,154 +885,112 @@ export default function BookDelivery() {
                   </p>
                 </div>
               </form>
-         
-              <div
-                className="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content" style={{width:"600px",padding:"0 20px 0 "}}>
-                    <div className="modal-header">
-                      <div>
-                        <p
-                          style={{
-                            fontSize: "24px",
-                            color: "#4169E2",
-                            fontWeight: "800",
-                            fontFamily: "Playfair Display",
-                            padding: "15px 0 0 0",
-                            marginLeft:"170%"
-                          }}
-                        >
-                          Summary
-                        </p>
-                      </div>{" "}
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                        style={{border:"0px",width:"20px"}}
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <div className="where-right-form-header">
-                        <form>
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Description</label>
-                            <input
-                              required
-                              type="text"
-                              placeholder=""
-                              name="weight"
-                              onChange={handleChange}
-                              value={delivery.description}
-                            />
-                            <small>Give a brief description of what you are shipping</small>
-                          </div>
+            </div>
+          ) : (
+            ""
+          )} */}
 
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Category</label>
-                            <select
-                          className="where-address-input-option"
-                          name="state"
-                          onChange={handleChange}
-                          value={delivery.category}
-                          required
-                        >
-                          <option value="">Select Category</option>
-                          <option value="Computer Backplates & I/O Shields">Computer Backplates & I/O Shields</option>
-
-                        </select>
-                        <small> Select a category that best describes your item. This is required for effective customs clearance when you ship internationally.
-</small>
-                          </div>
-                          <div className="row">
-                            <div className="col">
-                              <div className="inputWrapBook">
-                                <label htmlFor="">Number of Items</label>
-                                <input
-                                  required
-                                  type="number"
-                                  placeholder="10"
-                                  name="breath"
-                                  onChange={handleChange}
-                                  value={delivery.numberofitems}
-                                />
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="inputWrapBook">
-                                <label htmlFor="">Value</label>
-                                <input
-                                  required
-                                  type="number"
-                                  placeholder="10"
-                                  name="breath"
-                                  onChange={handleChange}
-                                  value={delivery.value}
-                                />
-                              </div>
-                            </div>
-                            <small className="text-sm-left">Provide the value and quantity of the item you are trying to declare for shipping.</small>
-                          </div>
-                          <div className="btnsfd">
-                            <button
-data-dismiss="modal"                              className="where-address-button"
-                            >
-                              Continue
-                            </button>
-                          </div>
-                        </form>
-                      </div>
+          {tab == 4 ? (
+            <div className="where-right-form-header">
+              <form>
+                <div
+                  style={{
+                    display: "flex",
+                    margin: "auto",
+                    textAlign: "center",
+                    padding: "5% 0 5% 0",
+                  }}
+                >
+                  <div style={{ width: "100%" }}>
+                    Pickup
+                    <p>Select pickup date</p>
+                    <div style={{ marginTop: "-20px" }}>
+                      <input
+                        type="date"
+                        placeholder="Select pickup date"
+                        style={{ border: "1.5px solid #000", color: "#000" }}
+                        data-date-inline-picker="true"
+                      />
                     </div>
-                 
                   </div>
                 </div>
-              </div>
+
+                <div className="row">
+                  <div>
+                    <p style={{ color: "#FF0000" }}>
+                      A pickup request will not be assigned for this delivery.
+                      To hand over this package, drop it off at the nearest hub
+                      after the booking is completed.
+                    </p>
+                  </div>
+
+                  <div>
+                    <p>
+                      By continuing, I represent that the declaration above is a
+                      proper and accurate description of the contents of my
+                      package.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="btnsfd">
+                  <button onClick={handleTab} className="where-address-button">
+                    Continue
+                  </button>
+                </div>
+              </form>
             </div>
           ) : (
             ""
           )}
 
-          {tab == "tab4" ? (
+          {tab == 5 ? (
+            
             <div className="sumaryWrap">
-              <div className="summaryHeader">
-                <h2>Summary</h2>
-              </div>
+              <div>
+                  <p
+                    style={{
+                      fontSize: "24px",
+                      color: "#4169E2",
+                      fontWeight: "800",
+                      fontFamily: "Playfair Display",
+                      padding: "15px 0 0 0",
+                    }}
+                  >
+                    Summary
+                  </p>
+                </div>
+                <div
+                  className="row"
+                  style={{
+                    display: "flex",
+                    color: "rgba(36, 66, 46, 0.75)",
+                    fontSize: "18px",
+                    fontFamily: "Gilroy-Bold",
+                  }}
+                >
+                <div className="col">
+                    <address>
+                      <div style={{ marginTop: "10px" }}>ITEM</div>
+                      <div style={{ marginTop: "10px" }}>WEIGHT</div>
+                      <div style={{ marginTop: "10px" }}>LENGTH</div>
+                      <div style={{ marginTop: "10px" }}>WIDTH</div>
+                      <div style={{ marginTop: "10px" }}>HIEGHT</div>
+                      <div style={{ marginTop: "10px" }}>TOTAL</div>
 
-              <ul className="submlist">
-                <li>
-                  <span>ITEM</span>
-                  <span>{delivery.itemname}</span>
-                </li>
-
-                <li>
-                  <span>Weight</span>
-                  <span>{delivery.weight}KG</span>
-                </li>
-
-                <li>
-                  <span>Length</span>
-                  <span>{delivery.length}CM</span>
-                </li>
-
-                <li>
-                  <span>Width</span>
-                  <span>{delivery.breath}CM</span>
-                </li>
-
-                <li>
-                  <span>Total fee</span>
-                  <span>₦{Number(total).toLocaleString()}</span>
-                </li>
-              </ul>
+                    </address>
+                  </div>
+                  <div className="col text-right">
+                    <address style={{ float: "right" }}>
+                      <div style={{ marginTop: "10px" }}>{delivery.itemname}</div>
+                      <div style={{ marginTop: "10px" }}> {delivery.weight}KG</div>
+                      <div style={{ marginTop: "10px" }}>{delivery.length}CM</div>
+                      <div style={{ marginTop: "10px" }}>{delivery.breath}CM</div>
+                      <div style={{ marginTop: "10px" }}>{delivery.height}CM</div>
+                      <div style={{ marginTop: "10px" }}>23000</div>
+                    </address>
+                </div>
+             </div>
 
               <div className="databdd">
                 <svg
@@ -897,8 +1023,7 @@ data-dismiss="modal"                              className="where-address-butto
                 </svg>
 
                 {/* <span>{`${delivery.deliverylocation} ${delivery.rCity} ${delivery.rState}`}</span> */}
-                                <span>FaraPark Estate</span>
-
+                <span>FaraPark Estate</span>
               </div>
 
               <div className="acceptText">
@@ -926,7 +1051,7 @@ data-dismiss="modal"                              className="where-address-butto
                   <PaystackButton
                     reference={new Date().getTime().toString()}
                     email={"frostandy41@gmail.com"}
-                    amount={Number(total)?Number(total):3000 * 100}
+                    amount={Number(total) ? Number(total) : 23000 * 100}
                     publicKey={process.env.REACT_APP_PAYSTACK_KEY}
                     text="PROCEED TO PAYMENT"
                     onSuccess={handleOnSuccess}
@@ -942,6 +1067,62 @@ data-dismiss="modal"                              className="where-address-butto
       </div>
       <div className="prohabitedItems">
         <Modal
+          open={modalConfirm}
+          onClose={toggleProhabittedModal}
+          center
+          showCloseIcon={false}
+        >
+          <div className="prohabwrap" style={{textAlign:"center"}}>
+            <div>
+              <p
+                style={{
+                  fontSize: "32px",
+                  color: "#4169E2",
+                  fontWeight: "800",
+                  fontFamily: "Playfair Display",
+                  padding: "15px 0 0 0",
+                }}
+              >
+                Order and Payment Successful
+              </p>
+            </div>
+            <div className="probitrbody">
+              <small>Your order have been made, go back home to wait your ordering notification</small><br/>
+              <small>Track ID: <b>#056278363014</b></small>
+
+              <div className="row">
+                <div className="col">
+                  <button
+                    onClick={() => {
+                      history.push({
+                        pathname: "/app",
+                        state: { detail: auth.lastname },
+                      });
+                      setModalConfirm(false);
+                    }}
+                  >
+                    Go back to Dashbard
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    onClick={() => {
+                      history.push({
+                        pathname: "/track",
+                      });
+                      setModalConfirm(false);
+                    }}
+                  >
+                    Track
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      </div>
+      <div className="prohabitedItems">
+        <Modal
           open={prohabittedItem}
           onClose={toggleProhabittedModal}
           center
@@ -953,41 +1134,44 @@ data-dismiss="modal"                              className="where-address-butto
             <div className="probitrbody">
               <ul>
                 <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
+                Our Courier partners do not have the operational capability to transport such items.
+
                 </li>
 
                 <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
+                Animal or animal’s products contained within Appendix 1 of CITES are prohibited from carriage.
+
+The CITES Convention (Convention on International Trade in Endangered Species of Wild Fauna and Flora) is an international agreement between governments concerning the international trade in specimens of wild animals or plants https://www.cites.org/eng.
+
+Animal or animal’s products not contained within Appendix 1 of CITES can usually be shipped but may require an export license from the issuing government. See under restricted.
+
                 </li>
 
                 <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
+                These items are prohibited for carriage as the network is not designed to be sufficiently secure for such transportation. It could lead to our Courier partner’s people or property becoming targets of criminal activity.                </li>
+
+                <li>
+                These items are prohibited for carriage as the network is not designed to be sufficiently secure for such transportation. It could lead to our Courier partner’s people or property becoming targets of criminal activity.
+
+The relevant local Authority is to be notified if the amount of cash found exceeds the relevant threshold for notification.
+
+-    Travellers Cheques & Activated Credit Cards
+As an exception, certain selected and approved customers who have significant volumes of core network shipments may be permitted to transport Travellers Cheques & Activated Credit Cards (GSOP Shipment and Product Handling Policy and Standards 2.2.14 Travellers Cheques & Activated Credit Cards).
+
                 </li>
 
                 <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
+                These items are prohibited for carriage as our Courier partner’s network is not designed to be sufficiently secure for such transportation. It could lead to its people or property becoming targets of criminal activity.
+                </li>
+                <li>
+                These items are prohibited for carriage in our Courier partner’s network as in many territories special handling and licenses are required for the carrier. Restrictions also apply in airports worldwide for the airside handling of such items. Under x-ray replica firearms resemble real guns and may cause disruption and delay in the screening process.
                 </li>
 
                 <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
+                Any goods considered to be illegal are prohibited for carriage as our Courier partners could be held financially and criminally responsible for the movement of such goods. This can include items that are country-specific (e.g. the importation of alcohol and pornography including sex-dolls) and commodities considered to be illegal internationally, such as counterfeit goods and narcotics (e.g. Heroin, Cocaine, Fentanyl and chemicals that may be precursors to narcotic manufacture).
                 </li>
                 <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
-                </li>
-
-                <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
-                </li>
-                <li>
-                  We dont allow shipment of drugs or guns Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Ex, aut.
+                Counterfeit goods in breach of intellectual property rights (IPR) are prohibited and carrying them may cause serious harm to the reputation of our Courier partners. As per our policy, all IPR / counterfeit goods and commodities are illegal and are therefore prohibited for carriage.
                 </li>
               </ul>
 

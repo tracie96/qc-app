@@ -173,12 +173,10 @@ export default function Index() {
         <div className="col5box">
           <ValueSvg1 />
           <h2 style={{ textAlign: "center" }}>
-            Local <br />
-            Deliveries
+          Intracity
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
+          Deliveries within Major cities.
           </p>
           <h4>Learn More</h4>
         </div>
@@ -186,12 +184,10 @@ export default function Index() {
         <div className="col5box">
           <ValueSvg2 />
           <h2 style={{ textAlign: "center" }}>
-            Country <br />
-            Deliveries
+            Country 
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
+            Deliveries across states and regions.
           </p>
           <h4>Learn More</h4>
         </div>
@@ -199,12 +195,10 @@ export default function Index() {
         <div className="col5box">
           <ValueSvg3 />
           <h2 style={{ textAlign: "center" }}>
-            International <br />
-            Deliveries
+            International
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
+            Deliveries across international borders.
           </p>
           <h4>Learn More</h4>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Logo } from "../../assets/svg";
 import { useHistory } from "react-router-dom";
-
+import "./nav.css"
 export default function InAppNavbar() {
   const his = useHistory();
   return (
@@ -12,11 +12,21 @@ export default function InAppNavbar() {
             <Logo />
           </li>
           <li>Cockpit</li>
-          <li>Shipments</li>
-          <li>Payments</li>
-          <li>Imports</li>
-          <li>Accounts</li>
+          <li className="dropdown">Shipments
+          <div class="dropdown-content">
+          <li style={{marginLeft:"0px"}}>Payment History</li>
+          <li style={{marginLeft:"0px"}}>Track Shipment</li>
+          <li style={{marginLeft:"0px"}}>Locate our hubs</li>
+          <li style={{marginLeft:"0px"}}>Check tariff's</li>
+          <li style={{marginLeft:"0px"}}>Tell a friend</li>
+          <li style={{marginLeft:"0px"}}>Shipping History</li>
+
+           </div>
+          </li>
+          <li>Account</li>
+
         </ul>
+      
       </div>
 
       <div className="inAppNavbarCol2">

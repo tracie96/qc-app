@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import "./index.scss";
 import contries from "../../components/countries";
 import NIGStates from "../../components/nigeriaStates";
-import authBanner from "../../assets/authbanner.png";
+import authBanner from "../../assets/mainhalf.png";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";
 import { NotificationManager } from "react-notifications";
 import { axiosCalls } from "../../components/_api";
 import { hideLoader, showLoader } from "../../components/loader";
+// import { SMTPClient } from 'emailjs';
+
 const Auth = () => {
   const history = useHistory();
   const [auth, setAuth] = useState({
@@ -47,6 +49,7 @@ const Auth = () => {
         pathname: '/app',
         state: { detail: auth.lastname }
       });
+      
   }
   const login = async (e) => {
     // hideLoader();
@@ -230,7 +233,7 @@ const Auth = () => {
                           value={delivery.zone}
                           required
                         >
-                          <option value="">Select country</option>
+                          <option value="">Nigeria</option>
                           {contries.map((data) => {
                             return (
                               <option value={data.Zone}>
@@ -244,13 +247,13 @@ const Auth = () => {
                  
                    
                   <div className="inputWrapBook">
-                      <label htmlFor="">Phone Number</label>
+                      <label htmlFor="">Email</label>
                       <input
                         required
                         type="text"
-                        placeholder="Input Phone Number"
+                        placeholder="Input Email"
                         name="number"
-                        value={delivery.phonenumber}
+                        value={delivery.email}
                         onChange={handleChange}
                       />
                     </div>
@@ -339,7 +342,7 @@ const Auth = () => {
   
   
               <div className="inputWrap">
-                <label htmlFor="">Email</label>
+                <label htmlFor="">Phone Number</label>
                 <input
                   onChange={(e) => {
                     setAuth({

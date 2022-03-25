@@ -10,7 +10,9 @@ export default function Track() {
           
         <div className="row">
          <img src={track}>
+
          </img>
+         <div style={{width:"20%",height:"25%",background:"#fff",zIndex:"2",position:"absolute",margin:"25% 0% 10% 10%"}}></div>
         </div>
       </div>
     </div>
