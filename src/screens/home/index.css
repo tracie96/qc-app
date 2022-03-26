@@ -7,6 +7,8 @@
   width: 100%;
   padding-top: 90px !important;
   overflow: hidden;
+  font-family: 'Poppins';
+
 }
 
 .homepage-header-col1 {
@@ -30,7 +32,7 @@
 }
 
 .homepage-header-col1 .homepage-header-col1t1 {
-  color:#4169E2;
+  color:#446ce4;
   ;
 }
 
@@ -85,19 +87,21 @@
 
 .col3-home-slideChild {
   /* height: 200px; */
-  background: #f0e5cf;
   padding: 50px;
   padding-top: 0;
   border-radius: 5px;
+  text-align: center;
+
 }
 
 .scstcard {
   width: 100%;
-  background-color: transparent;
+  background-color: #fff;
+  text-align: center;
   height: 270px;
   padding: 20px;
   border-radius: 5px;
-  border: 1px solid #555555;
+  border: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
@@ -134,7 +138,7 @@
 }
 
 .col2-home {
-  background-color: #4169e2;
+  background-color: #446ce4;
   height: 200px;
   width: 100%;
   display: flex;
@@ -196,7 +200,7 @@
   font-weight: 800;
   font-size: 48px;
   line-height: 135%;
-  color: #4169e2;
+  color: #446ce4;
 }
 
 .col4-home-col1 p {
@@ -224,7 +228,8 @@
   height: 50px;
   left: 30px;
   border-radius: 50%;
-  background: #000000;
+  background: #fff;
+  border: 1px dashed #446ce4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,7 +243,7 @@
   /* line-height: 135%; */
   /* or 65px */
   text-align: center;
-  color: #4169e2;
+  color: #446ce4;
   padding-top: 25px;
 }
 
@@ -284,7 +289,7 @@
 }
 
 .col5-home .col5box h2 {
-  color: #4169e2;
+  color: #446ce4;
   margin-bottom: 25px;
 }
 
@@ -339,7 +344,7 @@
   font-size: 35px;
   line-height: 135%;
 
-  color: #4169e2;
+  color: #446ce4;
 }
 
 .col6-home-col2 p {
@@ -382,7 +387,7 @@
   font-style: normal;
   font-weight: 800;
   font-size: 32px;
-  color: #4169e2;
+  color: #fff;
 }
 
 .faqSeaction {
@@ -390,10 +395,15 @@
   justify-content: space-between;
   width: 100%;
   padding-bottom: 50px;
+  
 }
 
 .faqSeactionMainOne {
-  width: 60%;
+  width: 90%;
+  margin:auto;
+  border-radius: 5%;
+  background: url("../../assets/hero-bg.jpg");
+
 }
 
 .faqSeactionMainTwo {
@@ -459,9 +469,11 @@
 
 .faqHeader h2 {
   font-style: normal;
+  font-family: 'Poppins';
   font-weight: 800;
   font-size: 32px;
-  color: #4169e2;
+  text-align: center;
+  color: #fff;
 }
 
 .footerHome {
@@ -481,7 +493,7 @@
   font-weight: 800;
   font-size: 44px;
   line-height: 135.5%;
-  color: #4169e2;
+  color: #446ce4;
 }
 
 .footerHomeCol1 p {

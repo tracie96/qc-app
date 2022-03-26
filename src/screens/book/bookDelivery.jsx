@@ -40,6 +40,8 @@ export default function BookDelivery() {
   const [total, setTotal] = useState(0);
 
   const [prohabittedItem, setprohabittedItem] = useState(false);
+  
+  const [showbtn, setShowbtn] = useState(false);
 
   const [payementDetails, setPaymentDetails] = useState({});
 
@@ -159,23 +161,23 @@ export default function BookDelivery() {
       //   return NotificationManager.error("Error", "Breath is required");
       // }
       e.preventDefault();
-      setTab(4);
-    }
-    if (tab == 4) {
-      // if (delivery.weight == "") {
-      //   return NotificationManager.error("Error", "weight is required");
-      // }
-
-      // if (delivery.length == "") {
-      //   return NotificationManager.error("Error", "Length is required");
-      // }
-
-      // if (delivery.breath == "") {
-      //   return NotificationManager.error("Error", "Breath is required");
-      // }
-      e.preventDefault();
       setTab(5);
     }
+    // if (tab == 4) {
+    //   // if (delivery.weight == "") {
+    //   //   return NotificationManager.error("Error", "weight is required");
+    //   // }
+
+    //   // if (delivery.length == "") {
+    //   //   return NotificationManager.error("Error", "Length is required");
+    //   // }
+
+    //   // if (delivery.breath == "") {
+    //   //   return NotificationManager.error("Error", "Breath is required");
+    //   // }
+    //   e.preventDefault();
+    //   setTab(5);
+    // }
     if (tab == 5) {
       // if (delivery.weight == "") {
       //   return NotificationManager.error("Error", "weight is required");
@@ -308,7 +310,7 @@ export default function BookDelivery() {
                   >
                     <option value="">Select Document Type</option>
                     <option value="Document">Document</option>
-                    <option value="Document">Non Document</option>
+                    <option value="Document">Package</option>
                   </select>
                 </div>
                 <div className="inputWrapBook">
@@ -380,27 +382,7 @@ export default function BookDelivery() {
                   </small>
                 </div>
 
-                <div className="inputWrapBook">
-                  <label htmlFor="">Category</label>
-                  <select
-                    className="where-address-input-option"
-                    name="state"
-                    onChange={handleChange}
-                    value={delivery.category}
-                    required
-                  >
-                    <option value="">Select Category</option>
-                    <option value="Computer Backplates & I/O Shields">
-                      Computer Backplates & I/O Shields
-                    </option>
-                  </select>
-                  <small>
-                    {" "}
-                    Select a category that best describes your item. This is
-                    required for effective customs clearance when you ship
-                    internationally.
-                  </small>
-                </div>
+           
                 <div className="row">
                   <div className="col">
                     <div className="inputWrapBook">
@@ -525,7 +507,8 @@ export default function BookDelivery() {
                         </select>
                       </div>{" "}
                     </div>
-                  </div>
+                  </div> 
+
                   <div className="row">
                     <div className="col">
                       <div className="inputWrapBook">
@@ -564,6 +547,53 @@ export default function BookDelivery() {
                             });
                           }}
                           value={delivery.postcode}
+                        />
+                      </div>
+                    </div>
+                    <div className="inputWrapBook">
+                      <label htmlFor="">Phone Number</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="Input Phone Number"
+                        name="number"
+                        value={delivery.number}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Select Hub</label>
+
+                        <select
+                          className="where-address-input-option"
+                          name="zone"
+                          onChange={handleChange}
+                          value={delivery.zone}
+                          required
+                        >
+                          <option value="">Ikorodu</option>
+                          <option value="">Ikeja</option>
+
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Date</label>
+                        <input
+                          required
+                          type="date"
+                          onChange={({ target }) => {
+                            setDelivery({
+                              ...delivery,
+                              date: target.value,
+                            });
+                          }}
+                          value={delivery.date}
                         />
                       </div>
                     </div>
@@ -753,6 +783,9 @@ export default function BookDelivery() {
                         />
                       </div>
                     </div>
+                    <div className="row">
+                    <div className="col">
+
                     <div className="inputWrapBook">
                       <label htmlFor="">Phone Number</label>
                       <input
@@ -764,6 +797,26 @@ export default function BookDelivery() {
                         onChange={handleChange}
                       />
                     </div>
+                    </div>
+                    <div className="col ml-2">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Date</label>
+                        <input
+                          required
+                          type="date"
+                          onChange={({ target }) => {
+                            setDelivery({
+                              ...delivery,
+                              date: target.value,
+                            });
+                          }}
+                          value={delivery.date}
+                        />
+                      </div>
+                    </div>
+                    </div>
+
+
                   </div>
 
                   <div className="btnsfd">
@@ -1104,18 +1157,7 @@ export default function BookDelivery() {
                     Go back to Dashbard
                   </button>
                 </div>
-                <div className="col">
-                  <button
-                    onClick={() => {
-                      history.push({
-                        pathname: "/track",
-                      });
-                      setModalConfirm(false);
-                    }}
-                  >
-                    Track
-                  </button>
-                </div>
+             
               </div>
             </div>
           </div>
@@ -1174,8 +1216,11 @@ As an exception, certain selected and approved customers who have significant vo
                 Counterfeit goods in breach of intellectual property rights (IPR) are prohibited and carrying them may cause serious harm to the reputation of our Courier partners. As per our policy, all IPR / counterfeit goods and commodities are illegal and are therefore prohibited for carriage.
                 </li>
               </ul>
-
-              <button onClick={toggleProhabittedModal}>Close</button>
+              <input class="form-check-input pl-4" type="checkbox" onClick={()=>{setShowbtn(true)}} value="" id="flexCheckDefault"/>
+            <label class="form-check-label" for="flexCheckDefault">
+              I Understand
+            </label>
+              <button onClick={toggleProhabittedModal} style={{backgroundColor: showbtn?"#000" :"#ccc" }}>Close</button>
             </div>
           </div>
         </Modal>
