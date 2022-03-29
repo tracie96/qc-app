@@ -383,7 +383,7 @@ const Auth = () => {
               <div className="termsAgree">
                 <p>
                   By continuing, I represent that I have read, understand, and
-                  fully agree to the qc{" "}
+                  fully agree to the QC Express{" "}
                   <a href="/">terms of service and privacy policy.</a>
                 </p>
               </div>

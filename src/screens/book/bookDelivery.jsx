@@ -293,7 +293,7 @@ export default function BookDelivery() {
           )}
 
           <p className="where-right-sub" style={{ textAlign: "center" }}>
-            {tab == 1 ? " Get Started" : ""}
+            {/* {tab == 1 ? " Get Started" : ""} */}
           </p>
 
           {tab == 1 ? (
@@ -308,7 +308,7 @@ export default function BookDelivery() {
                     value={delivery.category}
                     required
                   >
-                    <option value="">Select Document Type</option>
+                    <option value=""> Select Shipment</option>
                     <option value="Document">Document</option>
                     <option value="Document">Package</option>
                   </select>
@@ -402,7 +402,7 @@ export default function BookDelivery() {
                       <label htmlFor="">Value</label>
                       <input
                         required
-                        type="number"
+                        type="text"
                         placeholder="10"
                         name="breath"
                         onChange={handleChange}
@@ -413,7 +413,7 @@ export default function BookDelivery() {
                   <div className="inputWrapBook">
 
                   <button type="button" onClick={()=>{setprohabittedItem(true)}} className="btn-danger" style={{width:"30%"}}>
-                    Prohibitted Items
+                  Prohibited Items
                   </button>                  
                   </div>
                 </div>
@@ -444,10 +444,10 @@ export default function BookDelivery() {
                         }}
                       ></p>
                     </div>
-                    <div className="where-right-address-checked">
+                    {/* <div className="where-right-address-checked">
                       <input type="checkbox" checked="checked" />
                       <span className="checkmark"></span>
-                    </div>
+                    </div> */}
                   </div>
                   <div>
                     <p
@@ -678,10 +678,10 @@ export default function BookDelivery() {
                         Nigeria. 100292
                       </p> */}
                     </div>
-                    <div className="where-right-address-checked">
+                    {/* <div className="where-right-address-checked">
                       <input type="checkbox" checked="checked" />
                       <span className="checkmark"></span>
-                    </div>
+                    </div> */}
                   </div>
                   <div>
                     <p

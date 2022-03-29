@@ -92,7 +92,7 @@ const Auth = () => {
         <div className="formWrap">
           <form action="">
             <div className="inputWrap">
-              <label htmlFor="">Email</label>
+              <label htmlFor="">Email/Phone Number</label>
               <input
                 onChange={(e) => {
                   setAuth({

@@ -29,7 +29,7 @@ export default function TrackingPage4() {
 
         <h2>Available hubs in the State</h2>
         <p className="where-right-sub tracking-sub-right" style={{padding:"20px 0 50px 50px"}}>
-          Here is a list of hubs available in this region
+          {/* Here is a list of hubs available in this region */}
         </p>
         <div className="where-right-address package-location-cont">
           <div className="package-location">

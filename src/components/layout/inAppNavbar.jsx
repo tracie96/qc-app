@@ -14,12 +14,12 @@ export default function InAppNavbar() {
           <li>Cockpit</li>
           <li className="dropdown">Shipments
           <div class="dropdown-content">
-          <li style={{marginLeft:"0px"}}>Payment History</li>
-          <li style={{marginLeft:"0px"}}>Track Shipment</li>
+          <li style={{marginLeft:"0px"}}>Check Tarifs</li>
           <li style={{marginLeft:"0px"}}>Locate our hubs</li>
-          <li style={{marginLeft:"0px"}}>Check tariff's</li>
-          <li style={{marginLeft:"0px"}}>Tell a friend</li>
+          <li style={{marginLeft:"0px"}}>Track Shipment</li>
+          <li style={{marginLeft:"0px"}}>Payment History</li>
           <li style={{marginLeft:"0px"}}>Shipping History</li>
+          <li style={{marginLeft:"0px"}}>Tell a friend</li>
 
            </div>
           </li>
