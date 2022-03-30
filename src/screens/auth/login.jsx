@@ -72,18 +72,12 @@ const Auth = () => {
         <div className="actionAuthBtn">
           <button
             onClick={() => {
-              history.push(`/signup`);
+              history.push(`/home`);
             }}
           >
-            Sign up
+           Back
           </button>
-          <button
-            onClick={() => {
-              history.push(`/login`);
-            }}
-          >
-            Sign In
-          </button>
+     
         </div>
         <div className="authHeader">
           <h2>Get started</h2>
@@ -119,7 +113,7 @@ const Auth = () => {
             <div className="termsAgree">
               <p>
                 By continuing, I represent that I have read, understand, and
-                fully agree to the Sendbox{" "}
+                fully agree to the QC Express{" "}
                 <a href="/">terms of service and privacy policy.</a>
               </p>
             </div>

@@ -9,13 +9,13 @@ export default function Navbar() {
   return (
     <div className="navbar-ch-con" style={{}}>
       <div className="navbarChild">
-        <div className="navbar-logo" style={{ cursor: "pointer" }}>
+        <div className="navbar-logo" style={{ cursor: "pointer" ,width:"10%"}}>
           <Link to="/home">
             <Logo />
           </Link>
         </div>
 
-      <div style={{marginLeft:"-50%",color:"#0000"}}>
+      <div style={{color:"#0000",width:"70%"}}>
         <ul className="right-links hideOnMobile">
           <li
             className={`${
@@ -30,7 +30,7 @@ export default function Navbar() {
           </li>
 
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>
-            <Link to="/" style={{color:"#000"}}>Awards</Link>
+            <Link to="/" style={{color:"#000"}}>Service Updates</Link>
           </li>
 
           <li className={`${location.pathname == "/h" ? "activeNvaLink" : ""}`}>

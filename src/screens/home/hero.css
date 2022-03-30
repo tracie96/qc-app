@@ -2,6 +2,12 @@
 /*--------------------------------------------------------------
 . Hero Section
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+body{
+  font-family: "Montserrat", sans-serif;
+
+}
 a{
   text-decoration: none ;
 }
@@ -208,7 +214,7 @@ a{
 .faq .faq-list a {
   display: block;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
@@ -402,7 +408,7 @@ a{
   font-size: 36px;
   color: #446ce4;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 20px;
 }
 .pricing h4 sup {
@@ -501,7 +507,7 @@ a{
 .faq .faq-list a {
   display: block;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
@@ -691,7 +697,7 @@ section {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #aaaaaa;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .section-title h2::after {
   content: "";
@@ -707,6 +713,6 @@ section {
   font-size: 36px;
   font-weight: 700;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #446ce4;
 }

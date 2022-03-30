@@ -4,7 +4,7 @@ import "./index.scss";
 import "./button.css";
 
 import mainhalf from "../../assets/mainhalf.png";
-import arrowvec from "../../assets/arrowvec.png";
+import arrowvec from "../../assets/arrow-left.png";
 import { PaystackButton } from "react-paystack";
 import cancelvec from "../../assets/cancelvec.png";
 import { NotificationManager } from "react-notifications";
@@ -40,10 +40,11 @@ export default function BookDelivery() {
   const [total, setTotal] = useState(0);
 
   const [prohabittedItem, setprohabittedItem] = useState(false);
-  
+
   const [showbtn, setShowbtn] = useState(false);
 
   const [payementDetails, setPaymentDetails] = useState({});
+  const [showNewAddress, setshowNewAddress] = useState(false);
 
   const makePaymentBackend = () => {
     const data = {
@@ -81,6 +82,7 @@ export default function BookDelivery() {
   var retrievedObject = localStorage.getItem("user");
 
   var auth = JSON.parse(retrievedObject);
+
   const handleOnClose = () => {
     // Optional
     // Do any custom action like show modal or log cart
@@ -279,9 +281,9 @@ export default function BookDelivery() {
         <div className="where-right-main">
           {tab == 1 ? <h2>Get Started</h2> : ""}
 
-          {tab == 2 ? <h2>Add PickUp Location</h2> : ""}
+          {tab == 2 ? <h2>PickUp Location</h2> : ""}
 
-          {tab == 3 ? <h2>Add Delivery Location</h2> : ""}
+          {tab == 3 ? <h2>Delivery Location</h2> : ""}
 
           {tab == 4 ? (
             <h2>
@@ -300,7 +302,6 @@ export default function BookDelivery() {
             <div className="where-right-form-header">
               <form>
                 <div className="inputWrapBook">
-                  <label htmlFor="">What are you shipping</label>
                   <select
                     className="where-address-input-option"
                     name="state"
@@ -308,7 +309,7 @@ export default function BookDelivery() {
                     value={delivery.category}
                     required
                   >
-                    <option value=""> Select Shipment</option>
+                    <option value=""> Select Shipment Type</option>
                     <option value="Document">Document</option>
                     <option value="Document">Package</option>
                   </select>
@@ -320,6 +321,7 @@ export default function BookDelivery() {
                     type="number"
                     placeholder="10"
                     name="weight"
+                    min="0"
                     onChange={handleChange}
                     value={delivery.weight}
                   />
@@ -333,6 +335,7 @@ export default function BookDelivery() {
                         required
                         type="number"
                         placeholder="10"
+                        min="0"
                         name="length"
                         onChange={handleChange}
                         value={delivery.length}
@@ -348,6 +351,7 @@ export default function BookDelivery() {
                         type="number"
                         placeholder="10"
                         name="breath"
+                        min="0"
                         onChange={handleChange}
                         value={delivery.breath}
                       />
@@ -361,6 +365,7 @@ export default function BookDelivery() {
                         type="number"
                         placeholder="10"
                         name="height"
+                        min="0"
                         onChange={handleChange}
                         value={delivery.height}
                       />
@@ -368,21 +373,17 @@ export default function BookDelivery() {
                   </div>
                 </div>
                 <div className="inputWrapBook">
-                  <label htmlFor="">Description</label>
                   <input
                     required
                     type="text"
-                    placeholder=""
+                    placeholder="Give a brief description of what you are shipping
+                    </small>"
                     name="weight"
                     onChange={handleChange}
                     value={delivery.description}
                   />
-                  <small>
-                    Give a brief description of what you are shipping
-                  </small>
                 </div>
 
-           
                 <div className="row">
                   <div className="col">
                     <div className="inputWrapBook">
@@ -402,25 +403,43 @@ export default function BookDelivery() {
                       <label htmlFor="">Value</label>
                       <input
                         required
-                        type="text"
+                        type="number"
                         placeholder="10"
-                        name="breath"
+                        min="0"
+                        name="value"
                         onChange={handleChange}
                         value={delivery.value}
                       />
                     </div>
                   </div>
                   <div className="inputWrapBook">
-
-                  <button type="button" onClick={()=>{setprohabittedItem(true)}} className="btn-danger" style={{width:"30%"}}>
-                  Prohibited Items
-                  </button>                  
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setprohabittedItem(true);
+                      }}
+                      className="btn-danger"
+                      style={{ width: "30%" }}
+                    >
+                      Prohibited Items
+                    </button>
                   </div>
                 </div>
                 <div className="btnsfd">
-                  <button onClick={handleTab} className="where-address-button">
-                    Continue
-                  </button>
+                {showbtn? <button
+                onClick={handleTab}
+                className="where-address-button"
+                style={{ backgroundColor:"#000"  }}
+              >
+                Continue
+              </button>: <button
+                onClick={toggleProhabittedModal}
+                style={{ backgroundColor:  "#ccc" }}
+                disabled
+                className="where-address-button"
+              >
+                Continue
+              </button>}
                 </div>
               </form>
             </div>
@@ -429,40 +448,49 @@ export default function BookDelivery() {
           )}
 
           {tab == 2 ? (
-            <div style={{ alignSelf: "center" }}>
+            <div style={{ alignSelf: "center",width:"80%"}}>
               <div className="where-right-form-header">
                 {/* <h3>Add new address</h3> */}
 
                 <form>
                   <div className="where-right-address">
                     <div>
-                      <p
-                        style={{
-                          fontSize: "16px",
-                          color: "#434343",
-                          padding: "15px",
-                        }}
-                      ></p>
+                     
+                                             {auth.formaddress}
+
                     </div>
                     {/* <div className="where-right-address-checked">
                       <input type="checkbox" checked="checked" />
                       <span className="checkmark"></span>
                     </div> */}
                   </div>
+
                   <div>
                     <p
                       style={{
-                        fontSize: "24px",
+                        fontSize: "18px",
                         color: "#4169E2",
                         fontWeight: "800",
                         fontFamily: "Playfair Display",
                         padding: "15px 0 0 0",
                       }}
                     >
-                      Add new address
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="gridCheck"
+                            onClick={()=>{setshowNewAddress(!showNewAddress)}}
+                          />
+                          <label class="form-check-label" for="gridCheck">
+                            Add new address?
+                          </label>
+                        </div>
+                      </div>{" "}
                     </p>
                   </div>
-                  <div className="row">
+                  {showNewAddress?<><div className="row">
                     <div className="inputWrapBook">
                       <label htmlFor="">House/APT/Flat Number</label>
                       <input
@@ -507,7 +535,7 @@ export default function BookDelivery() {
                         </select>
                       </div>{" "}
                     </div>
-                  </div> 
+                  </div>
 
                   <div className="row">
                     <div className="col">
@@ -576,7 +604,6 @@ export default function BookDelivery() {
                         >
                           <option value="">Ikorodu</option>
                           <option value="">Ikeja</option>
-
                         </select>
                       </div>
                     </div>
@@ -609,6 +636,8 @@ export default function BookDelivery() {
                       />
                     </div>
                   </div>
+                  </>
+                  :""}
                   {/* <div className="inputWrapBook">
                 <label htmlFor="">Post code</label>
                 <input
@@ -660,42 +689,44 @@ export default function BookDelivery() {
           )}
 
           {tab == 3 ? (
-            <div style={{ alignSelf: "center" }}>
+            <div style={{ alignSelf: "center",width:"80%" }}>
               <div className="where-right-form-header">
                 {/* <h3>Add new address</h3> */}
 
                 <form>
                   <div className="where-right-address">
                     <div>
-                      {/* <p
-                        style={{
-                          fontSize: "16px",
-                          color: "#434343",
-                          padding: "15px",
-                        }}
-                      >
-                        Plot 122, No 1, Banana Island, Victoria Island,Lagos,
-                        Nigeria. 100292
-                      </p> */}
+                    {auth.formaddress}
+                     
                     </div>
-                    {/* <div className="where-right-address-checked">
-                      <input type="checkbox" checked="checked" />
-                      <span className="checkmark"></span>
-                    </div> */}
+                   
                   </div>
                   <div>
                     <p
                       style={{
-                        fontSize: "24px",
+                        fontSize: "18px",
                         color: "#4169E2",
                         fontWeight: "800",
                         fontFamily: "Playfair Display",
                         padding: "15px 0 0 0",
                       }}
                     >
-                      Add new address
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="gridCheck"
+                            onClick={()=>{setshowNewAddress(!showNewAddress)}}
+                          />
+                          <label class="form-check-label" for="gridCheck">
+                            Add new address?
+                          </label>
+                        </div>
+                      </div>{" "}
                     </p>
                   </div>
+                  {showNewAddress?<>
                   <div className="row">
                     <div className="inputWrapBook">
                       <label htmlFor="">House/APT/Flat Number</label>
@@ -784,41 +815,38 @@ export default function BookDelivery() {
                       </div>
                     </div>
                     <div className="row">
-                    <div className="col">
-
-                    <div className="inputWrapBook">
-                      <label htmlFor="">Phone Number</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="Input Phone Number"
-                        name="number"
-                        value={delivery.number}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    </div>
-                    <div className="col ml-2">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Date</label>
-                        <input
-                          required
-                          type="date"
-                          onChange={({ target }) => {
-                            setDelivery({
-                              ...delivery,
-                              date: target.value,
-                            });
-                          }}
-                          value={delivery.date}
-                        />
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Phone Number</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input Phone Number"
+                            name="number"
+                            value={delivery.number}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+                      <div className="col ml-2">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Date</label>
+                          <input
+                            required
+                            type="date"
+                            onChange={({ target }) => {
+                              setDelivery({
+                                ...delivery,
+                                date: target.value,
+                              });
+                            }}
+                            value={delivery.date}
+                          />
+                        </div>
                       </div>
                     </div>
-                    </div>
-
-
-                  </div>
-
+                  </div></>
+:""}
                   <div className="btnsfd">
                     <button
                       onClick={handleTab}
@@ -998,52 +1026,53 @@ export default function BookDelivery() {
           )}
 
           {tab == 5 ? (
-            
             <div className="sumaryWrap">
               <div>
-                  <p
-                    style={{
-                      fontSize: "24px",
-                      color: "#4169E2",
-                      fontWeight: "800",
-                      fontFamily: "Playfair Display",
-                      padding: "15px 0 0 0",
-                    }}
-                  >
-                    Summary
-                  </p>
-                </div>
-                <div
-                  className="row"
+                <p
                   style={{
-                    display: "flex",
-                    color: "rgba(36, 66, 46, 0.75)",
-                    fontSize: "18px",
-                    fontFamily: "Gilroy-Bold",
+                    fontSize: "24px",
+                    color: "#4169E2",
+                    fontWeight: "800",
+                    fontFamily: "Playfair Display",
+                    padding: "15px 0 0 0",
                   }}
                 >
+                  Summary
+                </p>
+              </div>
+              <div
+                className="row"
+                style={{
+                  display: "flex",
+                  color: "rgba(36, 66, 46, 0.75)",
+                  fontSize: "18px",
+                  fontFamily: "Gilroy-Bold",
+                }}
+              >
                 <div className="col">
-                    <address>
-                      <div style={{ marginTop: "10px" }}>ITEM</div>
-                      <div style={{ marginTop: "10px" }}>WEIGHT</div>
-                      <div style={{ marginTop: "10px" }}>LENGTH</div>
-                      <div style={{ marginTop: "10px" }}>WIDTH</div>
-                      <div style={{ marginTop: "10px" }}>HIEGHT</div>
-                      <div style={{ marginTop: "10px" }}>TOTAL</div>
-
-                    </address>
-                  </div>
-                  <div className="col text-right">
-                    <address style={{ float: "right" }}>
-                      <div style={{ marginTop: "10px" }}>{delivery.itemname}</div>
-                      <div style={{ marginTop: "10px" }}> {delivery.weight}KG</div>
-                      <div style={{ marginTop: "10px" }}>{delivery.length}CM</div>
-                      <div style={{ marginTop: "10px" }}>{delivery.breath}CM</div>
-                      <div style={{ marginTop: "10px" }}>{delivery.height}CM</div>
-                      <div style={{ marginTop: "10px" }}>23000</div>
-                    </address>
+                  <address>
+                    <div style={{ marginTop: "10px" }}>ITEM</div>
+                    <div style={{ marginTop: "10px" }}>WEIGHT</div>
+                    <div style={{ marginTop: "10px" }}>LENGTH</div>
+                    <div style={{ marginTop: "10px" }}>WIDTH</div>
+                    <div style={{ marginTop: "10px" }}>HIEGHT</div>
+                    <div style={{ marginTop: "10px" }}>TOTAL</div>
+                  </address>
                 </div>
-             </div>
+                <div className="col text-right">
+                  <address style={{ float: "right" }}>
+                    <div style={{ marginTop: "10px" }}>{delivery.itemname}</div>
+                    <div style={{ marginTop: "10px" }}>
+                      {" "}
+                      {delivery.weight}KG
+                    </div>
+                    <div style={{ marginTop: "10px" }}>{delivery.length}CM</div>
+                    <div style={{ marginTop: "10px" }}>{delivery.breath}CM</div>
+                    <div style={{ marginTop: "10px" }}>{delivery.height}CM</div>
+                    <div style={{ marginTop: "10px" }}>23000</div>
+                  </address>
+                </div>
+              </div>
 
               <div className="databdd">
                 <svg
@@ -1125,7 +1154,7 @@ export default function BookDelivery() {
           center
           showCloseIcon={false}
         >
-          <div className="prohabwrap" style={{textAlign:"center"}}>
+          <div className="prohabwrap" style={{ textAlign: "center" }}>
             <div>
               <p
                 style={{
@@ -1140,8 +1169,14 @@ export default function BookDelivery() {
               </p>
             </div>
             <div className="probitrbody">
-              <small>Your order have been made, go back home to wait your ordering notification</small><br/>
-              <small>Track ID: <b>#056278363014</b></small>
+              <small>
+                Your order have been made, go back home to wait your ordering
+                notification
+              </small>
+              <br />
+              <small>
+                Track ID: <b>#056278363014</b>
+              </small>
 
               <div className="row">
                 <div className="col">
@@ -1157,7 +1192,6 @@ export default function BookDelivery() {
                     Go back to Dashbard
                   </button>
                 </div>
-             
               </div>
             </div>
           </div>
@@ -1176,51 +1210,104 @@ export default function BookDelivery() {
             <div className="probitrbody">
               <ul>
                 <li>
-                Our Courier partners do not have the operational capability to transport such items.
-
+                  Our Courier partners do not have the operational capability to
+                  transport such items.
                 </li>
 
                 <li>
-                Animal or animal’s products contained within Appendix 1 of CITES are prohibited from carriage.
-
-The CITES Convention (Convention on International Trade in Endangered Species of Wild Fauna and Flora) is an international agreement between governments concerning the international trade in specimens of wild animals or plants https://www.cites.org/eng.
-
-Animal or animal’s products not contained within Appendix 1 of CITES can usually be shipped but may require an export license from the issuing government. See under restricted.
-
+                  Animal or animal’s products contained within Appendix 1 of
+                  CITES are prohibited from carriage. The CITES Convention
+                  (Convention on International Trade in Endangered Species of
+                  Wild Fauna and Flora) is an international agreement between
+                  governments concerning the international trade in specimens of
+                  wild animals or plants https://www.cites.org/eng. Animal or
+                  animal’s products not contained within Appendix 1 of CITES can
+                  usually be shipped but may require an export license from the
+                  issuing government. See under restricted.
                 </li>
 
                 <li>
-                These items are prohibited for carriage as the network is not designed to be sufficiently secure for such transportation. It could lead to our Courier partner’s people or property becoming targets of criminal activity.                </li>
-
-                <li>
-                These items are prohibited for carriage as the network is not designed to be sufficiently secure for such transportation. It could lead to our Courier partner’s people or property becoming targets of criminal activity.
-
-The relevant local Authority is to be notified if the amount of cash found exceeds the relevant threshold for notification.
-
--    Travellers Cheques & Activated Credit Cards
-As an exception, certain selected and approved customers who have significant volumes of core network shipments may be permitted to transport Travellers Cheques & Activated Credit Cards (GSOP Shipment and Product Handling Policy and Standards 2.2.14 Travellers Cheques & Activated Credit Cards).
-
+                  These items are prohibited for carriage as the network is not
+                  designed to be sufficiently secure for such transportation. It
+                  could lead to our Courier partner’s people or property
+                  becoming targets of criminal activity.{" "}
                 </li>
 
                 <li>
-                These items are prohibited for carriage as our Courier partner’s network is not designed to be sufficiently secure for such transportation. It could lead to its people or property becoming targets of criminal activity.
-                </li>
-                <li>
-                These items are prohibited for carriage in our Courier partner’s network as in many territories special handling and licenses are required for the carrier. Restrictions also apply in airports worldwide for the airside handling of such items. Under x-ray replica firearms resemble real guns and may cause disruption and delay in the screening process.
+                  These items are prohibited for carriage as the network is not
+                  designed to be sufficiently secure for such transportation. It
+                  could lead to our Courier partner’s people or property
+                  becoming targets of criminal activity. The relevant local
+                  Authority is to be notified if the amount of cash found
+                  exceeds the relevant threshold for notification. - Travellers
+                  Cheques & Activated Credit Cards As an exception, certain
+                  selected and approved customers who have significant volumes
+                  of core network shipments may be permitted to transport
+                  Travellers Cheques & Activated Credit Cards (GSOP Shipment and
+                  Product Handling Policy and Standards 2.2.14 Travellers
+                  Cheques & Activated Credit Cards).
                 </li>
 
                 <li>
-                Any goods considered to be illegal are prohibited for carriage as our Courier partners could be held financially and criminally responsible for the movement of such goods. This can include items that are country-specific (e.g. the importation of alcohol and pornography including sex-dolls) and commodities considered to be illegal internationally, such as counterfeit goods and narcotics (e.g. Heroin, Cocaine, Fentanyl and chemicals that may be precursors to narcotic manufacture).
+                  These items are prohibited for carriage as our Courier
+                  partner’s network is not designed to be sufficiently secure
+                  for such transportation. It could lead to its people or
+                  property becoming targets of criminal activity.
                 </li>
                 <li>
-                Counterfeit goods in breach of intellectual property rights (IPR) are prohibited and carrying them may cause serious harm to the reputation of our Courier partners. As per our policy, all IPR / counterfeit goods and commodities are illegal and are therefore prohibited for carriage.
+                  These items are prohibited for carriage in our Courier
+                  partner’s network as in many territories special handling and
+                  licenses are required for the carrier. Restrictions also apply
+                  in airports worldwide for the airside handling of such items.
+                  Under x-ray replica firearms resemble real guns and may cause
+                  disruption and delay in the screening process.
+                </li>
+
+                <li>
+                  Any goods considered to be illegal are prohibited for carriage
+                  as our Courier partners could be held financially and
+                  criminally responsible for the movement of such goods. This
+                  can include items that are country-specific (e.g. the
+                  importation of alcohol and pornography including sex-dolls)
+                  and commodities considered to be illegal internationally, such
+                  as counterfeit goods and narcotics (e.g. Heroin, Cocaine,
+                  Fentanyl and chemicals that may be precursors to narcotic
+                  manufacture).
+                </li>
+                <li>
+                  Counterfeit goods in breach of intellectual property rights
+                  (IPR) are prohibited and carrying them may cause serious harm
+                  to the reputation of our Courier partners. As per our policy,
+                  all IPR / counterfeit goods and commodities are illegal and
+                  are therefore prohibited for carriage.
                 </li>
               </ul>
-              <input class="form-check-input pl-4" type="checkbox" onClick={()=>{setShowbtn(true)}} value="" id="flexCheckDefault"/>
-            <label class="form-check-label" for="flexCheckDefault">
-              I Understand
-            </label>
-              <button onClick={toggleProhabittedModal} style={{backgroundColor: showbtn?"#000" :"#ccc" }}>Close</button>
+              <input
+                class="form-check-input pl-4"
+                type="checkbox"
+                checked={showbtn}
+                onClick={() => {
+                  setShowbtn(true);
+                }}
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                I Understand
+              </label>
+              {showbtn? <button
+                onClick={toggleProhabittedModal}
+                style={{ backgroundColor:"#000"  }}
+              >
+                Close
+              </button>: <button
+                onClick={toggleProhabittedModal}
+                style={{ backgroundColor:  "#ccc" }}
+                disabled
+              >
+                Close
+              </button>}
+            
             </div>
           </div>
         </Modal>

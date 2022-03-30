@@ -9,9 +9,8 @@ body {
 body {
   margin: 0 !important;
   padding: 0 !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
@@ -28,8 +27,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Montserrat", sans-serif;
   width: 100%;
   height: 100%;
 }
@@ -60,18 +58,9 @@ code {
   padding-right: 50px;
 }
 
-@font-face {
-  font-family: generalFont;
-  src: url(./assets/fonts/FontsFree-Net-Gilroy3.ttf);
-}
-
-@font-face {
-  font-family: boldFont;
-  src: url(./assets/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf);
-}
 
 * {
-  font-family: generalFont;
+  font-family: "Montserrat", sans-serif;
 }
 
 h1,
@@ -80,7 +69,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: boldFont;
+  font-family: "Montserrat", sans-serif;
 }
 
 .slick-list {

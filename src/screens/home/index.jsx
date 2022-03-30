@@ -15,8 +15,11 @@ import international from "../../assets/earth.png";
 import hero3 from "../../assets/hero-carousel-3.svg";
 import apd2 from "../../assets/apd2.png";
 import conversation from "../../assets/conversation.png";
-import d1 from "../../assets/d1.png";
-import d2 from "../../assets/d2.png";
+import ps from "../../assets/ps.svg";
+import as from "../../assets/as.svg";
+import team1 from "../../assets/team1.jpeg";
+import team2 from "../../assets/team2.jpeg";
+
 import pasta from "../../assets/pasta.png";
 import phone1 from "../../assets/phone1.jpg";
 import Standard2 from "../../assets/Standard2.png";
@@ -115,8 +118,8 @@ export default function Index() {
                   your shipments locally and internationally
                 </h2>
                 <div className="text-center text-lg-start">
-                  <img src={d1} style={{ marginRight: "3%" }}></img>
-                  <img src={d1}></img>
+                  <img src={ps} width="30%"></img>
+                  <img src={as} width="30%"></img>
                 </div>
               </div>
             </div>
@@ -199,6 +202,41 @@ export default function Index() {
             <p>“</p>
           </div>
           <div className="shapeCirCol4text">
+          {/* <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol> */}
+  {/* <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src={team1} alt="First slide"/>
+      <div class="carousel-caption d-none d-md-block">
+    <h5>...</h5>
+    <p>...</p>
+  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src={team2} alt="Second slide"/>
+      <div class="carousel-caption d-none d-md-block">
+    <h5>...</h5>
+    <p>...</p>
+  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Third slide"/>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> */}
+
             <p>
               “QC Express seeks to help eCommerce companies and end users access
               excellent last mile delivery of packages at the most competitive
@@ -217,7 +255,7 @@ export default function Index() {
               <div className="box" data-aos="zoom-in" data-aos-delay="100">
                 <img src={networking} width="30%"></img>
                 <h4>Intracity</h4>
-                <p>Deliveries across states and regions in Nigeria.</p>
+                <p>Deliveries within Major cities in Nigeria.</p>
 
                 <div className="btn-wrap">
                   <a href="#" className="btn-buy">
@@ -274,10 +312,10 @@ export default function Index() {
             An eCommerce technology company providing best-in-class delivery
             solutions.
           </h2>
-          <p>
-            From personal needs to platform integrations, we are ready to
-            <br /> work with you.
-          </p>
+          <div className="btn-wrap">
+          <a class="btn btn-primary" href="#" role="button">Call to Action</a>
+
+                </div>
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>
@@ -363,10 +401,10 @@ export default function Index() {
       <div className="col6-home app-padding">
         <div className="col6-home-col2">
           <h2>Simplified document and parcel delivery at your fingertips.</h2>
-          <p>
-            From personal needs to platform integrations, we are ready to
-            <br /> work with you.
-          </p>
+          <div className="btn-wrap">
+          <a class="btn btn-primary" href="#" role="button">Call to Action</a>
+
+                </div>
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>

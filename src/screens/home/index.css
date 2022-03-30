@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+body{
+  font-family: 'Montserrat', sans-serif;
+}
 .home-page {
   height: calc(100vh - 70px);
   /* background-color: var(--base-color); */
@@ -7,7 +11,7 @@
   width: 100%;
   padding-top: 90px !important;
   overflow: hidden;
-  font-family: 'Poppins';
+  font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -220,7 +224,6 @@
   border-radius: 5px;
   position: relative;
 }
-
 .shapeCirCol4 {
   position: absolute;
   top: -20px;
@@ -469,7 +472,7 @@
 
 .faqHeader h2 {
   font-style: normal;
-  font-family: 'Poppins';
+  font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 32px;
   text-align: center;

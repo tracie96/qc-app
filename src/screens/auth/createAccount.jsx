@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { isValidElement, useState } from "react";
 import "./index.scss";
 import contries from "../../components/countries";
 import NIGStates from "../../components/nigeriaStates";
@@ -21,9 +21,10 @@ const Auth = () => {
     username: "",
     password: "",
     mobile: "",
+    formaddress:""
   });
-  console.log(auth)
-  window.localStorage.setItem('user', JSON.stringify(auth));
+  console.log(auth);
+  window.localStorage.setItem("user", JSON.stringify(auth));
 
   const [appLoading, setAppLoading] = useState(false);
   const [tab, setTab] = useState("tab1");
@@ -43,14 +44,13 @@ const Auth = () => {
     rState: "",
   });
 
-  const handlesave=()=>{
-    window.localStorage.setItem('user', JSON.stringify(auth));
-      history.push({
-        pathname: '/app',
-        state: { detail: auth.lastname }
-      });
-      
-  }
+  const handlesave = () => {
+    window.localStorage.setItem("user", JSON.stringify(auth));
+    history.push({
+      pathname: "/app",
+      state: { detail: auth.firstname },
+    });
+  };
   const login = async (e) => {
     // hideLoader();
     e.preventDefault();
@@ -187,17 +187,10 @@ const Auth = () => {
         <div className="actionAuthBtn">
           <button
             onClick={() => {
-              history.push(`/login`);
+              history.push(`/home`);
             }}
           >
-            Sign In
-          </button>
-          <button
-            onClick={() => {
-              history.push(`/signup`);
-            }}
-          >
-            Sign up
+            Back
           </button>
         </div>
         {/* <div className="authHeader">
@@ -213,192 +206,268 @@ const Auth = () => {
           <p>To continue, please provide a valid phone number.</p>
         </div> */}
         <div className="formWrap">
-         
-        {tab == "tab1" ? (
-              <div style={{ alignSelf: "center" }}>
-              <div className="authHeader" style={{marginTop:"0px"}}>
-          <h2>Get started</h2>
-          <p>To continue, please provide a valid phone number.</p>
-        </div>                <form style={{ width: "480px" }}>
-                 
-                 
-                  <div className="row">
+          {tab == "tab1" ? (
+            <div style={{ alignSelf: "center" }}>
+              <div className="authHeader" style={{ marginTop: "0px" }}>
+                <h2>Get started</h2>
+                <p>To continue, please provide a valid Email.</p>
+              </div>{" "}
+              <form style={{ width: "480px" }}>
+                <div className="row">
                   <div className="inputWrapBook">
-                        <label htmlFor="">Country</label>
+                    <label htmlFor="">Country</label>
 
-                        <select
-                          className="where-address-input-option"
-                          name="zone"
-                          onChange={handleChange}
-                          value={delivery.zone}
-                          required
-                        >
-                          <option value="">Nigeria</option>
-                          {contries.map((data) => {
-                            return (
-                              <option value={data.Zone}>
-                                {data.Countries}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </div>
-                  </div>
-                 
-                   
-                  <div className="inputWrapBook">
-                      <label htmlFor="">Email</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="Input Email"
-                        name="number"
-                        value={delivery.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                  <div className="btnsfd">
-                    <button
-                      onClick={handleTab}
-                      className="where-address-button"
+                    <select
+                      className="where-address-input-option"
+                      name="zone"
+                      onChange={handleChange}
+                      value={delivery.zone}
+                      required
                     >
-                      Continue
-                    </button>
+                      <option value="">Nigeria</option>
+                      {contries.map((data) => {
+                        return (
+                          <option value={data.Zone}>{data.Countries}</option>
+                        );
+                      })}
+                    </select>
                   </div>
-                </form>
-              </div>
+                </div>
+
+                <div className="inputWrapBook">
+                  <label htmlFor="">Email</label>
+                  <input
+                    required
+                    type="text"
+                    placeholder="Input Email"
+                    name="email"
+                    value={delivery.email}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="btnsfd">
+                  <button onClick={handleTab} className="where-address-button">
+                    Continue
+                  </button>
+                </div>
+              </form>
+            </div>
           ) : (
             ""
           )}
           {tab == "tab2" ? (
-           <div style={{ alignSelf: "center" }}>
-           <div className="authHeader" style={{marginTop:"0px"}}>
-       <h2>Verify your phone number</h2>
-       <p>Enter the 6-digit OTP sent to your phone number..</p>
-     </div>                <form style={{ width: "480px" }}>
-              
-              
-               <div className="row">
-                     <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" /> </div>
-                  
-               </div>
-              
-              
+            <div style={{ alignSelf: "center" }}>
+              <div className="authHeader" style={{ marginTop: "0px" }}>
+                <h2>Verify your phone number</h2>
+                <p>Enter the 6-digit OTP sent to your Email..</p>
+              </div>{" "}
+              <form style={{ width: "480px" }}>
+                <div className="row">
+                  <div
+                    id="otp"
+                    class="inputs d-flex flex-row justify-content-center mt-2"
+                  >
+                    {" "}
+                    <input
+                      class="m-2 text-center form-control rounded"
+                      type="text"
+                      id="first"
+                      maxlength="1"
+                    />{" "}
+                    <input
+                      class="m-2 text-center form-control rounded"
+                      type="text"
+                      id="second"
+                      maxlength="1"
+                    />{" "}
+                    <input
+                      class="m-2 text-center form-control rounded"
+                      type="text"
+                      id="third"
+                      maxlength="1"
+                    />{" "}
+                    <input
+                      class="m-2 text-center form-control rounded"
+                      type="text"
+                      id="fourth"
+                      maxlength="1"
+                    />{" "}
+                    <input
+                      class="m-2 text-center form-control rounded"
+                      type="text"
+                      id="fifth"
+                      maxlength="1"
+                    />{" "}
+                    <input
+                      class="m-2 text-center form-control rounded"
+                      type="text"
+                      id="sixth"
+                      maxlength="1"
+                    />{" "}
+                  </div>
+                </div>
 
-       
-               <div className="btnsfd">
-                 <button
-                   onClick={handleTab}
-                   className="where-address-button"
-                 >
-                   Continue
-                 </button>
-                 <p> Want to change phone number? Click Here</p>
-
-                
-               </div>
-             </form>
-           </div>
+                <div className="btnsfd">
+                  <button onClick={handleTab} className="where-address-button">
+                    Continue
+                  </button>
+                </div>
+              </form>
+            </div>
           ) : (
             ""
           )}
 
           {tab == "tab3" ? (
             <div style={{ alignSelf: "center" }}>
-            <div className="authHeader">
-            <h2>Get started</h2>
-            <p>To continue, please provide a valid phone number.</p>
-          </div>
-          <div className="formWrap">
-            <form action="">
-              <div className="inputWrapWith2">
-                <div className="inputWrapWith2Col">
-                  <label htmlFor="">First name</label>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setAuth({
-                        ...auth,
-                        firstname: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-  
-                <div className="inputWrapWith2Col">
-                  <label htmlFor="">Last name</label>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setAuth({
-                        ...auth,
-                        lastname: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
+              <div className="authHeader">
+                <h2>Get started</h2>
+                <p>To continue, please provide a valid phone number.</p>
               </div>
-  
-  
-              <div className="inputWrap">
-                <label htmlFor="">Phone Number</label>
-                <input
-                  onChange={(e) => {
-                    setAuth({
-                      ...auth,
-                      email: e.target.value,
-                    });
-                  }}
-                  type="text"
-                />
-              </div>
-  
-  
-              <div className="inputWrap">
-                <label htmlFor="">Password</label>
-                <input
-                  onChange={(e) => {
-                    setAuth({
-                      ...auth,
-                      password: e.target.value,
-                    });
-                  }}
-                  type="password"
-                />
-              </div>
+              <div className="formWrap">
+                <form action="">
+                  <div className="inputWrapWith2">
+                    <div className="inputWrapWith2Col">
+                      <label htmlFor="">First name</label>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setAuth({
+                            ...auth,
+                            firstname: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
 
-              <div className="inputWrap">
-                <label htmlFor="">Referral Code (<span>Optional</span>)</label>
-                <input
-                  onChange={(e) => {
-                    setAuth({
-                      ...auth,
-                      username: e.target.value,
-                    });
-                  }}
-                  type="text"
-                />
-              </div>
-              <div className="termsAgree">
-                <p>
-                  By continuing, I represent that I have read, understand, and
-                  fully agree to the QC Express{" "}
-                  <a href="/">terms of service and privacy policy.</a>
-                </p>
-              </div>
-  
-              <div className="submitBtn">
-                <button onClick={handlesave}>Continue</button>
-              </div>
-            </form>
-          </div>
-          </div>
+                    <div className="inputWrapWith2Col">
+                      <label htmlFor="">Last name</label>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setAuth({
+                            ...auth,
+                            lastname: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                  </div>
 
+                  <div className="inputWrap">
+                    <label htmlFor="">Phone Number</label>
+                    <input
+                      onChange={(e) => {
+                        setAuth({
+                          ...auth,
+                          email: e.target.value,
+                        });
+                      }}
+                      type="text"
+                    />
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">City</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Input city"
+                          name="city"
+                          value={delivery.city}
+                          onChange={handleChange}
+                        />
+                      </div>{" "}
+                    </div>
+                    <div className="col">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">Select state</label>
+
+                        <select
+                          className="where-address-input-option"
+                          name="state"
+                          onChange={handleChange}
+                          value={delivery.state}
+                          required
+                        >
+                          <option value="">Select state</option>
+                          {NIGStates.map((data) => {
+                            return <option value={data}>{data}</option>;
+                          })}
+                        </select>
+                      </div>{" "}
+                    </div>
+                  </div> 
+
+                    <div className="col">
+                      <div className="inputWrapBook">
+                      <div className="row">
+                    <div className="inputWrapBook">
+                      <label htmlFor="">House/APT/Flat Number</label>
+                      <input
+                        required
+                        type="text"
+                        placeholder="34a, Ago Iwoye"
+                        name="form"
+                        value={delivery.form}
+                        onChange={(e) => {
+                          setAuth({
+                            ...auth,
+                            formaddress: e.target.value,
+                          });
+                        }}                      />
+                    </div>
+                  </div>
+                    </div>
+</div>
+
+
+                  <div className="inputWrap">
+                    <label htmlFor="">Password</label>
+                    <input
+                      onChange={(e) => {
+                        setAuth({
+                          ...auth,
+                          password: e.target.value,
+                        });
+                      }}
+                      type="password"
+                    />
+                  </div>
+
+                  <div className="inputWrap">
+                    <label htmlFor="">
+                      Referral Code (<span>Optional</span>)
+                    </label>
+                    <input
+                      onChange={(e) => {
+                        setAuth({
+                          ...auth,
+                          username: e.target.value,
+                        });
+                      }}
+                      type="text"
+                    />
+                  </div>
+                  <div className="termsAgree">
+                    <p>
+                      By continuing, I represent that I have read, understand,
+                      and fully agree to the QC Express{" "}
+                      <a href="/">terms of service and privacy policy.</a>
+                    </p>
+                  </div>
+
+                  <div className="submitBtn">
+                    <button onClick={handlesave}>Continue</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           ) : (
             ""
           )}
-
         </div>
       </div>
     </div>
