@@ -1164,14 +1164,11 @@ export default function BookDelivery() {
                   padding: "15px 0 0 0",
                 }}
               >
-                Order and Payment Successful
+                Payment Successful
               </p>
             </div>
             <div className="probitrbody">
-              <small>
-                Your order have been made, go back home to wait your ordering
-                notification
-              </small>
+           
               <br />
               <small>
                 Track ID: <b>#056278363014</b>
