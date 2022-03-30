@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./index.scss";
-import authBanner from "../../assets/authbanner.png";
+import authBanner from "../../assets/auth.jpeg";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";
@@ -120,6 +120,16 @@ const Auth = () => {
 
             <div className="submitBtn">
               <button onClick={login}>Continue</button>
+            </div>
+          <hr/>
+          <div style={{textAlign:"center"}}>
+              <p>
+                New to QC Express?
+              </p>
+            </div>
+            <div className="submitBtn">
+              <button onClick={()=>{      history.push(`/signup`);
+}} style={{background:"#4169e2"}}>Create your QC Express account</button>
             </div>
           </form>
         </div>

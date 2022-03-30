@@ -2,7 +2,7 @@ import React, { isValidElement, useState } from "react";
 import "./index.scss";
 import contries from "../../components/countries";
 import NIGStates from "../../components/nigeriaStates";
-import authBanner from "../../assets/mainhalf.png";
+import authBanner from "../../assets/auth.jpeg";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";

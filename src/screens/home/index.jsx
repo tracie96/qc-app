@@ -23,6 +23,7 @@ import ps from "../../assets/ps.svg";
 import as from "../../assets/as.svg";
 import team1 from "../../assets/team1.jpeg";
 import team2 from "../../assets/team2.jpeg";
+import { useHistory } from "react-router-dom";
 
 import pasta from "../../assets/pasta.png";
 import phone1 from "../../assets/phone1.jpg";
@@ -43,6 +44,7 @@ const Accordion = styled((props) => (
     display: "none",
   },
 }));
+
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
@@ -100,6 +102,7 @@ export default function Index() {
   };
 
   const [expanded, setExpanded] = React.useState("");
+  const history = useHistory();
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -209,151 +212,158 @@ export default function Index() {
             background: "none",
           }}
         >
-          <div className="shapeCirCol4text" style={{ marginTop: "0px" }}>
-            <div
-              id="carouselExampleIndicators"
-              class="carousel slide"
-              data-ride="carousel"
-              data-interval="4000"
-            >
-              <ol class="carousel-indicators">
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="0"
-                  class="active"
-                ></li>
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="1"
-                ></li>
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="2"
-                ></li>
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="3"
-                ></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src={team} alt="First slide" />
-                  <div
-                    class="carousel-caption d-none d-md-block"
-                    style={{
-                      background: "#282828",
-                      color: "#fff",
-                      right: "0px",
-                      left: "0px",
-                      bottom: "0px",
-                    }}
-                  >
-                    <h5>Sesan Ibitoye (CEO)</h5>
-                    <p style={{ color: "#fff" }}>
-                      “QC Express seeks to help eCommerce companies and end
-                      users access excellent last mile delivery of packages at
-                      the most competitive price. Our overarching desire is to
-                      make last mile delivery accessible to all and make our
-                      customers happy and successful.”
-                    </p>
-                  </div>
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-ride="carousel"
+            data-interval="2000"
+            style={{border:"1px dashed #ccc",padding:"10px"}}
+          >
+            <ol class="carousel-indicators">
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="1"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="2"
+              ></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div className="shapeCirCol4">
+                  <p>
+                    <img
+                      class="d-block w-100"
+                      src={team}
+                      style={{
+                        objectFit: "contain",
+                        borderRadius: "100%",
+                        width: "100%",
+                      }}
+                    />
+                  </p>
                 </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src={team_2} alt="Second slide" />
-                  <div
-                    class="carousel-caption d-none d-md-block"
-                    style={{
-                      background: "#282828",
-                      color: "#fff",
-                      right: "0px",
-                      left: "0px",
-                      bottom: "0px",
-                    }}
-                  >
-                    <h5>Yomi Isafiade (CFO)</h5>
-                    <p style={{ color: "#fff" }}>
-                      {" "}
-                      “Our multicultural background has enabled us build robust
-                      financial systems, processes and controls to protect and
-                      assure the integrity of our platforms.”
-                    </p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src={team3} alt="Third slide" />
-                  <div
-                    class="carousel-caption d-none d-md-block"
-                    style={{
-                      background: "#282828",
-                      color: "#fff",
-                      right: "0px",
-                      left: "0px",
-                      bottom: "0px",
-                    }}
-                  >
-                    <h5>Yomi Isafiade (CFO)</h5>
-                    <p style={{ color: "#fff" }}>
-                      {" "}
-                      “At QC Express, we leverage our combined logistics
-                      background and strategic partnerships with world class
-                      fulfilment partners. This enables us deliver best-in-class
-                      logistics services to our customers.”
-                    </p>
-                  </div>
-                </div>
-
-                <div class="carousel-item">
-                  <img class="d-block w-100" src={team4} alt="Third slide" />
-                  <div
-                    class="carousel-caption d-none d-md-block"
-                    style={{
-                      background: "#282828",
-                      color: "#fff",
-                      right: "0px",
-                      left: "0px",
-                      bottom: "0px",
-                    }}
-                  >
-                    <h5>Idris Mustapha (CTO)</h5>
-                    <p style={{ color: "#fff" }}>
-                      {" "}
-                      “We have deployed innovative technological solutions that
-                      ensures seamless customer experience across our various
-                      platforms.”
-                    </p>
-                  </div>
+                <div className="shapeCirCol4text">
+                  <p>
+                    “QC Express seeks to help eCommerce companies and end users
+                    access excellent last mile delivery of packages at the most
+                    competitive price. Our overarching desire is to make last
+                    mile delivery accessible to all and make our customers happy
+                    and successful.”
+                  </p>
+                  <p>Sesan Ibitoye. CEO</p>
                 </div>
               </div>
-              <a
-                class="carousel-control-prev"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a
-                class="carousel-control-next"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Next</span>
-              </a>
+              <div class="carousel-item">
+                <div className="shapeCirCol4">
+                  <p>
+                    <img
+                      class="d-block w-100"
+                      src={team4}
+                      style={{
+                        objectFit: "contain",
+                        borderRadius: "100%",
+                        width: "100%",
+                      }}
+                    />
+                  </p>
+                </div>
+                <div className="shapeCirCol4text">
+                  <p>
+                    “Our multicultural background has enabled us build robust
+                    financial systems, processes and controls to protect and
+                    assure the integrity of our platforms”
+                  </p>
+                  <p>Yomi Isafiade (CFO)</p>
+                </div>{" "}
+              </div>
+              <div class="carousel-item">
+                <div className="shapeCirCol4">
+                  <p>
+                    <img
+                      class="d-block w-100"
+                      src={team3}
+                      style={{
+                        objectFit: "contain",
+                        borderRadius: "100%",
+                        width: "100%",
+                      }}
+                    />
+                  </p>
+                </div>
+                <div className="shapeCirCol4text">
+                  <p>
+                    “At QC Express, we leverage our combined logistics
+                    background and strategic partnerships with world class
+                    fulfilment partners. This enables us deliver best-in-class
+                    logistics services to our customers. ”
+                  </p>
+                  <p>Yomi Isafiade (CFO)</p>
+                </div>{" "}
+              </div>
+              <div class="carousel-item">
+                <div className="shapeCirCol4">
+                  <p>
+                    <img
+                      class="d-block w-100"
+                      src={team_2}
+                      style={{
+                        objectFit: "contain",
+                        borderRadius: "100%",
+                        width: "100%",
+                      }}
+                    />
+                  </p>
+                </div>
+                <div className="shapeCirCol4text">
+                  <p>
+                    “We have deployed innovative technological solutions that
+                    ensures seamless customer experience across our various
+                    platforms.”
+                  </p>
+                  <p>Idris Mustapha (CTO)</p>
+                </div>{" "}
+              </div>
             </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
       </div>
 
-      <section id="pricing" className="pricing section-bg" style={{padding:"30px",padding:"30px"}}>
+      <section
+        id="pricing"
+        className="pricing section-bg"
+        style={{ padding: "30px", padding: "30px" }}
+      >
         <div className="container" style={{ maxWidth: "87%" }}>
           <div className="row" data-aos="fade-left">
             <div className="col-lg-4 col-md-6">
@@ -363,8 +373,8 @@ export default function Index() {
                 <p>Deliveries within cities in Nigeria.</p>
 
                 <div className="btn-wrap">
-                  <a href="#" className="btn-buy">
-                    Learn more
+                <a onClick={()=>{history.push('/login')}} className="btn-buy">
+                    Book Now
                   </a>
                 </div>
               </div>
@@ -380,8 +390,8 @@ export default function Index() {
                 <h4>Country</h4>
                 <p>Deliveries across states and regions in Nigeria.</p>
                 <div className="btn-wrap">
-                  <a href="#" className="btn-buy">
-                    Learn more
+                <a onClick={()=>{history.push('/login')}} className="btn-buy">
+                  Book Now
                   </a>
                 </div>
               </div>
@@ -393,8 +403,8 @@ export default function Index() {
                 <h4>International</h4>
                 <p>Deliveries across international borders.</p>
                 <div className="btn-wrap">
-                  <a href="#" className="btn-buy">
-                    Learn more
+                  <a onClick={()=>{history.push('/login')}} className="btn-buy">
+                  Book Now
                   </a>
                 </div>
               </div>
@@ -417,11 +427,7 @@ export default function Index() {
             An eCommerce technology company providing best-in-class delivery
             solutions.
           </h2>
-          <div className="btn-wrap">
-            <a class="btn btn-primary" href="#" role="button">
-              Call to Action
-            </a>
-          </div>
+  
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>
@@ -507,11 +513,7 @@ export default function Index() {
       <div className="col6-home app-padding">
         <div className="col6-home-col2">
           <h2>Simplified document and parcel delivery at your fingertips.</h2>
-          <div className="btn-wrap">
-            <a class="btn btn-primary" href="#" role="button">
-              Call to Action
-            </a>
-          </div>
+      
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>

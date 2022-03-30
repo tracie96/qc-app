@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-import trackingfleximg from "../../assets/trackingfleximg.png";
+import trackingfleximg from "../../assets/qc1.jpg";
 import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
 import greatervec from "../../assets/greatervec.png";

@@ -45,14 +45,10 @@ export default function TrackingPage1() {
             </div>
 
             <div className="where-agreement">
-              <p>
-                By continuing, I represent that the declaration above is a
-                proper
-                <br /> and accurate description of the contents of my package.
-              </p>
+          
             </div>
             <div>
-              <button className="where-address-button" style={{width:"480px",height:"55px",borderRadius:"0px"}}
+              <button onClick={()=>{history.push('/track')}}className="where-address-button" style={{width:"480px",height:"55px",borderRadius:"0px"}}
 >Track</button>
             </div>
           </form>

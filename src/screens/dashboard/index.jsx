@@ -31,8 +31,8 @@ export default function Index() {
           <div className="card" onClick={() => history.push(`/book_delivery`)}>
             <div className="card-item" style={{padding:"10px 0 0 15px"}}>
             <img src={Ds1} alt="" />
-            <h2>Book Delivery</h2>
-            <p>Schedule nationwide and international deliveries</p>
+            <h2>Book Shipment</h2>
+            <p>Schedule shipment pickup</p>
             <svg
               width="19"
               height="11"
@@ -52,10 +52,9 @@ export default function Index() {
           <div className="card-item" style={{padding:"10px 0 0 15px"}}>
 
             <img src={Ds2} alt="" />
-            <h2>Track Delivery</h2>
+            <h2>Track Shipment</h2>
             <p>
-              Follow up on the location of your <br />
-              deliveries
+            Track your shipment
             </p>
             <svg
               width="19"
@@ -76,10 +75,9 @@ export default function Index() {
           <div className="card" onClick={() => history.push(`/locate_hub`)}>
           <div className="card-item" style={{padding:"10px 0 0 15px"}}>
             <img src={Ds3} alt="" />
-            <h2>Locate Hub</h2>
+            <h2>Drop-off Locations</h2>
             <p>
-              Find nearby hubs to drop off your <br />
-              deliveries
+            Locate nearest drop-off points
             </p>
             <svg
               width="19"
@@ -105,7 +103,7 @@ export default function Index() {
      <div className="card-item" style={{padding:"10px 0 0 15px"}}>
      <img src={Ds1} alt="" />
      <h2>Refer a Friend</h2>
-     <p>Schedule nationwide and international deliveries</p>
+     <p>Please tell a friend about us</p>
      <svg
        width="19"
        height="11"
@@ -127,8 +125,7 @@ export default function Index() {
      <img src={Ds2} alt="" />
      <h2>Import</h2>
      <p>
-       Follow up on the location of your <br />
-       deliveries
+     Book shipment pickup from international locations for deliveries in Nigeria
      </p>
      <svg
        width="19"

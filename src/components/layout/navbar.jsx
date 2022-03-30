@@ -9,13 +9,13 @@ export default function Navbar() {
   return (
     <div className="navbar-ch-con" style={{}}>
       <div className="navbarChild">
-        <div className="navbar-logo" style={{ cursor: "pointer" ,width:"10%"}}>
+        <div className="navbar-logo" style={{ cursor: "pointer" ,width:"10%",marginTop:"-20px"}}>
           <Link to="/home">
             <Logo />
           </Link>
         </div>
 
-      <div style={{color:"#0000",width:"70%"}}>
+      <div style={{color:"#0000",width:"70%",marginTop:"-10px"}}>
         <ul className="right-links hideOnMobile">
           <li
             className={`${

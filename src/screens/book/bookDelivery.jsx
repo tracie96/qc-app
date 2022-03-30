@@ -319,7 +319,6 @@ export default function BookDelivery() {
                   <input
                     required
                     type="number"
-                    placeholder="10"
                     name="weight"
                     min="0"
                     onChange={handleChange}
@@ -334,7 +333,6 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        placeholder="10"
                         min="0"
                         name="length"
                         onChange={handleChange}
@@ -349,7 +347,6 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        placeholder="10"
                         name="breath"
                         min="0"
                         onChange={handleChange}
@@ -363,7 +360,6 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        placeholder="10"
                         name="height"
                         min="0"
                         onChange={handleChange}
@@ -377,7 +373,7 @@ export default function BookDelivery() {
                     required
                     type="text"
                     placeholder="Give a brief description of what you are shipping"
-                    name="weight"
+                    name="description"
                     onChange={handleChange}
                     value={delivery.description}
                   />
@@ -390,8 +386,8 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        placeholder="10"
-                        name="breath"
+                        min="0"
+                        name="number"
                         onChange={handleChange}
                         value={delivery.numberofitems}
                       />
@@ -403,7 +399,7 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        placeholder="10"
+                        placeholder=""
                         min="0"
                         name="value"
                         onChange={handleChange}
