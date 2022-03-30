@@ -11,6 +11,10 @@ import "slick-carousel/slick/slick.css";
 import apd1 from "../../assets/apd1.png";
 import country from "../../assets/nigeria.png";
 import networking from "../../assets/networking.png";
+import team from "../../assets/team1.png";
+import team_2 from "../../assets/team2.png";
+import team3 from "../../assets/team3.png";
+import team4 from "../../assets/team4.png";
 import international from "../../assets/earth.png";
 import hero3 from "../../assets/hero-carousel-3.svg";
 import apd2 from "../../assets/apd2.png";
@@ -192,70 +196,171 @@ export default function Index() {
           </h2>
           <p>
             Book a pickup directly from your location or from your 3rd party
-            customer for delivery in <br />
-            more than 220 countries around the world
+            customer for delivery in more than 220 countries around the world
           </p>
         </div>
 
-        <div className="col4-home-col2">
-          <div className="shapeCirCol4">
-            <p>“</p>
-          </div>
-          <div className="shapeCirCol4text">
-          {/* <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol> */}
-  {/* <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src={team1} alt="First slide"/>
-      <div class="carousel-caption d-none d-md-block">
-    <h5>...</h5>
-    <p>...</p>
-  </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src={team2} alt="Second slide"/>
-      <div class="carousel-caption d-none d-md-block">
-    <h5>...</h5>
-    <p>...</p>
-  </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Third slide"/>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> */}
+        <div
+          className="col4-home-col2"
+          style={{
+            height: "fit-content",
+            width: "30%",
+            padding: "0px",
+            background: "none",
+          }}
+        >
+          <div className="shapeCirCol4text" style={{ marginTop: "0px" }}>
+            <div
+              id="carouselExampleIndicators"
+              class="carousel slide"
+              data-ride="carousel"
+              data-interval="4000"
+            >
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="1"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="2"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="3"
+                ></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src={team} alt="First slide" />
+                  <div
+                    class="carousel-caption d-none d-md-block"
+                    style={{
+                      background: "#282828",
+                      color: "#fff",
+                      right: "0px",
+                      left: "0px",
+                      bottom: "0px",
+                    }}
+                  >
+                    <h5>Sesan Ibitoye (CEO)</h5>
+                    <p style={{ color: "#fff" }}>
+                      “QC Express seeks to help eCommerce companies and end
+                      users access excellent last mile delivery of packages at
+                      the most competitive price. Our overarching desire is to
+                      make last mile delivery accessible to all and make our
+                      customers happy and successful.”
+                    </p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src={team_2} alt="Second slide" />
+                  <div
+                    class="carousel-caption d-none d-md-block"
+                    style={{
+                      background: "#282828",
+                      color: "#fff",
+                      right: "0px",
+                      left: "0px",
+                      bottom: "0px",
+                    }}
+                  >
+                    <h5>Yomi Isafiade (CFO)</h5>
+                    <p style={{ color: "#fff" }}>
+                      {" "}
+                      “Our multicultural background has enabled us build robust
+                      financial systems, processes and controls to protect and
+                      assure the integrity of our platforms.”
+                    </p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src={team3} alt="Third slide" />
+                  <div
+                    class="carousel-caption d-none d-md-block"
+                    style={{
+                      background: "#282828",
+                      color: "#fff",
+                      right: "0px",
+                      left: "0px",
+                      bottom: "0px",
+                    }}
+                  >
+                    <h5>Yomi Isafiade (CFO)</h5>
+                    <p style={{ color: "#fff" }}>
+                      {" "}
+                      “At QC Express, we leverage our combined logistics
+                      background and strategic partnerships with world class
+                      fulfilment partners. This enables us deliver best-in-class
+                      logistics services to our customers.”
+                    </p>
+                  </div>
+                </div>
 
-            <p>
-              “QC Express seeks to help eCommerce companies and end users access
-              excellent last mile delivery of packages at the most competitive
-              price. Our overarching desire is to make last mile delivery
-              accessible to all and make our customers happy and successful.”
-            </p>
-            <p>Sesan Ibitoye. CEO</p>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src={team4} alt="Third slide" />
+                  <div
+                    class="carousel-caption d-none d-md-block"
+                    style={{
+                      background: "#282828",
+                      color: "#fff",
+                      right: "0px",
+                      left: "0px",
+                      bottom: "0px",
+                    }}
+                  >
+                    <h5>Idris Mustapha (CTO)</h5>
+                    <p style={{ color: "#fff" }}>
+                      {" "}
+                      “We have deployed innovative technological solutions that
+                      ensures seamless customer experience across our various
+                      platforms.”
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <section id="pricing" className="pricing">
+      <section id="pricing" className="pricing section-bg" style={{padding:"30px",padding:"30px"}}>
         <div className="container" style={{ maxWidth: "87%" }}>
           <div className="row" data-aos="fade-left">
             <div className="col-lg-4 col-md-6">
               <div className="box" data-aos="zoom-in" data-aos-delay="100">
                 <img src={networking} width="30%"></img>
                 <h4>Intracity</h4>
-                <p>Deliveries within Major cities in Nigeria.</p>
+                <p>Deliveries within cities in Nigeria.</p>
 
                 <div className="btn-wrap">
                   <a href="#" className="btn-buy">
@@ -313,9 +418,10 @@ export default function Index() {
             solutions.
           </h2>
           <div className="btn-wrap">
-          <a class="btn btn-primary" href="#" role="button">Call to Action</a>
-
-                </div>
+            <a class="btn btn-primary" href="#" role="button">
+              Call to Action
+            </a>
+          </div>
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>
@@ -402,9 +508,10 @@ export default function Index() {
         <div className="col6-home-col2">
           <h2>Simplified document and parcel delivery at your fingertips.</h2>
           <div className="btn-wrap">
-          <a class="btn btn-primary" href="#" role="button">Call to Action</a>
-
-                </div>
+            <a class="btn btn-primary" href="#" role="button">
+              Call to Action
+            </a>
+          </div>
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>
@@ -491,12 +598,10 @@ export default function Index() {
           <img src={hero3} alt="" />
         </div>
       </div>
-      
 
       <section className="faq section-bg pt-4">
         <div className="container">
           <div className="section-title" data-aos="fade-up">
-            <h2>F.A.Q</h2>
             <p>Frequently Asked Questions</p>
           </div>
 
@@ -509,7 +614,7 @@ export default function Index() {
                   className="collapsed"
                   data-bs-target="#faq-list-1"
                 >
-                 How do I create a QC Express Account?{" "}
+                  How do I create a QC Express Account?{" "}
                   <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
@@ -519,9 +624,9 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Simply log on to the QC Express platform and sign up. An
-                  account is created for you instantly upon the completion of
-                  the short form on our platform.
+                    Simply log on to the QC Express platform and sign up. An
+                    account is created for you instantly upon the completion of
+                    the short form on our platform.
                   </p>
                 </div>
               </li>
@@ -533,7 +638,7 @@ export default function Index() {
                   data-bs-target="#faq-list-2"
                   className="collapsed"
                 >
-                 How do I book a shipment pick-up?{" "}
+                  How do I book a shipment pick-up?{" "}
                   <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
@@ -543,8 +648,8 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Easy. Just log on the QC Express platform and click on
-                  “request a pick-up”
+                    Easy. Just log on the QC Express platform and click on
+                    “request a pick-up”
                   </p>
                 </div>
               </li>
@@ -566,9 +671,9 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  We deliver to all locations within Nigeria and over 220
-                  countries globally. Please consult our coverage areas on our
-                  website.
+                    We deliver to all locations within Nigeria and over 220
+                    countries globally. Please consult our coverage areas on our
+                    website.
                   </p>
                 </div>
               </li>
@@ -580,7 +685,8 @@ export default function Index() {
                   data-bs-target="#faq-list-4"
                   className="collapsed"
                 >
-                  Can I send anything on QC Express?<i className="bx bx-chevron-down icon-show"></i>
+                  Can I send anything on QC Express?
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -589,8 +695,8 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Please consult our Restricted and Prohibited items list on the
-                  QC Express platform/website.
+                    Please consult our Restricted and Prohibited items list on
+                    the QC Express platform/website.
                   </p>
                 </div>
               </li>
@@ -612,9 +718,9 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  A delivery charge is automatically calculated for you once you
-                  specify the weight, pick-up and delivery locations on our
-                  platform.
+                    A delivery charge is automatically calculated for you once
+                    you specify the weight, pick-up and delivery locations on
+                    our platform.
                   </p>
                 </div>
               </li>
@@ -636,12 +742,11 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  No. Actual weights of shipments must be determined before
-                  shipping
+                    No. Actual weights of shipments must be determined before
+                    shipping
                   </p>
                 </div>
               </li>
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -659,12 +764,9 @@ export default function Index() {
                   className="collapse"
                   data-bs-parent=".faq-list"
                 >
-                  <p>
-                  Yes. You are primarily responsible for packaging
-                  </p>
+                  <p>Yes. You are primarily responsible for packaging</p>
                 </div>
               </li>
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -683,13 +785,11 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Please contact Customer Service at: support@quartzclassic.com
-
+                    Please contact Customer Service at:
+                    support@quartzclassic.com
                   </p>
                 </div>
               </li>
-
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -708,12 +808,11 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  No. Please contact Customer Service at:
-                  support@quartzclassic.com
+                    No. Please contact Customer Service at:
+                    support@quartzclassic.com
                   </p>
                 </div>
               </li>
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -722,8 +821,9 @@ export default function Index() {
                   data-bs-target="#faq-list-10"
                   className="collapsed"
                 >
-   What should I do if the courier can’t take a parcel and I was
-                  already charged for the shipment?                  <i className="bx bx-chevron-down icon-show"></i>
+                  What should I do if the courier can’t take a parcel and I was
+                  already charged for the shipment?{" "}
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -732,16 +832,14 @@ export default function Index() {
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  This doesn't happen often, but if a courier arrived but could
-                  not take the parcel, it could be because it contains a
-                  prohibited item or didn’t have the necessary paperwork ready.
-                  We’ll help you arrange a new pickup or refund. Please contact
-                  Customer Service at: support@quartzclassic.com
+                    This doesn't happen often, but if a courier arrived but
+                    could not take the parcel, it could be because it contains a
+                    prohibited item or didn’t have the necessary paperwork
+                    ready. We’ll help you arrange a new pickup or refund. Please
+                    contact Customer Service at: support@quartzclassic.com
                   </p>
                 </div>
               </li>
-
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -750,8 +848,9 @@ export default function Index() {
                   data-bs-target="#faq-list-11"
                   className="collapsed"
                 >
-The courier could not take my shipment because it is too
-                  big/heavy for their vehicle. What should I do?                  <i className="bx bx-chevron-down icon-show"></i>
+                  The courier could not take my shipment because it is too
+                  big/heavy for their vehicle. What should I do?{" "}
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -760,13 +859,12 @@ The courier could not take my shipment because it is too
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  If your shipment is very large in size or heavy in weight: It
-                  may require special pickup equipment and a different vehicle.
-                  Please contact us to reschedule your pickup.
+                    If your shipment is very large in size or heavy in weight:
+                    It may require special pickup equipment and a different
+                    vehicle. Please contact us to reschedule your pickup.
                   </p>
                 </div>
               </li>
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -775,8 +873,9 @@ The courier could not take my shipment because it is too
                   data-bs-target="#faq-list-12"
                   className="collapsed"
                 >
-   I have tracked a shipment and been told to contact Customer
-                  Service. Why is this?                  <i className="bx bx-chevron-down icon-show"></i>
+                  I have tracked a shipment and been told to contact Customer
+                  Service. Why is this?{" "}
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -785,15 +884,14 @@ The courier could not take my shipment because it is too
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  This usually occurs if the information we have is insufficient
-                  to track the shipment for you. The address may be incorrect,
-                  and we require clarification or some additional information
-                  may be required. The matter can be resolved very quickly
-                  by contacting Customer Service.
+                    This usually occurs if the information we have is
+                    insufficient to track the shipment for you. The address may
+                    be incorrect, and we require clarification or some
+                    additional information may be required. The matter can be
+                    resolved very quickly by contacting Customer Service.
                   </p>
                 </div>
               </li>
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -802,9 +900,10 @@ The courier could not take my shipment because it is too
                   data-bs-target="#faq-list-13"
                   className="collapsed"
                 >
-    My shipment is showing “Custom status updated” from the
+                  My shipment is showing “Custom status updated” from the
                   destination, even though the shipment just left the country.
-                  What does this mean?                <i className="bx bx-chevron-down icon-show"></i>
+                  What does this mean?{" "}
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -813,15 +912,15 @@ The courier could not take my shipment because it is too
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  This status provides an indication of the clearance processing
-                  from the destination. Please click in to the further details
-                  (+) to open and see additional information available. This
-                  checkpoint allows you to see very early if there is additional
-                  information required by customs for clearance.
+                    This status provides an indication of the clearance
+                    processing from the destination. Please click in to the
+                    further details (+) to open and see additional information
+                    available. This checkpoint allows you to see very early if
+                    there is additional information required by customs for
+                    clearance.
                   </p>
                 </div>
               </li>
-
 
               <li data-aos="fade-up" data-aos-delay="400">
                 <i className="bx bx-help-circle icon-help"></i>{" "}
@@ -830,8 +929,9 @@ The courier could not take my shipment because it is too
                   data-bs-target="#faq-list-14"
                   className="collapsed"
                 >
-    If I do not have my tracking number, is it still possible to
-                  track my shipment?                <i className="bx bx-chevron-down icon-show"></i>
+                  If I do not have my tracking number, is it still possible to
+                  track my shipment?{" "}
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -840,10 +940,10 @@ The courier could not take my shipment because it is too
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Yes, under certain conditions. We strongly advise you to make
-                  a record of your tracking number however, if you have the
-                  shipper's reference number, you can use our online Shipper’s
-                  Reference Tracking service.  
+                    Yes, under certain conditions. We strongly advise you to
+                    make a record of your tracking number however, if you have
+                    the shipper's reference number, you can use our online
+                    Shipper’s Reference Tracking service.  
                   </p>
                 </div>
               </li>
@@ -855,7 +955,8 @@ The courier could not take my shipment because it is too
                   data-bs-target="#faq-list-15"
                   className="collapsed"
                 >
-How are customs duties calculated?                 <i className="bx bx-chevron-down icon-show"></i>
+                  How are customs duties calculated?{" "}
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -864,18 +965,18 @@ How are customs duties calculated?                 <i className="bx bx-chevron-d
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  The calculation of duties depends on the assessable value of a
-                  dutiable shipment. For the purpose of this calculation,
-                  dutiable goods are given a classification code that is known
-                  as the Harmonized System code. Whether a shipment is a gift or
-                  not, it must still go through an import procedure as
-                  determined by custom’s law in the destination country. The
-                  shipment is cleared through customs based on the origin
-                  country, the value and quantity, but not its purpose. Dutiable
-                  shipments are subject to a customs duty, which is a tariff or
-                  tax imposed on goods when transported across international
-                  borders. This system has been assigned by the World Customs
-                  Organization and continues to evolve.
+                    The calculation of duties depends on the assessable value of
+                    a dutiable shipment. For the purpose of this calculation,
+                    dutiable goods are given a classification code that is known
+                    as the Harmonized System code. Whether a shipment is a gift
+                    or not, it must still go through an import procedure as
+                    determined by custom’s law in the destination country. The
+                    shipment is cleared through customs based on the origin
+                    country, the value and quantity, but not its purpose.
+                    Dutiable shipments are subject to a customs duty, which is a
+                    tariff or tax imposed on goods when transported across
+                    international borders. This system has been assigned by the
+                    World Customs Organization and continues to evolve.
                   </p>
                 </div>
               </li>
@@ -888,7 +989,7 @@ How are customs duties calculated?                 <i className="bx bx-chevron-d
                   className="collapsed"
                 >
                   Who is responsible for payment of duties and taxes?
-                 <i className="bx bx-chevron-down icon-show"></i>
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -897,8 +998,8 @@ How are customs duties calculated?                 <i className="bx bx-chevron-d
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  The payment of duties and taxes are typically the
-                  responsibility of the receiver.
+                    The payment of duties and taxes are typically the
+                    responsibility of the receiver.
                   </p>
                 </div>
               </li>
@@ -910,8 +1011,8 @@ How are customs duties calculated?                 <i className="bx bx-chevron-d
                   data-bs-target="#faq-list-17"
                   className="collapsed"
                 >
-Why is the receiver being asked to pay Customs duties and
-                  taxes?                  <i className="bx bx-chevron-down icon-show"></i>
+                  Why is the receiver being asked to pay Customs duties and
+                  taxes? <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -920,11 +1021,11 @@ Why is the receiver being asked to pay Customs duties and
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Duties and taxes are levied by Customs in the destination
-                  country and the receiver is responsible for paying them. The
-                  Carrier will collect payment from the receiver prior to
-                  delivery. Generally, we are unable to deliver parcels until
-                  these have been paid.
+                    Duties and taxes are levied by Customs in the destination
+                    country and the receiver is responsible for paying them. The
+                    Carrier will collect payment from the receiver prior to
+                    delivery. Generally, we are unable to deliver parcels until
+                    these have been paid.
                   </p>
                 </div>
               </li>
@@ -936,8 +1037,8 @@ Why is the receiver being asked to pay Customs duties and
                   data-bs-target="#faq-list-18"
                   className="collapsed"
                 >
- I’m sending a gift – can I pay duties and taxes instead of the
-                  receiver?                <i className="bx bx-chevron-down icon-show"></i>
+                  I’m sending a gift – can I pay duties and taxes instead of the
+                  receiver? <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -946,8 +1047,8 @@ Why is the receiver being asked to pay Customs duties and
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  You need an account to pay duties and taxes for the receiver.
-
+                    You need an account to pay duties and taxes for the
+                    receiver.
                   </p>
                 </div>
               </li>
@@ -960,7 +1061,7 @@ Why is the receiver being asked to pay Customs duties and
                   className="collapsed"
                 >
                   Why doesn’t QC include duties and taxes in its prices?
-                <i className="bx bx-chevron-down icon-show"></i>
+                  <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -969,11 +1070,11 @@ Why is the receiver being asked to pay Customs duties and
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  The customs authorities in the destination country determine
-                  whether any duties and taxes are applicable when the parcel
-                  arrives. This is based on the information provided on the
-                  shipping label (or waybill) and customs paperwork – in
-                  particular the shipment contents, declared value and weight.
+                    The customs authorities in the destination country determine
+                    whether any duties and taxes are applicable when the parcel
+                    arrives. This is based on the information provided on the
+                    shipping label (or waybill) and customs paperwork – in
+                    particular the shipment contents, declared value and weight.
                   </p>
                 </div>
               </li>
@@ -985,8 +1086,8 @@ Why is the receiver being asked to pay Customs duties and
                   data-bs-target="#faq-list-20"
                   className="collapsed"
                 >
-   Why do I need to pay customs duty if I received a shipment as
-                  a gift?                 <i className="bx bx-chevron-down icon-show"></i>
+                  Why do I need to pay customs duty if I received a shipment as
+                  a gift? <i className="bx bx-chevron-down icon-show"></i>
                   <i className="bx bx-chevron-up icon-close"></i>
                 </a>
                 <div
@@ -995,12 +1096,13 @@ Why is the receiver being asked to pay Customs duties and
                   data-bs-parent=".faq-list"
                 >
                   <p>
-                  Whether a shipment is a gift or not, it must still go through
-                  an import procedure as determined by custom’s law in the
-                  destination country. The shipment is cleared through customs
-                  based on the origin country, the value and quantity, but not
-                  its purpose. You will need to pay customs duty and taxes only
-                  if the value of the gift is above a stated local threshold.
+                    Whether a shipment is a gift or not, it must still go
+                    through an import procedure as determined by custom’s law in
+                    the destination country. The shipment is cleared through
+                    customs based on the origin country, the value and quantity,
+                    but not its purpose. You will need to pay customs duty and
+                    taxes only if the value of the gift is above a stated local
+                    threshold.
                   </p>
                 </div>
               </li>
@@ -1012,7 +1114,6 @@ Why is the receiver being asked to pay Customs duties and
       <section id="contact" className="contact">
         <div className="container">
           <div className="section-title" data-aos="fade-up">
-            <h2>Contact</h2>
             <p>Contact Us</p>
           </div>
 
@@ -1117,7 +1218,7 @@ Why is the receiver being asked to pay Customs duties and
           width: "100%",
           backgroundColor: "#446ce4",
           overflow: "hidden ",
-          marginTop:"3%"
+          marginTop: "3%",
         }}
       >
         {/* <div className="testimonalHeader app-padding" id="testimonials">
@@ -1232,7 +1333,6 @@ Why is the receiver being asked to pay Customs duties and
             </div>
           </div>
         </Slider> */}
-
 
         <div className="footerHome app-padding">
           <div className="footerHomeCol1">

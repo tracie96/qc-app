@@ -53,11 +53,11 @@ export default function Navbar() {
           <li
             className={`${
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
-            }`}
+            }`} style={{display:"flex"}}
           >
-            <button onClick={() => history.push(`/signup`)}>Sign Up</button>
+            <button onClick={() => history.push(`/signup`)} style={{height:"50px"}}><p style={{width:"80px"}}>Sign Up</p></button>
 
-            <button onClick={() => history.push(`/login`)}>Sign In</button>
+            <button onClick={() => history.push(`/login`)} style={{height:"50px"}}><p style={{width:"80px"}}>Sign In</p></button>
           </li>
         </ul>
       </div>
@@ -91,7 +91,7 @@ export default function Navbar() {
               className={`${
                 location.pathname == "/hmenu" ? "activeNvaLink" : ""
               }`}
-              style={{ marginTop: "20px" }}
+              // style={{ marginTop: "20px" }}
             >
               <Link to="/">
                 <button

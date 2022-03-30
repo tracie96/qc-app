@@ -259,7 +259,7 @@ const Auth = () => {
           {tab == "tab2" ? (
             <div style={{ alignSelf: "center" }}>
               <div className="authHeader" style={{ marginTop: "0px" }}>
-                <h2>Verify your phone number</h2>
+                <h2>Verify your Email</h2>
                 <p>Enter the 6-digit OTP sent to your Email..</p>
               </div>{" "}
               <form style={{ width: "480px" }}>
@@ -322,8 +322,7 @@ const Auth = () => {
           {tab == "tab3" ? (
             <div style={{ alignSelf: "center" }}>
               <div className="authHeader">
-                <h2>Get started</h2>
-                <p>To continue, please provide a valid phone number.</p>
+                <h2>Continue</h2>
               </div>
               <div className="formWrap">
                 <form action="">

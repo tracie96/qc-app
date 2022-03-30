@@ -376,8 +376,7 @@ export default function BookDelivery() {
                   <input
                     required
                     type="text"
-                    placeholder="Give a brief description of what you are shipping
-                    </small>"
+                    placeholder="Give a brief description of what you are shipping"
                     name="weight"
                     onChange={handleChange}
                     value={delivery.description}
