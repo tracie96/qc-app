@@ -10,6 +10,8 @@ import { useLocation } from "react-router-dom";
 
 import InAppNavbar from "../../components/layout/inAppNavbar";
 import "./index.scss";
+import "./card.scss";
+
 import { useHistory } from "react-router-dom";
 
 export default function Index() {
@@ -28,7 +30,7 @@ export default function Index() {
       <div style={{marginTop:"50px"}}>The Cockpit helps you navigate through your transactions with QC Express</div>
         <div className="dashbordCard1">
    
-          <div className="card" onClick={() => history.push(`/book_delivery`)}>
+          <div className="gr-1 card col-md-6 col-lg-4 column" onClick={() => history.push(`/book_delivery`)}>
             <div className="card-item" style={{padding:"10px 0 0 15px"}}>
             <img src={Ds1} alt="" />
             <h2>Book Shipment</h2>
@@ -48,7 +50,8 @@ export default function Index() {
             </svg>
             </div>
           </div>
-          <div className="card" onClick={() => history.push(`/tracking_page1`)}>
+          
+          <div className="gr-1 card col-md-6 col-lg-4 column" onClick={() => history.push(`/tracking_page1`)}>
           <div className="card-item" style={{padding:"10px 0 0 15px"}}>
 
             <img src={Ds2} alt="" />
@@ -72,7 +75,7 @@ export default function Index() {
             </svg>
           </div>
           </div>
-          <div className="card" onClick={() => history.push(`/locate_hub`)}>
+          <div className="gr-1 card col-md-6 col-lg-4 column" onClick={() => history.push(`/locate_hub`)}>
           <div className="card-item" style={{padding:"10px 0 0 15px"}}>
             <img src={Ds3} alt="" />
             <h2>Drop-off Locations</h2>
@@ -99,7 +102,7 @@ export default function Index() {
 
         <div className="dashbordCard1">
    
-   <div className="card" onClick={() => history.push(`/book_delivery`)} style={{width:"49.5%"}}>
+   <div className="gr-1 card col-md-6 col-lg-4 column" onClick={() => history.push(`/book_delivery`)} style={{width:"49.5%"}}>
      <div className="card-item" style={{padding:"10px 0 0 15px"}}>
      <img src={Ds1} alt="" />
      <h2>Refer a Friend</h2>
@@ -119,7 +122,7 @@ export default function Index() {
      </svg>
      </div>
    </div>
-   <div className="card" onClick={() => history.push(`/tracking_page1`)} style={{width:"49.5%"}}>
+   <div className="gr-1 card col-md-6 col-lg-4 column" onClick={() => history.push(`/tracking_page1`)} style={{width:"49.5%"}}>
    <div className="card-item" style={{padding:"10px 0 0 15px"}}>
 
      <img src={Ds2} alt="" />
@@ -145,7 +148,9 @@ export default function Index() {
    </div>
  
  </div>
-
+  
+    
+ 
 
       </div>
     </div>

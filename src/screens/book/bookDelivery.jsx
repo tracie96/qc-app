@@ -13,7 +13,7 @@ import { axiosCalls } from "../../components/_api";
 import { useHistory } from "react-router-dom";
 import NIGStates from "../../components/nigeriaStates";
 import { Modal } from "react-responsive-modal";
-
+import InAppNavbar from "../../components/layout/inAppNavbar";
 export default function BookDelivery() {
   const history = useHistory();
   const [delivery, setDelivery] = useState({
@@ -45,6 +45,10 @@ export default function BookDelivery() {
 
   const [payementDetails, setPaymentDetails] = useState({});
   const [showNewAddress, setshowNewAddress] = useState(false);
+  const [showAddress, setShowAddress] = useState(false);
+  const [showNewAdd, setshowNewAdd] = useState(false);
+  const [showPickup, setshowPickup] = useState(false);
+  const [continues, setContinues] = useState(false);
 
   const makePaymentBackend = () => {
     const data = {
@@ -246,6 +250,8 @@ export default function BookDelivery() {
 
   return (
     <>
+    <InAppNavbar />
+
       <div className="where-cont">
         {tab > 1 ? (
           <div
@@ -320,7 +326,7 @@ export default function BookDelivery() {
                     required
                     type="number"
                     name="weight"
-                    min="0"
+                    min="0.5"
                     onChange={handleChange}
                     value={delivery.weight}
                   />
@@ -333,7 +339,7 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        min="0"
+                        min="0.5"
                         name="length"
                         onChange={handleChange}
                         value={delivery.length}
@@ -348,7 +354,7 @@ export default function BookDelivery() {
                         required
                         type="number"
                         name="breath"
-                        min="0"
+                        min="0.5"
                         onChange={handleChange}
                         value={delivery.breath}
                       />
@@ -361,7 +367,7 @@ export default function BookDelivery() {
                         required
                         type="number"
                         name="height"
-                        min="0"
+                        min="0.5"
                         onChange={handleChange}
                         value={delivery.height}
                       />
@@ -386,7 +392,7 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        min="0"
+                        min="0.5"
                         name="number"
                         onChange={handleChange}
                         value={delivery.numberofitems}
@@ -400,7 +406,7 @@ export default function BookDelivery() {
                         required
                         type="number"
                         placeholder=""
-                        min="0"
+                        min="0.5"
                         name="value"
                         onChange={handleChange}
                         value={delivery.value}
@@ -421,20 +427,39 @@ export default function BookDelivery() {
                   </div>
                 </div>
                 <div className="btnsfd">
-                {showbtn? <button
-                onClick={handleTab}
-                className="where-address-button"
-                style={{ backgroundColor:"#000"  }}
-              >
-                Continue
-              </button>: <button
-                onClick={toggleProhabittedModal}
-                style={{ backgroundColor:  "#ccc" }}
-                disabled
-                className="where-address-button"
-              >
-                Continue
-              </button>}
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckChecked"
+                      checked={continues ? true : false}
+                      onClick={() => {
+                        setContinues(!continues);
+                      }}
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Checked
+                    </label>
+                  </div>
+                  {continues ? (
+                    <button
+                      onClick={handleTab}
+                      className="where-address-button"
+                      style={{ backgroundColor: "#000" }}
+                    >
+                      Continue
+                    </button>
+                  ) : (
+                    <button
+                      onClick={toggleProhabittedModal}
+                      style={{ backgroundColor: "#ccc" }}
+                      disabled
+                      className="where-address-button"
+                    >
+                      Continue
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
@@ -443,22 +468,50 @@ export default function BookDelivery() {
           )}
 
           {tab == 2 ? (
-            <div style={{ alignSelf: "center",width:"80%"}}>
+            <div style={{ alignSelf: "center", width: "80%" }}>
               <div className="where-right-form-header">
                 {/* <h3>Add new address</h3> */}
 
                 <form>
-                  <div className="where-right-address">
-                    <div>
-                     
-                                             {auth.formaddress}
+                  <p
+                    style={{
+                      fontSize: "18px",
+                      color: "#4169E2",
+                      fontWeight: "800",
+                      fontFamily: "Playfair Display",
+                      padding: "15px 0 0 0",
+                    }}
+                  >
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="gridCheck"
+                          onClick={() => {
+                            setShowAddress(!showAddress);
+                            setshowNewAddress(false);
+                          }}
+                          checked={showAddress ? true : false}
+                        />
+                        <label class="form-check-label" for="gridCheck">
+                          Use Default Address?
+                        </label>
+                      </div>
+                    </div>{" "}
+                  </p>
 
-                    </div>
-                    {/* <div className="where-right-address-checked">
+                  {showAddress ? (
+                    <div className="where-right-address">
+                      <div>{auth.formaddress}</div>
+                      {/* <div className="where-right-address-checked">
                       <input type="checkbox" checked="checked" />
                       <span className="checkmark"></span>
                     </div> */}
-                  </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
 
                   <div>
                     <p
@@ -476,7 +529,12 @@ export default function BookDelivery() {
                             class="form-check-input"
                             type="checkbox"
                             id="gridCheck"
-                            onClick={()=>{setshowNewAddress(!showNewAddress)}}
+                            onClick={() => {
+                              setshowNewAddress(!showNewAddress);
+                              setShowAddress(false);
+                            }}
+                            checked={showNewAddress ? true : false}
+
                           />
                           <label class="form-check-label" for="gridCheck">
                             Add new address?
@@ -485,154 +543,176 @@ export default function BookDelivery() {
                       </div>{" "}
                     </p>
                   </div>
-                  {showNewAddress?<><div className="row">
-                    <div className="inputWrapBook">
-                      <label htmlFor="">House/APT/Flat Number</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="34a, Ago Iwoye"
-                        name="fromaddress"
-                        value={delivery.fromaddress}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">City</label>
-                        <input
-                          required
-                          type="text"
-                          placeholder="Input city"
-                          name="city"
-                          value={delivery.city}
-                          onChange={handleChange}
-                        />
-                      </div>{" "}
-                    </div>
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Select state</label>
-
-                        <select
-                          className="where-address-input-option"
-                          name="state"
-                          onChange={handleChange}
-                          value={delivery.state}
-                          required
-                        >
-                          <option value="">Select state</option>
-                          {NIGStates.map((data) => {
-                            return <option value={data}>{data}</option>;
-                          })}
-                        </select>
-                      </div>{" "}
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Country</label>
-
-                        <select
-                          className="where-address-input-option"
-                          name="zone"
-                          onChange={handleChange}
-                          value={delivery.zone}
-                          required
-                        >
-                          <option value="">Nigeria</option>
-                          {contries.map((data) => {
-                            return (
-                              <option value={data.Zone}>
-                                {data.Countries}
-                              </option>
-                            );
-                          })}
-                        </select>
+                  {showNewAddress ? (
+                    <>
+                      <div className="row">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">House/APT/Flat Number</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="34a, Ago Iwoye"
+                            name="fromaddress"
+                            value={delivery.fromaddress}
+                            onChange={handleChange}
+                          />
+                        </div>
                       </div>
-                    </div>
+                      <div className="row">
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">City</label>
+                            <input
+                              required
+                              type="text"
+                              placeholder="Input city"
+                              name="city"
+                              value={delivery.city}
+                              onChange={handleChange}
+                            />
+                          </div>{" "}
+                        </div>
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Select state</label>
 
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Post code</label>
-                        <input
-                          required
-                          type="text"
-                          placeholder="0039282"
-                          onChange={({ target }) => {
-                            setDelivery({
-                              ...delivery,
-                              postcode: target.value,
-                            });
-                          }}
-                          value={delivery.postcode}
-                        />
+                            <select
+                              className="where-address-input-option"
+                              name="state"
+                              onChange={handleChange}
+                              value={delivery.state}
+                              required
+                            >
+                              <option value="">Select state</option>
+                              {NIGStates.map((data) => {
+                                return <option value={data}>{data}</option>;
+                              })}
+                            </select>
+                          </div>{" "}
+                        </div>
                       </div>
-                    </div>
-                    <div className="inputWrapBook">
-                      <label htmlFor="">Phone Number</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="Input Phone Number"
-                        name="number"
-                        value={delivery.number}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Select Hub</label>
 
-                        <select
-                          className="where-address-input-option"
-                          name="zone"
-                          onChange={handleChange}
-                          value={delivery.zone}
-                          required
-                        >
-                          <option value="">Ikorodu</option>
-                          <option value="">Ikeja</option>
-                        </select>
-                      </div>
-                    </div>
+                      <div className="row">
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Country</label>
 
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Date</label>
-                        <input
-                          required
-                          type="date"
-                          onChange={({ target }) => {
-                            setDelivery({
-                              ...delivery,
-                              date: target.value,
-                            });
-                          }}
-                          value={delivery.date}
-                        />
+                            <select
+                              className="where-address-input-option"
+                              name="zone"
+                              onChange={handleChange}
+                              value={delivery.zone}
+                              required
+                            >
+                              <option value="">Nigeria</option>
+                              {contries.map((data) => {
+                                return (
+                                  <option value={data.Zone}>
+                                    {data.Countries}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Post code</label>
+                            <input
+                              required
+                              type="text"
+                              placeholder="0039282"
+                              onChange={({ target }) => {
+                                setDelivery({
+                                  ...delivery,
+                                  postcode: target.value,
+                                });
+                              }}
+                              value={delivery.postcode}
+                            />
+                          </div>
+                        </div>
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Phone Number</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input Phone Number"
+                            name="number"
+                            value={delivery.number}
+                            onChange={handleChange}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="inputWrapBook">
-                      <label htmlFor="">Phone Number</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="Input Phone Number"
-                        name="number"
-                        value={delivery.number}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  </>
-                  :""}
+                      <div className="row">
+                        <div className="col">
+                          <div class="form-check" style={{ marginTop: "30px" }}>
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="gridCheck"
+                              onClick={() => {
+                                setshowPickup(!showPickup);
+                              }}
+                            />
+                            <label class="form-check-label" for="gridCheck">
+                              Use Pickup Hubs?
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Date</label>
+                            <input
+                              required
+                              type="date"
+                              onChange={({ target }) => {
+                                setDelivery({
+                                  ...delivery,
+                                  date: target.value,
+                                });
+                              }}
+                              value={delivery.date}
+                            />
+                          </div>
+                        </div>
+                        {showPickup ? (
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Select Hub</label>
+
+                            <select
+                              className="where-address-input-option"
+                              name="zone"
+                              onChange={handleChange}
+                              value={delivery.zone}
+                              required
+                            >
+                              <option value="">Ikorodu</option>
+                              <option value="">Ikeja</option>
+                            </select>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Phone Number</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input Phone Number"
+                            name="number"
+                            value={delivery.number}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
                   {/* <div className="inputWrapBook">
                 <label htmlFor="">Post code</label>
                 <input
@@ -684,17 +764,13 @@ export default function BookDelivery() {
           )}
 
           {tab == 3 ? (
-            <div style={{ alignSelf: "center",width:"80%" }}>
+            <div style={{ alignSelf: "center", width: "80%" }}>
               <div className="where-right-form-header">
                 {/* <h3>Add new address</h3> */}
 
                 <form>
                   <div className="where-right-address">
-                    <div>
-                    {auth.formaddress}
-                     
-                    </div>
-                   
+                    <div>{auth.formaddress}</div>
                   </div>
                   <div>
                     <p
@@ -712,7 +788,9 @@ export default function BookDelivery() {
                             class="form-check-input"
                             type="checkbox"
                             id="gridCheck"
-                            onClick={()=>{setshowNewAddress(!showNewAddress)}}
+                            onClick={() => {
+                              setshowNewAddress(!showNewAddress);
+                            }}
                           />
                           <label class="form-check-label" for="gridCheck">
                             Add new address?
@@ -721,127 +799,131 @@ export default function BookDelivery() {
                       </div>{" "}
                     </p>
                   </div>
-                  {showNewAddress?<>
-                  <div className="row">
-                    <div className="inputWrapBook">
-                      <label htmlFor="">House/APT/Flat Number</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="34a, Ago Iwoye"
-                        name="fromaddress"
-                        value={delivery.fromaddress}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">City</label>
-                        <input
-                          required
-                          type="text"
-                          placeholder="Input city"
-                          name="city"
-                          value={delivery.city}
-                          onChange={handleChange}
-                        />
-                      </div>{" "}
-                    </div>
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Select state</label>
-
-                        <select
-                          className="where-address-input-option"
-                          name="state"
-                          onChange={handleChange}
-                          value={delivery.state}
-                          required
-                        >
-                          <option value="">Select state</option>
-                          {NIGStates.map((data) => {
-                            return <option value={data}>{data}</option>;
-                          })}
-                        </select>
-                      </div>{" "}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Country</label>
-
-                        <select
-                          className="where-address-input-option"
-                          name="zone"
-                          onChange={handleChange}
-                          value={delivery.zone}
-                          required
-                        >
-                          <option value="">Nigeria</option>
-                          {contries.map((data) => {
-                            return (
-                              <option value={data.Zone}>
-                                {data.Countries}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="col">
-                      <div className="inputWrapBook">
-                        <label htmlFor="">Post code</label>
-                        <input
-                          required
-                          type="text"
-                          placeholder="0039282"
-                          onChange={({ target }) => {
-                            setDelivery({
-                              ...delivery,
-                              postcode: target.value,
-                            });
-                          }}
-                          value={delivery.postcode}
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col">
+                  {showNewAddress ? (
+                    <>
+                      <div className="row">
                         <div className="inputWrapBook">
-                          <label htmlFor="">Phone Number</label>
+                          <label htmlFor="">House/APT/Flat Number</label>
                           <input
                             required
                             type="text"
-                            placeholder="Input Phone Number"
-                            name="number"
-                            value={delivery.number}
+                            placeholder="34a, Ago Iwoye"
+                            name="fromaddress"
+                            value={delivery.fromaddress}
                             onChange={handleChange}
                           />
                         </div>
                       </div>
-                      <div className="col ml-2">
-                        <div className="inputWrapBook">
-                          <label htmlFor="">Date</label>
-                          <input
-                            required
-                            type="date"
-                            onChange={({ target }) => {
-                              setDelivery({
-                                ...delivery,
-                                date: target.value,
-                              });
-                            }}
-                            value={delivery.date}
-                          />
+                      <div className="row">
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">City</label>
+                            <input
+                              required
+                              type="text"
+                              placeholder="Input city"
+                              name="city"
+                              value={delivery.city}
+                              onChange={handleChange}
+                            />
+                          </div>{" "}
+                        </div>
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Select state</label>
+
+                            <select
+                              className="where-address-input-option"
+                              name="state"
+                              onChange={handleChange}
+                              value={delivery.state}
+                              required
+                            >
+                              <option value="">Select state</option>
+                              {NIGStates.map((data) => {
+                                return <option value={data}>{data}</option>;
+                              })}
+                            </select>
+                          </div>{" "}
                         </div>
                       </div>
-                    </div>
-                  </div></>
-:""}
+                      <div className="row">
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Country</label>
+
+                            <select
+                              className="where-address-input-option"
+                              name="zone"
+                              onChange={handleChange}
+                              value={delivery.zone}
+                              required
+                            >
+                              <option value="">Nigeria</option>
+                              {contries.map((data) => {
+                                return (
+                                  <option value={data.Zone}>
+                                    {data.Countries}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col">
+                          <div className="inputWrapBook">
+                            <label htmlFor="">Post code</label>
+                            <input
+                              required
+                              type="text"
+                              placeholder="0039282"
+                              onChange={({ target }) => {
+                                setDelivery({
+                                  ...delivery,
+                                  postcode: target.value,
+                                });
+                              }}
+                              value={delivery.postcode}
+                            />
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col">
+                            <div className="inputWrapBook">
+                              <label htmlFor="">Phone Number</label>
+                              <input
+                                required
+                                type="text"
+                                placeholder="Input Phone Number"
+                                name="number"
+                                value={delivery.number}
+                                onChange={handleChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="col ml-2">
+                            <div className="inputWrapBook">
+                              <label htmlFor="">Date</label>
+                              <input
+                                required
+                                type="date"
+                                onChange={({ target }) => {
+                                  setDelivery({
+                                    ...delivery,
+                                    date: target.value,
+                                  });
+                                }}
+                                value={delivery.date}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
                   <div className="btnsfd">
                     <button
                       onClick={handleTab}
@@ -1290,19 +1372,22 @@ export default function BookDelivery() {
               <label class="form-check-label" for="flexCheckDefault">
                 I Understand
               </label>
-              {showbtn? <button
-                onClick={toggleProhabittedModal}
-                style={{ backgroundColor:"#000"  }}
-              >
-                Close
-              </button>: <button
-                onClick={toggleProhabittedModal}
-                style={{ backgroundColor:  "#ccc" }}
-                disabled
-              >
-                Close
-              </button>}
-            
+              {showbtn ? (
+                <button
+                  onClick={toggleProhabittedModal}
+                  style={{ backgroundColor: "#000" }}
+                >
+                  Close
+                </button>
+              ) : (
+                <button
+                  onClick={toggleProhabittedModal}
+                  style={{ backgroundColor: "#ccc" }}
+                  disabled
+                >
+                  Close
+                </button>
+              )}
             </div>
           </div>
         </Modal>

@@ -7,6 +7,7 @@ import {
 } from "./components/layout/index";
 // import DashboardRoutes from './dashboard/';
 import Home from "./screens/home/index";
+import {Termspage} from "./components/layout/termspage";
 import Menu from "./screens/menu";
 import Contact from "./screens/contact";
 import Login from "./screens/auth/login";
@@ -113,6 +114,9 @@ function Routes() {
         </ProtectedRoutes>
         <ProtectedRoutes exact path="/track">
           <Track />
+        </ProtectedRoutes>
+        <ProtectedRoutes exact path="/terms">
+          <Termspage />
         </ProtectedRoutes>
       </Switch>
     </Router>

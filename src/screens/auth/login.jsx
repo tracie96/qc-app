@@ -80,7 +80,7 @@ const Auth = () => {
      
         </div>
         <div className="authHeader">
-          <h2>Get started</h2>
+          <h2>Sign In</h2>
           <p>To continue, please provide a valid phone number.</p>
         </div>
         <div className="formWrap">
