@@ -2,11 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 
-$gr-1:linear-gradient(170deg, #000 -100%, #1D3EDE 100%);
-$gr-2:linear-gradient(170deg, #000 0%, #429321 100%);
-$gr-3:linear-gradient(170deg, #000 0%, #446ce4 100%);
+$gr-1:linear-gradient(170deg, #000 0%, #1D3EDE 100%);
+$gr-2:linear-gradient(170deg, #B4EC51 0%, #429321 100%);
+$gr-3:linear-gradient(170deg, #C86DD7 0%, #3023AE 100%);
 
-.gr-1{background: $gr-1;}
+.gr-1{background: #1D3EDE;border: 1px solid #ccc}
 .gr-2{background: $gr-2;}
 .gr-3{background: $gr-3;}
 

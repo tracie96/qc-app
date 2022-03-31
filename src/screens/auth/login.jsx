@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./index.scss";
-import authBanner from "../../assets/auth.jpeg";
+import authBanner from "../../assets/2.jpeg";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";

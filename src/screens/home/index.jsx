@@ -16,7 +16,8 @@ import team_2 from "../../assets/team2.png";
 import team3 from "../../assets/team3.png";
 import team4 from "../../assets/team4.png";
 import international from "../../assets/earth.png";
-import hero3 from "../../assets/hero-carousel-3.svg";
+import hero3 from "../../assets/1.jpeg";
+import hero4 from "../../assets/4.jpeg";
 import apd2 from "../../assets/apd2.png";
 import conversation from "../../assets/conversation.png";
 import ps from "../../assets/ps.svg";
@@ -216,7 +217,7 @@ export default function Index() {
             id="carouselExampleIndicators"
             class="carousel slide"
             data-ride="carousel"
-            data-interval="2000"
+            data-interval="4000"
             style={{border:"1px dashed #ccc",padding:"10px"}}
           >
             <ol class="carousel-indicators">
@@ -304,7 +305,7 @@ export default function Index() {
                     fulfilment partners. This enables us deliver best-in-class
                     logistics services to our customers. ”
                   </p>
-                  <p>Yomi Isafiade (CFO)</p>
+                  <p>Sam Ayeni (COO)</p>
                 </div>{" "}
               </div>
               <div class="carousel-item">
@@ -419,7 +420,7 @@ export default function Index() {
           data-aos="zoom-out"
           data-aos-delay="300"
         >
-          <img src={hero3} className="img-fluid animated" alt="" width="50%" />
+          <img src={hero3} className="img-fluid animated" alt=""style={{width:"70%",marginTop:"-30px"}}/>
         </div>
 
         <div className="col6-home-col2">
@@ -597,7 +598,7 @@ export default function Index() {
         </div>
 
         <div className="col6-home-img-col1">
-          <img src={hero3} alt="" />
+          <img src={hero4} alt="" style={{width:"70%",marginTop:"-30px"}} />
         </div>
       </div>
 

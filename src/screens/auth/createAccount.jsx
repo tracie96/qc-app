@@ -2,7 +2,7 @@ import React, { isValidElement, useState } from "react";
 import "./index.scss";
 import contries from "../../components/countries";
 import NIGStates from "../../components/nigeriaStates";
-import authBanner from "../../assets/auth.jpeg";
+import authBanner from "../../assets/1.jpeg";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";
@@ -454,7 +454,7 @@ const Auth = () => {
                     <p>
                       By continuing, I represent that I have read, understand,
                       and fully agree to the QC Express{" "}
-                      <a href="/">terms of service and privacy policy.</a>
+                      <a onClick={()=>{history.push('/terms')}}>terms of service </a>and <a onClick={()=>{history.push('/privacy')}}>privacy policy.</a>
                     </p>
                   </div>
 

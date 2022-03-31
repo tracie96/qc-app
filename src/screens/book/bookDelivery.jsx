@@ -167,7 +167,7 @@ export default function BookDelivery() {
       //   return NotificationManager.error("Error", "Breath is required");
       // }
       e.preventDefault();
-      setTab(5);
+      setTab(4);
     }
     // if (tab == 4) {
     //   // if (delivery.weight == "") {
@@ -184,7 +184,7 @@ export default function BookDelivery() {
     //   e.preventDefault();
     //   setTab(5);
     // }
-    if (tab == 5) {
+    if (tab == 4) {
       // if (delivery.weight == "") {
       //   return NotificationManager.error("Error", "weight is required");
       // }
@@ -250,7 +250,7 @@ export default function BookDelivery() {
 
   return (
     <>
-    <InAppNavbar />
+      <InAppNavbar />
 
       <div className="where-cont">
         {tab > 1 ? (
@@ -287,9 +287,9 @@ export default function BookDelivery() {
         <div className="where-right-main">
           {tab == 1 ? <h2>Get Started</h2> : ""}
 
-          {tab == 2 ? <h2>PickUp Location</h2> : ""}
+          {tab == 2 ? <h2>PickUp Information</h2> : ""}
 
-          {tab == 3 ? <h2>Delivery Location</h2> : ""}
+          {tab == 3 ? <h2>Delivery Information</h2> : ""}
 
           {tab == 4 ? (
             <h2>
@@ -378,7 +378,7 @@ export default function BookDelivery() {
                   <input
                     required
                     type="text"
-                    placeholder="Give a brief description of what you are shipping"
+                    placeholder="Give a detailed description of what you are shipping"
                     name="description"
                     onChange={handleChange}
                     value={delivery.description}
@@ -534,7 +534,6 @@ export default function BookDelivery() {
                               setShowAddress(false);
                             }}
                             checked={showNewAddress ? true : false}
-
                           />
                           <label class="form-check-label" for="gridCheck">
                             Add new address?
@@ -689,8 +688,33 @@ export default function BookDelivery() {
                               value={delivery.zone}
                               required
                             >
-                              <option value="">Ikorodu</option>
-                              <option value="">Ikeja</option>
+                              <option value="">IKOSI/MAGODO</option>
+                              <option value="">LAGOS ISLAND</option>
+                              <option value="">Redemption Camp</option>
+                              <option value="">DHL IKOYI</option>
+                              <option value="">DHL APAPA</option>
+                              <option value="">DHL SURULERE</option>
+
+                              <option value="">DHL AKIN ADESOLA</option>
+                              <option value="">DHL BROAD STREET</option>
+                              <option value="">DHL MURI OKUNOLA</option>
+                              <option value="">DHL CHERUB MALL</option>
+                              <option value="">DHL LEKKI</option>
+                              <option value="">DHL ISOLO</option>
+
+                              <option value="">DHL AWOLOWO WAY</option>
+                              <option value="">DHL GRA IKEJA</option>
+                              <option value="">DHL ALLEN</option>
+                              <option value="">DHL Badagry</option>
+                              <option value="">DHL HERITAGE HOUSE</option>
+                              <option value="">DHL GARIKI</option>
+
+                              <option value="">DHL WUZE 2</option>
+                              <option value="">DHL HAFSAT PLAZA</option>
+                              <option value="">DHL AMINU KANO</option>
+                              <option value="">DHL PORT HARCOURT</option>
+                              <option value="">DHL IBADAN</option>
+                              <option value="">DHL Kano</option>
                             </select>
                           </div>
                         ) : (
@@ -769,161 +793,139 @@ export default function BookDelivery() {
                 {/* <h3>Add new address</h3> */}
 
                 <form>
-                  <div className="where-right-address">
-                    <div>{auth.formaddress}</div>
-                  </div>
-                  <div>
-                    <p
-                      style={{
-                        fontSize: "18px",
-                        color: "#4169E2",
-                        fontWeight: "800",
-                        fontFamily: "Playfair Display",
-                        padding: "15px 0 0 0",
-                      }}
-                    >
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="gridCheck"
-                            onClick={() => {
-                              setshowNewAddress(!showNewAddress);
-                            }}
-                          />
-                          <label class="form-check-label" for="gridCheck">
-                            Add new address?
-                          </label>
-                        </div>
-                      </div>{" "}
-                    </p>
-                  </div>
-                  {showNewAddress ? (
-                    <>
-                      <div className="row">
+                  <div></div>
+
+                  <>
+                    <div className="row">
+                      <div className="inputWrapBook">
+                        <input
+                          required
+                          type="text"
+                          placeholder="Input Name"
+                          name="fromaddress"
+                          value={delivery.name}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="inputWrapBook">
+                        <label htmlFor="">House/APT/Flat Number</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="34a, Ago Iwoye"
+                          name="fromaddress"
+                          value={delivery.fromaddress}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
                         <div className="inputWrapBook">
-                          <label htmlFor="">House/APT/Flat Number</label>
+                          <label htmlFor="">City</label>
                           <input
                             required
                             type="text"
-                            placeholder="34a, Ago Iwoye"
-                            name="fromaddress"
-                            value={delivery.fromaddress}
+                            placeholder="Input city"
+                            name="city"
+                            value={delivery.city}
                             onChange={handleChange}
+                          />
+                        </div>{" "}
+                      </div>
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Select state</label>
+
+                          <select
+                            className="where-address-input-option"
+                            name="state"
+                            onChange={handleChange}
+                            value={delivery.state}
+                            required
+                          >
+                            <option value="">Select state</option>
+                            {NIGStates.map((data) => {
+                              return <option value={data}>{data}</option>;
+                            })}
+                          </select>
+                        </div>{" "}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Country</label>
+
+                          <select
+                            className="where-address-input-option"
+                            name="zone"
+                            onChange={handleChange}
+                            value={delivery.zone}
+                            required
+                          >
+                            <option value="">Nigeria</option>
+                            {contries.map((data) => {
+                              return (
+                                <option value={data.Zone}>
+                                  {data.Countries}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Post code</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="0039282"
+                            onChange={({ target }) => {
+                              setDelivery({
+                                ...delivery,
+                                postcode: target.value,
+                              });
+                            }}
+                            value={delivery.postcode}
                           />
                         </div>
                       </div>
                       <div className="row">
                         <div className="col">
                           <div className="inputWrapBook">
-                            <label htmlFor="">City</label>
+                            <label htmlFor="">Phone Number</label>
                             <input
                               required
                               type="text"
-                              placeholder="Input city"
-                              name="city"
-                              value={delivery.city}
+                              placeholder="Input Phone Number"
+                              name="number"
+                              value={delivery.number}
                               onChange={handleChange}
                             />
-                          </div>{" "}
-                        </div>
-                        <div className="col">
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Select state</label>
-
-                            <select
-                              className="where-address-input-option"
-                              name="state"
-                              onChange={handleChange}
-                              value={delivery.state}
-                              required
-                            >
-                              <option value="">Select state</option>
-                              {NIGStates.map((data) => {
-                                return <option value={data}>{data}</option>;
-                              })}
-                            </select>
-                          </div>{" "}
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col">
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Country</label>
-
-                            <select
-                              className="where-address-input-option"
-                              name="zone"
-                              onChange={handleChange}
-                              value={delivery.zone}
-                              required
-                            >
-                              <option value="">Nigeria</option>
-                              {contries.map((data) => {
-                                return (
-                                  <option value={data.Zone}>
-                                    {data.Countries}
-                                  </option>
-                                );
-                              })}
-                            </select>
                           </div>
                         </div>
-
                         <div className="col">
                           <div className="inputWrapBook">
-                            <label htmlFor="">Post code</label>
+                            <label htmlFor="">Email</label>
                             <input
                               required
                               type="text"
-                              placeholder="0039282"
-                              onChange={({ target }) => {
-                                setDelivery({
-                                  ...delivery,
-                                  postcode: target.value,
-                                });
-                              }}
-                              value={delivery.postcode}
+                              placeholder="Input Email"
+                              name="email"
+                              value={delivery.number}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
-                        <div className="row">
-                          <div className="col">
-                            <div className="inputWrapBook">
-                              <label htmlFor="">Phone Number</label>
-                              <input
-                                required
-                                type="text"
-                                placeholder="Input Phone Number"
-                                name="number"
-                                value={delivery.number}
-                                onChange={handleChange}
-                              />
-                            </div>
-                          </div>
-                          <div className="col ml-2">
-                            <div className="inputWrapBook">
-                              <label htmlFor="">Date</label>
-                              <input
-                                required
-                                type="date"
-                                onChange={({ target }) => {
-                                  setDelivery({
-                                    ...delivery,
-                                    date: target.value,
-                                  });
-                                }}
-                                value={delivery.date}
-                              />
-                            </div>
-                          </div>
-                        </div>
                       </div>
-                    </>
-                  ) : (
-                    ""
-                  )}
+                    </div>
+                  </>
+
                   <div className="btnsfd">
                     <button
                       onClick={handleTab}
@@ -1049,60 +1051,6 @@ export default function BookDelivery() {
           )} */}
 
           {tab == 4 ? (
-            <div className="where-right-form-header">
-              <form>
-                <div
-                  style={{
-                    display: "flex",
-                    margin: "auto",
-                    textAlign: "center",
-                    padding: "5% 0 5% 0",
-                  }}
-                >
-                  <div style={{ width: "100%" }}>
-                    Pickup
-                    <p>Select pickup date</p>
-                    <div style={{ marginTop: "-20px" }}>
-                      <input
-                        type="date"
-                        placeholder="Select pickup date"
-                        style={{ border: "1.5px solid #000", color: "#000" }}
-                        data-date-inline-picker="true"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div>
-                    <p style={{ color: "#FF0000" }}>
-                      A pickup request will not be assigned for this delivery.
-                      To hand over this package, drop it off at the nearest hub
-                      after the booking is completed.
-                    </p>
-                  </div>
-
-                  <div>
-                    <p>
-                      By continuing, I represent that the declaration above is a
-                      proper and accurate description of the contents of my
-                      package.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="btnsfd">
-                  <button onClick={handleTab} className="where-address-button">
-                    Continue
-                  </button>
-                </div>
-              </form>
-            </div>
-          ) : (
-            ""
-          )}
-
-          {tab == 5 ? (
             <div className="sumaryWrap">
               <div>
                 <p
@@ -1152,37 +1100,32 @@ export default function BookDelivery() {
               </div>
 
               <div className="databdd">
-                <svg
-                  width="19"
-                  height="20"
-                  viewBox="0 0 19 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M18.6837 18.933C18.6837 18.9326 18.6837 18.9322 18.6837 18.9317L18.7758 11.4626C18.7827 10.9031 18.3347 10.4438 17.7751 10.4369C17.2155 10.4299 16.7563 10.8779 16.7493 11.4375L16.6876 16.4522L1.739 1.05613C1.34915 0.654616 0.707667 0.645155 0.306151 1.035C-0.0953649 1.42484 -0.104825 2.06633 0.285019 2.46784L15.2335 17.8639L10.2193 17.7778C9.65973 17.7683 9.19838 18.2141 9.1888 18.7736C9.17918 19.3333 9.62515 19.7946 10.1846 19.8042L17.6532 19.9324C17.6536 19.9324 17.654 19.9323 17.6545 19.9324C18.2151 19.9412 18.676 19.4919 18.6837 18.933Z"
-                    fill="#FF0000"
-                  />
-                </svg>
-                <span>{`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}</span>
+                <address>
+                  <div style={{ marginTop: "10px" }}>Pickup</div>
+                </address>
+                <div className="col text-right">
+                  <address style={{ float: "right" }}>
+                    <span style={{ float: "right" }}>
+                      {`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}
+                    </span>
+                  </address>
+                </div>
+                <span
+                  style={{ float: "right" }}
+                >{`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}</span>
               </div>
 
               <div className="databdd">
-                <svg
-                  width="21"
-                  height="20"
-                  viewBox="0 0 21 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19.2496 1.32195C19.2492 1.32193 19.2487 1.32184 19.2483 1.32185L11.7877 0.953589C11.2288 0.92601 10.7532 1.35669 10.7256 1.9157C10.698 2.47464 11.1287 2.95013 11.6877 2.97775L16.6967 3.22493L0.75827 17.5939C0.342612 17.9686 0.309434 18.6093 0.684163 19.025C1.05889 19.4406 1.69959 19.4738 2.11525 19.0991L18.0536 4.73016L17.7822 9.73782C17.7519 10.2966 18.1803 10.7742 18.7392 10.8044C19.2981 10.8347 19.7755 10.4061 19.8058 9.84742L20.2101 2.38869C20.2102 2.38826 20.2101 2.38783 20.2102 2.38737C20.2397 1.82745 19.8078 1.35025 19.2496 1.32195Z"
-                    fill="#FF0000"
-                  />
-                </svg>
-
-                {/* <span>{`${delivery.deliverylocation} ${delivery.rCity} ${delivery.rState}`}</span> */}
-                <span>FaraPark Estate</span>
+                <address>
+                  <div style={{ marginTop: "10px" }}>Delivery Location</div>
+                </address>
+                <div className="col text-right">
+                  <address style={{ float: "right" }}>
+                    <span style={{ float: "right" }}>
+                      {`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}
+                    </span>
+                  </address>
+                </div>
               </div>
 
               <div className="acceptText">
@@ -1242,14 +1185,10 @@ export default function BookDelivery() {
                   padding: "15px 0 0 0",
                 }}
               >
-                Order and Payment Successful
+                Payment Successful
               </p>
             </div>
             <div className="probitrbody">
-              <small>
-                Your order have been made, go back home to wait your ordering
-                notification
-              </small>
               <br />
               <small>
                 Track ID: <b>#056278363014</b>
