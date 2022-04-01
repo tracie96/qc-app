@@ -3,7 +3,7 @@ import contries from "../../components/countries";
 import "./index.scss";
 import "./button.css";
 
-import mainhalf from "../../assets/mainhalf.png";
+import mainhalf from "../../assets/1.jpeg";
 import arrowvec from "../../assets/arrow-left.png";
 import { PaystackButton } from "react-paystack";
 import cancelvec from "../../assets/cancelvec.png";
@@ -895,6 +895,7 @@ export default function BookDelivery() {
                           />
                         </div>
                       </div>
+                      </div>
                       <div className="row">
                         <div className="col">
                           <div className="inputWrapBook">
@@ -917,12 +918,11 @@ export default function BookDelivery() {
                               type="text"
                               placeholder="Input Email"
                               name="email"
-                              value={delivery.number}
+                              value={delivery.email}
                               onChange={handleChange}
                             />
                           </div>
                         </div>
-                      </div>
                     </div>
                   </>
 
@@ -1074,24 +1074,27 @@ export default function BookDelivery() {
                   fontFamily: "Gilroy-Bold",
                 }}
               >
+                <div style={{ marginTop: "10px" }}>ITEM</div>
+
                 <div className="col">
                   <address>
-                    <div style={{ marginTop: "10px" }}>ITEM</div>
                     <div style={{ marginTop: "10px" }}>WEIGHT</div>
                     <div style={{ marginTop: "10px" }}>LENGTH</div>
                     <div style={{ marginTop: "10px" }}>WIDTH</div>
-                    <div style={{ marginTop: "10px" }}>HIEGHT</div>
+                    <div style={{ marginTop: "10px" }}>HEIGHT</div>
                     <div style={{ marginTop: "10px" }}>TOTAL</div>
                   </address>
                 </div>
                 <div className="col text-right">
                   <address style={{ float: "right" }}>
+
                     <div style={{ marginTop: "10px" }}>{delivery.itemname}</div>
                     <div style={{ marginTop: "10px" }}>
                       {" "}
                       {delivery.weight}KG
                     </div>
-                    <div style={{ marginTop: "10px" }}>{delivery.length}CM</div>
+                    <div style={{ marginTop: "10px" }}>{delivery.weight}CM</div>
+
                     <div style={{ marginTop: "10px" }}>{delivery.breath}CM</div>
                     <div style={{ marginTop: "10px" }}>{delivery.height}CM</div>
                     <div style={{ marginTop: "10px" }}>23000</div>

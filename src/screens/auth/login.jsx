@@ -111,11 +111,11 @@ const Auth = () => {
               />
             </div>
             <div className="termsAgree">
-              <p>
-                By continuing, I represent that I have read, understand, and
-                fully agree to the QC Express{" "}
-                <a href="/">terms of service and privacy policy.</a>
-              </p>
+            <p>
+                      By continuing, I represent that I have read, understand,
+                      and fully agree to the QC Express{" "}
+                      <a onClick={()=>{history.push('/terms')}}>terms of service </a>and <a onClick={()=>{history.push('/privacy')}}>privacy policy.</a>
+                    </p>
             </div>
 
             <div className="submitBtn">

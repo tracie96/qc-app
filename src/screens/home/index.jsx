@@ -46,7 +46,6 @@ const Accordion = styled((props) => (
   },
 }));
 
-
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
@@ -159,7 +158,7 @@ export default function Index() {
               xlinkHref="#wave-path"
               x="50"
               y="3"
-              fill="rgba(255,255,255, .1)"
+              // fill="rgba(255,255,255, .1)"
             />
           </g>
           <g className="wave2">
@@ -167,7 +166,7 @@ export default function Index() {
               xlinkHref="#wave-path"
               x="50"
               y="0"
-              fill="rgba(255,255,255, .2)"
+              // fill="rgba(255,255,255, .2)"
             />
           </g>
           <g className="wave3">
@@ -218,7 +217,11 @@ export default function Index() {
             class="carousel slide"
             data-ride="carousel"
             data-interval="4000"
-            style={{border:"1px dashed #ccc",padding:"10px"}}
+            style={{
+              border: "1px dashed #ccc",
+              padding: "10px",
+              height: "300px",
+            }}
           >
             <ol class="carousel-indicators">
               <li
@@ -258,7 +261,7 @@ export default function Index() {
                     mile delivery accessible to all and make our customers happy
                     and successful.”
                   </p>
-                  <p>Sesan Ibitoye. CEO</p>
+                  <p style={{ marginTop: "-2%" }}>Sesan Ibitoye. CEO</p>
                 </div>
               </div>
               <div class="carousel-item">
@@ -374,7 +377,12 @@ export default function Index() {
                 <p>Deliveries within cities in Nigeria.</p>
 
                 <div className="btn-wrap">
-                <a onClick={()=>{history.push('/login')}} className="btn-buy">
+                  <a
+                    onClick={() => {
+                      history.push("/login");
+                    }}
+                    className="btn-buy"
+                  >
                     Book Now
                   </a>
                 </div>
@@ -391,8 +399,13 @@ export default function Index() {
                 <h4>Country</h4>
                 <p>Deliveries across states and regions in Nigeria.</p>
                 <div className="btn-wrap">
-                <a onClick={()=>{history.push('/login')}} className="btn-buy">
-                  Book Now
+                  <a
+                    onClick={() => {
+                      history.push("/login");
+                    }}
+                    className="btn-buy"
+                  >
+                    Book Now
                   </a>
                 </div>
               </div>
@@ -404,8 +417,13 @@ export default function Index() {
                 <h4>International</h4>
                 <p>Deliveries across international borders.</p>
                 <div className="btn-wrap">
-                  <a onClick={()=>{history.push('/login')}} className="btn-buy">
-                  Book Now
+                  <a
+                    onClick={() => {
+                      history.push("/login");
+                    }}
+                    className="btn-buy"
+                  >
+                    Book Now
                   </a>
                 </div>
               </div>
@@ -420,7 +438,12 @@ export default function Index() {
           data-aos="zoom-out"
           data-aos-delay="300"
         >
-          <img src={hero3} className="img-fluid animated" alt=""style={{width:"70%",marginTop:"-30px"}}/>
+          <img
+            src={hero3}
+            className="img-fluid animated"
+            alt=""
+            style={{ width: "70%", marginTop: "-30px" }}
+          />
         </div>
 
         <div className="col6-home-col2">
@@ -428,7 +451,7 @@ export default function Index() {
             An eCommerce technology company providing best-in-class delivery
             solutions.
           </h2>
-  
+
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>
@@ -514,7 +537,7 @@ export default function Index() {
       <div className="col6-home app-padding">
         <div className="col6-home-col2">
           <h2>Simplified document and parcel delivery at your fingertips.</h2>
-      
+
           <div className="col6-home-col2HR"></div>
           <ul>
             <li>
@@ -598,7 +621,11 @@ export default function Index() {
         </div>
 
         <div className="col6-home-img-col1">
-          <img src={hero4} alt="" style={{width:"70%",marginTop:"-30px"}} />
+          <img
+            src={hero4}
+            alt=""
+            style={{ width: "70%", marginTop: "-30px" }}
+          />
         </div>
       </div>
 
@@ -1130,7 +1157,10 @@ export default function Index() {
                 <div className="address">
                   <i className="bi bi-geo-alt"></i>
                   <h4>Location:</h4>
-                  <p>14A Olatunji Close, Off Continental Way, Ikosi GRA IV, Magodo, Lagos-Nigeria.</p>
+                  <p>
+                    14A Olatunji Close, Off Continental Way, Ikosi GRA IV,
+                    Magodo, Lagos-Nigeria.
+                  </p>
                 </div>
 
                 <div className="email">
@@ -1338,22 +1368,83 @@ export default function Index() {
         </Slider> */}
 
         <div className="footerHome app-padding">
-          <div className="footerHomeCol1">
-            <h2 style={{ color: "#fff" }}>
-              Enjoy best in class pickup
-              <br /> and delivery solutions <br /> from the professionals
-            </h2>
-            <p>
-              Book a pickup directly from your location or from your 3rd party
-              customer for delivery
-              <br /> in more than 220 countries around the world
-            </p>
-            <div className="downloadOPtionsfooter">
-              <img src={apd1} alt="" />
-              <img src={apd2} alt="" />
+          <div className="row">
+            <div className="col-md-6"style={{marginTop:""}}>
+              <div className="footerHomeCol1" style={{ color: "#fff" }}>
+                <h2 style={{ color: "#fff" }}>
+                  Enjoy best in class pickup and delivery solutions from the
+                  professionals
+                </h2>
+                <p>
+                  Book a pickup directly from your location or from your 3rd
+                  party customer for delivery
+                  <br /> in more than 220 countries around the world
+                </p>
+                <div className="downloadOPtionsfooter">
+                  <img src={apd1} alt="" />
+                  <img src={apd2} alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-3" style={{marginTop:"5%"}}>
+              <div
+                className="footerHomeCol2"
+                style={{
+                  color: "#fff",
+                  marginLeft: "20%",
+                }}
+              >
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                  style={{ display: "block", background: "none" }}
+                >
+                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
+                    terms
+                  </a>
+                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
+                    Privacy and Policy
+                  </a>
+                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
+                    About Us
+                  </a>
+                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
+                    Contact Us
+                  </a>
+
+                  {/* <a class="dropdown-item" href="#">Something else here</a> */}
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-3" style={{marginTop:"3%"}}>
+              <div
+                className="footerHomeCol2"
+                style={{
+                  color: "#fff",
+                  marginLeft: "20%",
+                }}
+              >
+                <div class="mapouter">
+                  <div class="gmap_canvas" >
+                    <iframe
+                      width="300"
+                      height="300"
+                      id="gmap_canvas"
+                      src="https://maps.google.com/maps?q=Magodo,%20Lagos-Nigeria.&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                      frameborder="0"
+                      scrolling="no"
+                      marginheight="0"
+                      marginwidth="0"
+                    />
+                    <a href="https://www.whatismyip-address.com/divi-discount/"></a>
+                    <br />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="footerHomeCol2"></div>
         </div>
       </div>
     </>
