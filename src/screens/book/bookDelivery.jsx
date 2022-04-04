@@ -285,7 +285,7 @@ export default function BookDelivery() {
           <img src={mainhalf} />
         </div>
         <div className="where-right-main">
-          {tab == 1 ? <h2>Get Started</h2> : ""}
+          {tab == 1 ? <h2>Shipment Details</h2> : ""}
 
           {tab == 2 ? <h2>PickUp Information</h2> : ""}
 
@@ -439,7 +439,7 @@ export default function BookDelivery() {
                       }}
                     />
                     <label class="form-check-label" for="flexCheckChecked">
-                      Checked
+                    By ticking the box,  you agree that you have read and understood the prohibited list 
                     </label>
                   </div>
                   {continues ? (
@@ -651,12 +651,14 @@ export default function BookDelivery() {
                               class="form-check-input"
                               type="checkbox"
                               id="gridCheck"
+                              checked={showPickup}
+
                               onClick={() => {
                                 setshowPickup(!showPickup);
                               }}
                             />
                             <label class="form-check-label" for="gridCheck">
-                              Use Pickup Hubs?
+                              Use Dropoff Hubs?
                             </label>
                           </div>
                         </div>
@@ -684,8 +686,8 @@ export default function BookDelivery() {
                             <select
                               className="where-address-input-option"
                               name="zone"
-                              onChange={handleChange}
-                              value={delivery.zone}
+                              // onChange={handleChange}
+                              value=""
                               required
                             >
                               <option value="">IKOSI/MAGODO</option>
@@ -715,13 +717,57 @@ export default function BookDelivery() {
                               <option value="">DHL PORT HARCOURT</option>
                               <option value="">DHL IBADAN</option>
                               <option value="">DHL Kano</option>
+
+                              <option value="">DHL Katsina</option>
+                              <option value="">DHL Jos</option>
+                              <option value="">DHL Sokoto</option>
+                              <option value="">DHL Bauchi</option>
+                              <option value="">DHL Gombe</option>
+                              <option value="">DHL Yola</option>
+
+                              <option value="">DHL Maiduguri</option>
+                              <option value="">DHL Lokoja</option>
+                              <option value="">DHL Kaduna</option>
+                              <option value="">DHL Zaria</option>
+                              <option value="">DHL Minna</option>
+                              <option value="">DHL Lafia</option>
+
+                              <option value="">DHL Makurdi</option>
+                              <option value="">DHL Aba</option>
+                              <option value="">DHL Umuahia</option>
+                              <option value="">DHL Uyo</option>
+                              <option value="">DHL Eket</option>
+                              <option value="">DHL Calabar</option>
+
+                              <option value="">DHL Bonny Island</option>
+                              <option value="">DHL Yenogoa</option>
+                              <option value="">DHL Sokoto</option>
+                              <option value="">DHL Warri</option>
+                              <option value="">DHL Sapele</option>
+                              <option value="">DHL Benin</option>
+
+                              <option value="">DHL Asaba</option>
+                              <option value="">DHL Onitsha</option>
+                              <option value="">DHL Nnewi</option>
+                              <option value="">DHL Nsuka</option>
+                              <option value="">DHL Abakaliki</option>
+                              <option value="">DHL Enugu</option>
+
+                              <option value="">DHL Owerri</option>
+                              <option value="">DHL Akure/ADO</option>
+                              <option value="">DHL Ilorin</option>
+                              <option value="">DHL Abeokuta</option>
+                              <option value="">DHL Ife</option>
+                              <option value="">DHL Ota</option>
+                              <option value="">DHL Mowe</option>
+
                             </select>
                           </div>
                         ) : (
                           ""
                         )}
 
-                        <div className="inputWrapBook">
+                        {/* <div className="inputWrapBook">
                           <label htmlFor="">Phone Number</label>
                           <input
                             required
@@ -731,7 +777,7 @@ export default function BookDelivery() {
                             value={delivery.number}
                             onChange={handleChange}
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </>
                   ) : (
@@ -1108,9 +1154,9 @@ export default function BookDelivery() {
                 </address>
                 <div className="col text-right">
                   <address style={{ float: "right" }}>
-                    <span style={{ float: "right" }}>
+                    {/* <span style={{ float: "right" }}>
                       {`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}
-                    </span>
+                    </span> */}
                   </address>
                 </div>
                 <span

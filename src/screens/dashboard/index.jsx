@@ -65,7 +65,7 @@ export default function Index() {
               </svg>
               </div>
               <div className="col-md-4">
-                  <img src={book} alt="" style={{width:"100px"}} />
+                  <img src={book} alt="" style={{width:"50%"}} />
                 </div>
               </div>
 
@@ -97,7 +97,7 @@ export default function Index() {
                   </svg>
                 </div>
                 <div className="col-md-4">
-                  <img src={track} alt="" style={{width:"100px"}} />
+                  <img src={track} alt="" style={{width:"50%"}} />
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@ export default function Index() {
               </div>
 
               <div className="col-md-4">
-                  <img src={locations} alt="" style={{width:"100px"}} />
+                  <img src={locations} alt="" style={{width:"50%"}} />
                 </div>
               </div>
 
@@ -162,7 +162,7 @@ export default function Index() {
               </div>
 
               <div className="col-md-4">
-                  <img src={refer} alt="" style={{width:"100px"}} />
+                  <img src={refer} alt="" style={{width:"35%"}} />
                 </div>
               </div>
 
@@ -199,7 +199,7 @@ export default function Index() {
 
 
               <div className="col-md-4">
-                  <img src={import_book} alt="" style={{width:"100px"}} />
+                  <img src={import_book} alt="" style={{width:"35%"}} />
                 </div>
               </div>
             </div>
