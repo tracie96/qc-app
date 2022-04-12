@@ -36,7 +36,7 @@ const Auth = () => {
     try {
       console.log(tab)
        axios
-        .post("http://localhost:4000/api/verify_token", {
+        .post("http://a1f3-129-18-209-14.ngrok.io/api/verify_token", {
           email: auth.email,
         })
         .then((res) => {
@@ -54,7 +54,7 @@ const Auth = () => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:4000/api/register-user", {
+        .post("http://a1f3-129-18-209-14.ngrok.io/api/register-user", {
           firstname: auth.firstname,
           country: auth.country,
           email: auth.email,

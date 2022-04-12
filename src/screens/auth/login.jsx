@@ -67,7 +67,7 @@ const Auth = () => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:4000/api/signin", {
+        .post("http://a1f3-129-18-209-14.ngrok.io/api/signin", {
           email: auth.email,
           password: auth.password,
         })
