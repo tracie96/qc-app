@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./index.scss";
-import authBanner from "../../assets/2.jpeg";
+import authBanner from "../../assets/1.jpeg";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";
 import { NotificationManager } from "react-notifications";
 import { axiosCalls } from "../../components/_api";
 import { hideLoader, showLoader } from "../../components/loader";
+import axios from "axios";
+
 const Auth = () => {
   const history = useHistory();
   const [auth, setAuth] = useState({
@@ -18,7 +20,6 @@ const Auth = () => {
   const login = async (e) => {
     // hideLoader();
     e.preventDefault();
-    console.log(auth);
     setAppLoading(true);
     const emailV = validateEmail(auth.email);
     const passwordV = validatePassword(auth.password);
@@ -62,6 +63,33 @@ const Auth = () => {
     let res = await axiosCalls(`users/${id}`, "GET");
     console.log(res);
   };
+  const loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      await axios
+        .post("http://localhost:4000/api/signin", {
+          email: auth.email,
+          password: auth.password,
+        })
+        .then((res) => {
+          NotificationManager.success("Success", "Login Successful ");
+          sessionStorage.setItem("token", res.data.token);
+          const auth = {
+            firstname: res.data.firstname,
+            referral: res.data.referral,
+          };
+          localStorage.setItem("user", JSON.stringify(auth));
+          history.push({
+            pathname: "/app",
+            state: { detail: res.data.firstname },
+          });
+        });
+    } catch (error) {
+      if (error.response) {
+        //                 setMsg(error.response.data.msg);
+      }
+    }
+  };
 
   return (
     <div className="authWrap">
@@ -75,13 +103,12 @@ const Auth = () => {
               history.push(`/home`);
             }}
           >
-           Back
+            Back
           </button>
-     
         </div>
         <div className="authHeader">
           <h2>Sign In</h2>
-          <p>To continue, please provide a valid phone number.</p>
+          <p>To continue, please provide a valid Email .</p>
         </div>
         <div className="formWrap">
           <form action="">
@@ -111,25 +138,43 @@ const Auth = () => {
               />
             </div>
             <div className="termsAgree">
-            <p>
-                      By continuing, I represent that I have read, understand,
-                      and fully agree to the QC Express{" "}
-                      <a onClick={()=>{history.push('/terms')}}>terms of service </a>and <a onClick={()=>{history.push('/privacy')}}>privacy policy.</a>
-                    </p>
+              <p>
+                By continuing, I represent that I have read, understand, and
+                fully agree to the QC Express{" "}
+                <a
+                  onClick={() => {
+                    history.push("/terms");
+                  }}
+                >
+                  terms of service{" "}
+                </a>
+                and{" "}
+                <a
+                  onClick={() => {
+                    history.push("/privacy");
+                  }}
+                >
+                  privacy policy.
+                </a>
+              </p>
             </div>
 
             <div className="submitBtn">
-              <button onClick={login}>Continue</button>
+              <button onClick={loginUser}>Continue</button>
             </div>
-          <hr/>
-          <div style={{textAlign:"center"}}>
-              <p>
-                New to QC Express?
-              </p>
+            <hr />
+            <div style={{ textAlign: "center" }}>
+              <p>New to QC Express?</p>
             </div>
             <div className="submitBtn">
-              <button onClick={()=>{      history.push(`/signup`);
-}} style={{background:"#4169e2"}}>Create your QC Express account</button>
+              <button
+                onClick={() => {
+                  history.push(`/signup`);
+                }}
+                style={{ background: "#4169e2" }}
+              >
+                Create your QC Express account
+              </button>
             </div>
           </form>
         </div>

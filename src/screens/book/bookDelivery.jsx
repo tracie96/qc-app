@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import contries from "../../components/countries";
 import "./index.scss";
 import "./button.css";
-
 import mainhalf from "../../assets/1.jpeg";
 import arrowvec from "../../assets/arrow-left.png";
 import { PaystackButton } from "react-paystack";
@@ -14,30 +13,110 @@ import { useHistory } from "react-router-dom";
 import NIGStates from "../../components/nigeriaStates";
 import { Modal } from "react-responsive-modal";
 import InAppNavbar from "../../components/layout/inAppNavbar";
+import axios from "axios";
+
 export default function BookDelivery() {
+  var retrievedObject = localStorage.getItem("user");
+
+  var auth = JSON.parse(retrievedObject);
+  const data = {
+    "IKOSI/MAGODO":
+      "14A Olatunji Close, Ikosi GRA IV, Off CMD Road, Magodo Lagos",
+    "LAGOS ISLAND":
+      "66, Campbell Street, Lagos Island, Lagos - Ground floor. (Beside Western House)",
+    "Redemption Camp": "14, Sharon Avenue Estate 11 Redemption camp)",
+    "DHL IKOYI": "32 Awolowo Road,Ikoyi Lagos",
+    "DHL APAPA": "24B, creek rd, apapa, lagos",
+    "DHL SURULERE": "15, Adeniran Ogunsanya, street, Surulere,Lagos",
+    "DHL AKIN ADESOLA": "Plot 1302A, Akin Adesola str, victoria island, lagos",
+    "DHL BROAD STREET": "6, Davies str, off broad str, lagos island",
+    "DHL MURI OKUNOLA":
+      "Sandilad Arcade, 230 Muri Okunola str, victoria island",
+    "DHL CHERUB MALL": "Cherub Mall,Km 18 lekki/epe e/way, lagos",
+    "DHL LEKKI":"Block 12, plot 13A, Admiralty way. Lekki Phase 1.",
+    "DHL ISOLO":"DHL House, Oshodi Apapa expressway. Toyota Bus stop. Isolo.",
+    "DHL AWOLOWO WAY":"Trinity plaza, 79 Awolowo way. Ikeja",
+    "DHL GRA IKEJA":"41 Joel Ogunaike",
+    "DHL ALLEN":"45 Allen Avenue, ikeja",
+    "DHL Badagry":"KM 26, Lagos Badagry Expressway, Alafia bus stop, adjacent FGC, Ijanikin",
+    "DHL HERITAGE HOUSE":"Plot 2201 Sultan Abubakar way, Wuze zone 3, Abuja",
+    "DHL GARIKI":"N0 1 Abeokuta street, Area 8,Gariki Abuja.",
+    "DHL WUZE 2":"79 Ademola Adetokunbo street. Wuze 2 Abuja",
+    "DHL HAFSAT PLAZA":"Constitution Avenue, Central Business district Abuja.",
+    "DHL PORT HARCOURT":"No 14, Chief Nwuke street, Trans Amadi, Port Harcourt."
+  };
+  const [addval, setAddVal] = useState("");
+  const [datas,setDatas]=useState('')
+  const displayAddress = () => {
+    return <p>{addval ? data[addval] : ""}</p>;
+  };
   const history = useHistory();
   const [delivery, setDelivery] = useState({
-    fromaddress: "",
-    zone: "",
+    shipment_type: "",
     weight: "",
     length: "",
-    breath: "",
+    width: "",
     height: "",
-    deliverylocation: "",
-    itemname: "",
-    recipientname: "",
-    recipientnumber: "",
-    state: "",
-    city: "",
-    number: "",
-    rCity: "",
-    rState: "",
-    postcode: "",
+    description: "",
+    number_items: "",
+    value: "",
+    pickup_address: addval ? data[addval]:'',
+    pickup_hub: datas ? datas:'',
+    useDefaultAddress: auth.address,
+    country: "",
+    delivery_address: "",
+    delivery_name: "",
+    delivery_email: "",
+    delivery_number: "",
   });
+console.log(delivery)
+  const handleBooking = () => {
+    try {
+      axios
+        .post("http://localhost:4000/api/book/create-booking", {
+          shipment_type: delivery.shipment_type,
+          weight: delivery.weight,
+          length: delivery.length,
+          width: delivery.width,
+          height: delivery.height,
+          description: delivery.description,
+          number_items: delivery.number_items,
+          value: delivery.value,
+          pickup_hub: displayAddress(),
+          pickup_address: delivery.pickup_address,
+          useDefaultAddress: auth.useDefaultAddress,
+          country: delivery.country,
+          delivery_address: delivery.delivery_address,
+          delivery_name: delivery.delivery_name,
+          delivery_email: delivery.delivery_email,
+          delivery_number: delivery.delivery_number,
+        })
+        .then((res) => {
+          NotificationManager.success("Success", "Booking Created Successful ");
+          // sessionStorage.setItem("token", res.data.token);
+          // const auth = {
+          //   firstname: res.data.firstname,
+          //   referral: res.data.referral,
+          // };
+          localStorage.setItem("user", JSON.stringify(auth));
+          history.push({
+            // pathname: "/login",
+            // state: { detail: res.data.firstname },
+          });
+        });
+    } catch (error) {
+      if (error.response) {
+      }
+    }
+  };
+
+
+  // console.log(data['IKOSI/MAGODO'])
+
   const [modalConfirm, setModalConfirm] = useState(false);
   const [tab, setTab] = useState(1);
 
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(10);
 
   const [prohabittedItem, setprohabittedItem] = useState(false);
 
@@ -46,9 +125,9 @@ export default function BookDelivery() {
   const [payementDetails, setPaymentDetails] = useState({});
   const [showNewAddress, setshowNewAddress] = useState(false);
   const [showAddress, setShowAddress] = useState(false);
-  const [showNewAdd, setshowNewAdd] = useState(false);
   const [showPickup, setshowPickup] = useState(false);
   const [continues, setContinues] = useState(false);
+  const [selectValue, setselectValue] = useState("");
 
   const makePaymentBackend = () => {
     const data = {
@@ -63,6 +142,9 @@ export default function BookDelivery() {
       return res;
     }
   };
+  // const displayAddress = () => {
+  //   return <p>{addval ? data[addval] : ""}</p>;
+  // };
 
   const getticket = (ticketId) => {
     const res = axiosCalls(`fixture/${ticketId}`, "GET");
@@ -74,18 +156,13 @@ export default function BookDelivery() {
     }
   };
 
-  const handleOnSuccess = (e) => {
-    console.log(e);
-    // Call payment buy ticket api
-    // access transaction ID using e.trxref or e.reference
-
-    // submitTicket(e);
-    setModalConfirm(true);
-    makePaymentBackend();
+  const handleOnSuccess =  (e) => {
+    console.log("e",e);
+    handleBooking()
+    // setModalConfirm(true);
+    // makePaymentBackend();
   };
-  var retrievedObject = localStorage.getItem("user");
 
-  var auth = JSON.parse(retrievedObject);
 
   const handleOnClose = () => {
     // Optional
@@ -105,97 +182,21 @@ export default function BookDelivery() {
   const handleTab = (e) => {
     e.preventDefault();
     if (tab == 1) {
-      // if (delivery.fromaddress == "") {
-      //   return NotificationManager.error("Error", "From address is required");
-      // }
-
-      // if (delivery.state == "") {
-      //   return NotificationManager.error("Error", "state is required");
-      // }
-
-      // if (delivery.city == "") {
-      //   return NotificationManager.error("Error", "city is required");
-      // }
       e.preventDefault();
       setTab(2);
     }
 
     if (tab == 2) {
-      // if (delivery.deliverylocation == "") {
-      //   if (delivery.zone == "") {
-      //     return NotificationManager.error("Error", "Country is required");
-      //   }
-
-      //   return NotificationManager.error(
-      //     "Error",
-      //     "Delivery location is required"
-      //   );
-      // }
-
-      // if (delivery.recipientname == "") {
-      //   return NotificationManager.error("Error", "Recipient name is required");
-      // }
-
-      // if (delivery.recipientnumber == "") {
-      //   return NotificationManager.error(
-      //     "Error",
-      //     "Recipient number is required"
-      //   );
-      // }
-
-      // if (delivery.itemname == "") {
-      //   return NotificationManager.error(
-      //     "Error",
-      //     "Item description is required"
-      //   );
-      // }
       e.preventDefault();
-
       setTab(3);
     }
 
     if (tab == 3) {
-      // if (delivery.weight == "") {
-      //   return NotificationManager.error("Error", "weight is required");
-      // }
-
-      // if (delivery.length == "") {
-      //   return NotificationManager.error("Error", "Length is required");
-      // }
-
-      // if (delivery.breath == "") {
-      //   return NotificationManager.error("Error", "Breath is required");
-      // }
       e.preventDefault();
       setTab(4);
     }
-    // if (tab == 4) {
-    //   // if (delivery.weight == "") {
-    //   //   return NotificationManager.error("Error", "weight is required");
-    //   // }
 
-    //   // if (delivery.length == "") {
-    //   //   return NotificationManager.error("Error", "Length is required");
-    //   // }
-
-    //   // if (delivery.breath == "") {
-    //   //   return NotificationManager.error("Error", "Breath is required");
-    //   // }
-    //   e.preventDefault();
-    //   setTab(5);
-    // }
     if (tab == 4) {
-      // if (delivery.weight == "") {
-      //   return NotificationManager.error("Error", "weight is required");
-      // }
-
-      // if (delivery.length == "") {
-      //   return NotificationManager.error("Error", "Length is required");
-      // }
-
-      // if (delivery.breath == "") {
-      //   return NotificationManager.error("Error", "Breath is required");
-      // }
       e.preventDefault();
 
       BookDel();
@@ -224,7 +225,7 @@ export default function BookDelivery() {
 
     setPaymentDetails(1000000);
 
-    // const res = await axiosCalls("quote", "POST", data);
+    //  const res = await axiosCalls("quote", "POST", data);
     // if (res) {
     //   hideLoader();
     //   if (res?.er) {
@@ -281,7 +282,7 @@ export default function BookDelivery() {
             <img src={cancelvec} alt="" />
           </div>
         )}
-        <div className="where-left-flex">
+        <div className="where-left-flex" style={{ marginTop: "-160px" }}>
           <img src={mainhalf} />
         </div>
         <div className="where-right-main">
@@ -292,10 +293,7 @@ export default function BookDelivery() {
           {tab == 3 ? <h2>Delivery Information</h2> : ""}
 
           {tab == 4 ? (
-            <h2>
-              Package and <br />
-              Delivery Review
-            </h2>
+            <h2 style={{ fontSize: "24px" }}>Shipment Summary</h2>
           ) : (
             ""
           )}
@@ -310,14 +308,14 @@ export default function BookDelivery() {
                 <div className="inputWrapBook">
                   <select
                     className="where-address-input-option"
-                    name="state"
+                    name="shipment_type"
                     onChange={handleChange}
-                    value={delivery.category}
+                    value={delivery.shipment_type}
                     required
                   >
                     <option value=""> Select Shipment Type</option>
                     <option value="Document">Document</option>
-                    <option value="Document">Package</option>
+                    <option value="Package">Package</option>
                   </select>
                 </div>
                 <div className="inputWrapBook">
@@ -353,10 +351,10 @@ export default function BookDelivery() {
                       <input
                         required
                         type="number"
-                        name="breath"
+                        name="width"
                         min="0.5"
                         onChange={handleChange}
-                        value={delivery.breath}
+                        value={delivery.width}
                       />
                     </div>
                   </div>
@@ -369,7 +367,6 @@ export default function BookDelivery() {
                         name="height"
                         min="0.5"
                         onChange={handleChange}
-                        value={delivery.height}
                       />
                     </div>
                   </div>
@@ -378,6 +375,7 @@ export default function BookDelivery() {
                   <input
                     required
                     type="text"
+                    row="3"
                     placeholder="Give a detailed description of what you are shipping"
                     name="description"
                     onChange={handleChange}
@@ -393,9 +391,9 @@ export default function BookDelivery() {
                         required
                         type="number"
                         min="0.5"
-                        name="number"
+                        name="number_items"
                         onChange={handleChange}
-                        value={delivery.numberofitems}
+                        value={delivery.number_items}
                       />
                     </div>
                   </div>
@@ -439,7 +437,8 @@ export default function BookDelivery() {
                       }}
                     />
                     <label class="form-check-label" for="flexCheckChecked">
-                    By ticking the box,  you agree that you have read and understood the prohibited list 
+                      By ticking the box, you agree that you have read and
+                      understood the prohibited list
                     </label>
                   </div>
                   {continues ? (
@@ -488,9 +487,10 @@ export default function BookDelivery() {
                           class="form-check-input"
                           type="checkbox"
                           id="gridCheck"
-                          onClick={() => {
+                          onClick={(e) => {
                             setShowAddress(!showAddress);
                             setshowNewAddress(false);
+                            setshowPickup(false);
                           }}
                           checked={showAddress ? true : false}
                         />
@@ -503,11 +503,10 @@ export default function BookDelivery() {
 
                   {showAddress ? (
                     <div className="where-right-address">
-                      <div>{auth.formaddress}</div>
-                      {/* <div className="where-right-address-checked">
-                      <input type="checkbox" checked="checked" />
-                      <span className="checkmark"></span>
-                    </div> */}
+                      <div>
+                        <input type="hidden" value="Amuwo-Odofin" />
+                        Amuwo-Odofin
+                      </div>
                     </div>
                   ) : (
                     ""
@@ -532,6 +531,7 @@ export default function BookDelivery() {
                             onClick={() => {
                               setshowNewAddress(!showNewAddress);
                               setShowAddress(false);
+                              setshowPickup(false);
                             }}
                             checked={showNewAddress ? true : false}
                           />
@@ -550,9 +550,9 @@ export default function BookDelivery() {
                           <input
                             required
                             type="text"
-                            placeholder="34a, Ago Iwoye"
-                            name="fromaddress"
-                            value={delivery.fromaddress}
+                            placeholder=""
+                            name="delivery_address"
+                            value={delivery.delivery_address}
                             onChange={handleChange}
                           />
                         </div>
@@ -598,9 +598,9 @@ export default function BookDelivery() {
 
                             <select
                               className="where-address-input-option"
-                              name="zone"
+                              name="country"
                               onChange={handleChange}
-                              value={delivery.zone}
+                              value={delivery.country}
                               required
                             >
                               <option value="">Nigeria</option>
@@ -639,30 +639,12 @@ export default function BookDelivery() {
                             type="text"
                             placeholder="Input Phone Number"
                             name="number"
-                            value={delivery.number}
+                            value={delivery.delivery_number}
                             onChange={handleChange}
                           />
                         </div>
                       </div>
                       <div className="row">
-                        <div className="col">
-                          <div class="form-check" style={{ marginTop: "30px" }}>
-                            <input
-                              class="form-check-input"
-                              type="checkbox"
-                              id="gridCheck"
-                              checked={showPickup}
-
-                              onClick={() => {
-                                setshowPickup(!showPickup);
-                              }}
-                            />
-                            <label class="form-check-label" for="gridCheck">
-                              Use Dropoff Hubs?
-                            </label>
-                          </div>
-                        </div>
-
                         <div className="col">
                           <div className="inputWrapBook">
                             <label htmlFor="">Date</label>
@@ -679,145 +661,189 @@ export default function BookDelivery() {
                             />
                           </div>
                         </div>
-                        {showPickup ? (
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Select Hub</label>
-
-                            <select
-                              className="where-address-input-option"
-                              name="zone"
-                              // onChange={handleChange}
-                              value=""
-                              required
-                            >
-                              <option value="">IKOSI/MAGODO</option>
-                              <option value="">LAGOS ISLAND</option>
-                              <option value="">Redemption Camp</option>
-                              <option value="">DHL IKOYI</option>
-                              <option value="">DHL APAPA</option>
-                              <option value="">DHL SURULERE</option>
-
-                              <option value="">DHL AKIN ADESOLA</option>
-                              <option value="">DHL BROAD STREET</option>
-                              <option value="">DHL MURI OKUNOLA</option>
-                              <option value="">DHL CHERUB MALL</option>
-                              <option value="">DHL LEKKI</option>
-                              <option value="">DHL ISOLO</option>
-
-                              <option value="">DHL AWOLOWO WAY</option>
-                              <option value="">DHL GRA IKEJA</option>
-                              <option value="">DHL ALLEN</option>
-                              <option value="">DHL Badagry</option>
-                              <option value="">DHL HERITAGE HOUSE</option>
-                              <option value="">DHL GARIKI</option>
-
-                              <option value="">DHL WUZE 2</option>
-                              <option value="">DHL HAFSAT PLAZA</option>
-                              <option value="">DHL AMINU KANO</option>
-                              <option value="">DHL PORT HARCOURT</option>
-                              <option value="">DHL IBADAN</option>
-                              <option value="">DHL Kano</option>
-
-                              <option value="">DHL Katsina</option>
-                              <option value="">DHL Jos</option>
-                              <option value="">DHL Sokoto</option>
-                              <option value="">DHL Bauchi</option>
-                              <option value="">DHL Gombe</option>
-                              <option value="">DHL Yola</option>
-
-                              <option value="">DHL Maiduguri</option>
-                              <option value="">DHL Lokoja</option>
-                              <option value="">DHL Kaduna</option>
-                              <option value="">DHL Zaria</option>
-                              <option value="">DHL Minna</option>
-                              <option value="">DHL Lafia</option>
-
-                              <option value="">DHL Makurdi</option>
-                              <option value="">DHL Aba</option>
-                              <option value="">DHL Umuahia</option>
-                              <option value="">DHL Uyo</option>
-                              <option value="">DHL Eket</option>
-                              <option value="">DHL Calabar</option>
-
-                              <option value="">DHL Bonny Island</option>
-                              <option value="">DHL Yenogoa</option>
-                              <option value="">DHL Sokoto</option>
-                              <option value="">DHL Warri</option>
-                              <option value="">DHL Sapele</option>
-                              <option value="">DHL Benin</option>
-
-                              <option value="">DHL Asaba</option>
-                              <option value="">DHL Onitsha</option>
-                              <option value="">DHL Nnewi</option>
-                              <option value="">DHL Nsuka</option>
-                              <option value="">DHL Abakaliki</option>
-                              <option value="">DHL Enugu</option>
-
-                              <option value="">DHL Owerri</option>
-                              <option value="">DHL Akure/ADO</option>
-                              <option value="">DHL Ilorin</option>
-                              <option value="">DHL Abeokuta</option>
-                              <option value="">DHL Ife</option>
-                              <option value="">DHL Ota</option>
-                              <option value="">DHL Mowe</option>
-
-                            </select>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-
-                        {/* <div className="inputWrapBook">
-                          <label htmlFor="">Phone Number</label>
-                          <input
-                            required
-                            type="text"
-                            placeholder="Input Phone Number"
-                            name="number"
-                            value={delivery.number}
-                            onChange={handleChange}
-                          />
-                        </div> */}
                       </div>
                     </>
                   ) : (
                     ""
                   )}
-                  {/* <div className="inputWrapBook">
-                <label htmlFor="">Post code</label>
-                <input
-                  required
-                  type="text"
-                  placeholder="0039282"
-                  // onChange={({ target }) => {
-                  //   setDelivery({
-                  //     ...delivery,
-                  //     fromaddress: target.value,
-                  //   });
-                  // }}
-                  // value={delivery.fromaddress}
-                />
-              </div> */}
 
-                  {/* <div className="inputWrapBook">
-                <label htmlFor="">State</label>
-                <input
-                  required
-                  type="text"
-                  placeholder="Input state"
-                  name="state"
-                  onChange={handleChange}
-                  value={delivery.state}
-                />
-              </div> */}
+                  <p
+                    style={{
+                      fontSize: "18px",
+                      color: "#4169E2",
+                      fontWeight: "800",
+                      fontFamily: "Playfair Display",
+                      padding: "15px 0 0 0",
+                    }}
+                  >
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="gridCheck"
+                          onClick={() => {
+                            setshowPickup(!showPickup);
+                            setshowNewAddress(false);
+                            setShowAddress(false);
+                          }}
+                          checked={showPickup ? true : false}
+                        />
+                        <label class="form-check-label" for="gridCheck">
+                          Use Dropoff Locations?
+                        </label>
+                      </div>
+                    </div>{" "}
+                  </p>
 
-                  {/* <div className="where-address-save-check">
-                  <label>
-                    {" "}
-                    <input required type="checkbox" />
-                    Save to Address Book
-                  </label>
-                </div> */}
+                  {showPickup ? (
+                    <div className="row">
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Select Hub</label>
+                          <select
+                            className="where-address-input-option"
+                            onChange={(e) => {
+                              setselectValue(e.target.value);
+                            }}
+                            value={selectValue}
+                            required
+                          >
+                            <option value="">--SELECT--</option>
+                            <option value="lagos">LAGOS</option>
+                            <option value="abuja">ABUJA</option>
+                            <option value="other">OTHER LOCATIONS</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Select Hub</label>
+                          <select
+                            className="where-address-input-option"
+                            onChange={(e) => {
+                              setAddVal(e.target.value);
+                              setDatas(displayAddress())
+                            }}
+                            value={addval}
+                            required
+                          >
+                            {/* <option value="">IKOSI/MAGODO</option> */}
+                            {selectValue == "lagos" ? (
+                              <>
+                                <option value="">--SELECT--</option>
+                                <option value="LAGOS ISLAND">
+                                  LAGOS ISLAND
+                                </option>
+                                <option value="Redemption Camp">
+                                  Redemption Camp
+                                </option>
+                                <option value="DHL IKOYI">DHL IKOYI</option>
+                                <option value="DHL APAPA">DHL APAPA</option>
+                                <option value="DHL SURULERE">
+                                  DHL SURULERE
+                                </option>
+                                <option value="DHL AKIN ADESOLA">
+                                  DHL AKIN ADESOLA
+                                </option>
+                                <option value="DHL BROAD STREET">
+                                  DHL BROAD STREET
+                                </option>
+                                <option value="DHL MURI OKUNOLA">
+                                  DHL MURI OKUNOLA
+                                </option>
+                                <option value="DHL CHERUB MALL">
+                                  DHL CHERUB MALL
+                                </option>
+                                <option value="DHL LEKKI">DHL LEKKI</option>
+                                <option value="DHL ISOLO">DHL ISOLO</option>
+                                <option value="DHL AWOLOWO WAY">
+                                  DHL AWOLOWO WAY
+                                </option>
+                                <option value="DHL GRA IKEJA">
+                                  DHL GRA IKEJA
+                                </option>
+                                <option value="DHL ALLEN">DHL ALLEN</option>
+                                <option value="DHL Badagry">DHL Badagry</option>
+                              </>
+                            ) : (
+                              ""
+                            )}
+
+                            {selectValue == "abuja" ? (
+                              <>
+                                <option value="DHL HERITAGE HOUSE">
+                                  DHL HERITAGE HOUSE
+                                </option>
+                                <option value="DHL GARIKI">DHL GARIKI</option>
+
+                                <option value="DHL WUZE 2">DHL WUZE 2</option>
+                                <option value="">DHL HAFSAT PLAZA</option>
+                                <option value="">DHL AMINU KANO</option>
+                                <option value="">DHL PORT HARCOURT</option>
+                              </>
+                            ) : (
+                              ""
+                            )}
+
+                            {selectValue == "other" ? (
+                              <>
+                                <option value="">DHL IBADAN</option>
+                                <option value="">DHL Kano</option>
+
+                                <option value="">DHL Katsina</option>
+                                <option value="">DHL Jos</option>
+                                <option value="">DHL Sokoto</option>
+                                <option value="">DHL Bauchi</option>
+                                <option value="">DHL Gombe</option>
+                                <option value="">DHL Yola</option>
+
+                                <option value="">DHL Maiduguri</option>
+                                <option value="">DHL Lokoja</option>
+                                <option value="">DHL Kaduna</option>
+                                <option value="">DHL Zaria</option>
+                                <option value="">DHL Minna</option>
+                                <option value="">DHL Lafia</option>
+
+                                <option value="">DHL Makurdi</option>
+                                <option value="">DHL Aba</option>
+                                <option value="">DHL Umuahia</option>
+                                <option value="">DHL Uyo</option>
+                                <option value="">DHL Eket</option>
+                                <option value="">DHL Calabar</option>
+                                <option value="">DHL Bonny Island</option>
+                                <option value="">DHL Yenogoa</option>
+                                <option value="">DHL Sokoto</option>
+                                <option value="">DHL Warri</option>
+                                <option value="">DHL Sapele</option>
+                                <option value="">DHL Benin</option>
+                                <option value="">DHL Asaba</option>
+                                <option value="">DHL Onitsha</option>
+                                <option value="">DHL Nnewi</option>
+                                <option value="">DHL Nsuka</option>
+                                <option value="">DHL Abakaliki</option>
+                                <option value="">DHL Enugu</option>
+
+                                <option value="">DHL Owerri</option>
+                                <option value="">DHL Akure/ADO</option>
+                                <option value="">DHL Ilorin</option>
+                                <option value="">DHL Abeokuta</option>
+                                <option value="">DHL Ife</option>
+                                <option value="">DHL Ota</option>
+                                <option value="">DHL Mowe</option>
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </select>
+                        </div>
+                      </div>
+                      <div className="inputWrapBook"><input type="hidden" value={displayAddress()} />{displayAddress()}</div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
                   <div className="btnsfd">
                     <button
                       onClick={handleTab}
@@ -848,8 +874,8 @@ export default function BookDelivery() {
                           required
                           type="text"
                           placeholder="Input Name"
-                          name="fromaddress"
-                          value={delivery.name}
+                          name="delivery_name"
+                          value={delivery.delivery_name}
                           onChange={handleChange}
                         />
                       </div>
@@ -860,44 +886,11 @@ export default function BookDelivery() {
                         <input
                           required
                           type="text"
-                          placeholder="34a, Ago Iwoye"
+                          placeholder=""
                           name="fromaddress"
-                          value={delivery.fromaddress}
+                          value={delivery.delivery_address}
                           onChange={handleChange}
                         />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col">
-                        <div className="inputWrapBook">
-                          <label htmlFor="">City</label>
-                          <input
-                            required
-                            type="text"
-                            placeholder="Input city"
-                            name="city"
-                            value={delivery.city}
-                            onChange={handleChange}
-                          />
-                        </div>{" "}
-                      </div>
-                      <div className="col">
-                        <div className="inputWrapBook">
-                          <label htmlFor="">Select state</label>
-
-                          <select
-                            className="where-address-input-option"
-                            name="state"
-                            onChange={handleChange}
-                            value={delivery.state}
-                            required
-                          >
-                            <option value="">Select state</option>
-                            {NIGStates.map((data) => {
-                              return <option value={data}>{data}</option>;
-                            })}
-                          </select>
-                        </div>{" "}
                       </div>
                     </div>
                     <div className="row">
@@ -926,6 +919,35 @@ export default function BookDelivery() {
 
                       <div className="col">
                         <div className="inputWrapBook">
+                          <label htmlFor="">Add State</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input State"
+                            name="delivery_state"
+                            value={delivery.state}
+                            onChange={handleChange}
+                          />
+                        </div>{" "}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">City</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input city"
+                            name="city"
+                            value={delivery.city}
+                            onChange={handleChange}
+                          />
+                        </div>{" "}
+                      </div>
+
+                      <div className="col">
+                        <div className="inputWrapBook">
                           <label htmlFor="">Post code</label>
                           <input
                             required
@@ -941,34 +963,34 @@ export default function BookDelivery() {
                           />
                         </div>
                       </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Phone Number</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input Phone Number"
+                            name="delivery_number"
+                            value={delivery.delivery_number}
+                            onChange={handleChange}
+                          />
+                        </div>
                       </div>
-                      <div className="row">
-                        <div className="col">
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Phone Number</label>
-                            <input
-                              required
-                              type="text"
-                              placeholder="Input Phone Number"
-                              name="number"
-                              value={delivery.number}
-                              onChange={handleChange}
-                            />
-                          </div>
+                      <div className="col">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">Email</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Input Email"
+                            name="delivery_email"
+                            value={delivery.delivery_email}
+                            onChange={handleChange}
+                          />
                         </div>
-                        <div className="col">
-                          <div className="inputWrapBook">
-                            <label htmlFor="">Email</label>
-                            <input
-                              required
-                              type="text"
-                              placeholder="Input Email"
-                              name="email"
-                              value={delivery.email}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
+                      </div>
                     </div>
                   </>
 
@@ -986,131 +1008,10 @@ export default function BookDelivery() {
           ) : (
             ""
           )}
-          {/* 
-          {tab == 3 ? (
-            <div className="where-right-form-header">
-              <form>
-                <div className="where-right-address">
-                  <div>
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        color: "#434343",
-                        padding: "15px",
-                      }}
-                    >
-                      <span style={{ color: "#4169E2" }}>
-                        What are we coming to pick
-                      </span>
-                      <br />
-                      tap or click to add item
-                    </p>
-                  </div>
-                  <div style={{ paddingTop: "3%" }}>
-                    <button
-                      style={{
-                        border: "1px solid #4169E2",
-                        padding: "0 10px 0 10px",
-                        fontSize: "12px",
-                        width: "70px",
-                      }}
-                    >
-                      Edit
-                    </button>
-                  </div>
-                </div>
-                <div style={{ paddingTop: "3%" }}>
-                  <button
-                    style={{
-                      border: "1px solid #4169E2",
-                      padding: "0 2% 0 2%",
-                      fontSize: "12px",
-                    }}
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#exampleModal"
-                  >
-                    Add Item
-                  </button>
-                </div>
-                <div>
-                  <p
-                    style={{
-                      fontSize: "24px",
-                      color: "#4169E2",
-                      fontWeight: "800",
-                      fontFamily: "Playfair Display",
-                      padding: "15px 0 0 0",
-                    }}
-                  >
-                    Summary
-                  </p>
-                </div>
-                <div
-                  className="row"
-                  style={{
-                    display: "flex",
-                    color: "rgba(36, 66, 46, 0.75)",
-                    fontSize: "18px",
-                    fontFamily: "Gilroy-Bold",
-                  }}
-                >
-                  <div className="col">
-                    <address>
-                      <div style={{ marginTop: "10px" }}>TOTAL QUANTITY</div>
-                      <div style={{ marginTop: "10px" }}>TOTAL VALUE</div>
-                      <div style={{ marginTop: "10px" }}>INSURANCE FEE</div>
-                      <div style={{ marginTop: "10px" }}>COVER</div>
-                    </address>
-                  </div>
-                  <div className="col text-right">
-                    <address style={{ float: "right" }}>
-                      <div style={{ marginTop: "10px" }}>1</div>
-                      <div style={{ marginTop: "10px" }}> 5.0</div>
-                      <div style={{ marginTop: "10px" }}>0.00</div>
-                      <div style={{ marginTop: "10px" }}>10,000.00</div>
-                    </address>
-                  </div>
-                </div>
-
-                <div className="btnsfd">
-                  <button onClick={handleTab} className="where-address-button">
-                    Continue
-                  </button>
-                  <p
-                    style={{
-                      fontWeight: "500",
-                      fontFamily: "Poppins",
-                      fontSize: "14px",
-                      marginTop: "-20px",
-                    }}
-                  >
-                    By continuing, I represent that the declaration above is a
-                    proper and accurate description of the contents of my
-                    package.
-                  </p>
-                </div>
-              </form>
-            </div>
-          ) : (
-            ""
-          )} */}
 
           {tab == 4 ? (
             <div className="sumaryWrap">
-              <div>
-                <p
-                  style={{
-                    fontSize: "24px",
-                    color: "#4169E2",
-                    fontWeight: "800",
-                    fontFamily: "Playfair Display",
-                    padding: "15px 0 0 0",
-                  }}
-                >
-                  Summary
-                </p>
-              </div>
+              <div></div>
               <div
                 className="row"
                 style={{
@@ -1120,30 +1021,38 @@ export default function BookDelivery() {
                   fontFamily: "Gilroy-Bold",
                 }}
               >
-                <div style={{ marginTop: "10px" }}>ITEM</div>
+                <div style={{ marginTop: "10px", fontWeight: "Bold" }}>
+                </div>
+                <div style={{ marginTop: "10px" }}>
+                  Phone Number : {delivery.delivery_number}
+                </div>
+
+                {/* <div style={{ marginTop: "10px" }}>ITEM</div> */}
 
                 <div className="col">
                   <address>
+                    <div style={{ marginTop: "10px" }}>Order Description</div>
                     <div style={{ marginTop: "10px" }}>WEIGHT</div>
                     <div style={{ marginTop: "10px" }}>LENGTH</div>
                     <div style={{ marginTop: "10px" }}>WIDTH</div>
                     <div style={{ marginTop: "10px" }}>HEIGHT</div>
-                    <div style={{ marginTop: "10px" }}>TOTAL</div>
                   </address>
                 </div>
                 <div className="col text-right">
                   <address style={{ float: "right" }}>
+                    <div style={{ marginTop: "10px" }}>
+                      {delivery.description}
+                    </div>
 
                     <div style={{ marginTop: "10px" }}>{delivery.itemname}</div>
                     <div style={{ marginTop: "10px" }}>
                       {" "}
                       {delivery.weight}KG
                     </div>
-                    <div style={{ marginTop: "10px" }}>{delivery.weight}CM</div>
+                    <div style={{ marginTop: "10px" }}>{delivery.length}CM</div>
 
-                    <div style={{ marginTop: "10px" }}>{delivery.breath}CM</div>
+                    <div style={{ marginTop: "10px" }}>{delivery.width}CM</div>
                     <div style={{ marginTop: "10px" }}>{delivery.height}CM</div>
-                    <div style={{ marginTop: "10px" }}>23000</div>
                   </address>
                 </div>
               </div>
@@ -1151,31 +1060,42 @@ export default function BookDelivery() {
               <div className="databdd">
                 <address>
                   <div style={{ marginTop: "10px" }}>Pickup</div>
+                  <div style={{ marginTop: "10px" }}>Pickup Name</div>
                 </address>
                 <div className="col text-right">
                   <address style={{ float: "right" }}>
-                    {/* <span style={{ float: "right" }}>
-                      {`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}
-                    </span> */}
+                  <div >
+                
+                  Amuwo-Odofin
+                </div>
+                <div >
+               
+                  {auth.lastname} {auth.firstname}
+                </div>
                   </address>
                 </div>
-                <span
-                  style={{ float: "right" }}
-                >{`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}</span>
+               
+                
               </div>
 
               <div className="databdd">
                 <address>
                   <div style={{ marginTop: "10px" }}>Delivery Location</div>
+                  <div style={{ marginTop: "10px" }}>Recipient Name</div>
                 </address>
                 <div className="col text-right">
                   <address style={{ float: "right" }}>
-                    <span style={{ float: "right" }}>
-                      {`${delivery.fromaddress} ${delivery.city} ${delivery.state}`}
-                    </span>
+                    <div>
+                      Fara Park
+                    </div>
+                    <div style={{ marginTop: "10px" }}>{delivery.delivery_name}</div>
                   </address>
+
                 </div>
+              
+
               </div>
+
 
               <div className="acceptText">
                 <p>
@@ -1183,30 +1103,35 @@ export default function BookDelivery() {
                   proper and accurate description of the contents of my package.
                 </p>
               </div>
-
-              <div>
-                {/* <button
-                  onClick={() => {
-                    NotificationManager.success("Success");
-                    history.push("/app");
-                  }}
-                  className="where-address-button"
+              <div className="row">
+                <div
+                  className="col"
+                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                >
+                  Shipping Cost
+                </div>
+                <div
+                  className="col"
                   style={{
-                    width: "100%",
-                    borderRadius: "5px",
+                    marginLeft: "470px",
+                    fontSize: "24px",
+                    marginTop: "-30px",
                   }}
                 >
-                  Pay now
-                </button> */}
+                  <span>&#8358;</span>
+                  20,000
+                </div>
+              </div>
+              <div>
                 <div className="paymentTotalbtn">
                   <PaystackButton
                     reference={new Date().getTime().toString()}
-                    email={"frostandy41@gmail.com"}
-                    amount={Number(total) ? Number(total) : 23000 * 100}
+                    email={"tracyamara07@gmail.com"}
+                    amount={Number(total) ? Number(total) : 20000 * 100}
                     publicKey={process.env.REACT_APP_PAYSTACK_KEY}
                     text="PROCEED TO PAYMENT"
                     onSuccess={handleOnSuccess}
-                    onClose={handleOnClose} // Optional
+                    onClose={handleOnClose} 
                   />
                 </div>
               </div>
@@ -1219,7 +1144,7 @@ export default function BookDelivery() {
       <div className="prohabitedItems">
         <Modal
           open={modalConfirm}
-          onClose={toggleProhabittedModal}
+          // onClose={toggleProhabittedModal}
           center
           showCloseIcon={false}
         >
@@ -1254,7 +1179,7 @@ export default function BookDelivery() {
                       setModalConfirm(false);
                     }}
                   >
-                    Go back to Dashbard
+                    Go back to Cockpit
                   </button>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import trackingmain from "../../assets/trackingmain.png";
 import arrowvec from "../../assets/arrowvec.png";
 import cancelvec from "../../assets/cancelvec.png";
 import { useHistory } from "react-router-dom";
+import authBanner from "../../assets/4.jpeg";
 
 export default function TrackingPage1() {
   const history = useHistory();
@@ -17,7 +18,7 @@ export default function TrackingPage1() {
             }}/>
         </div>
         <div className="where-left-main">
-          <img src={trackingmain} />
+          <img src={authBanner} />
         </div>
       </div>
       <div className="where-right-main">

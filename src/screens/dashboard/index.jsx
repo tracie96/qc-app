@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Ds1 from "../../assets/ds1.png";
 import Ds2 from "../../assets/ds2.png";
 import Ds3 from "../../assets/ds3.png";
@@ -25,14 +25,26 @@ export default function Index() {
   const location = useLocation();
 
   const history = useHistory();
+  const [user, setUser] = React.useState("");
 
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log(
+      "")
+
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, []);
   return (
     <div>
       <InAppNavbar />
       <div className="app-padding">
         <div className="dashboardHeader">
           <h2>
-            Hello {location.state.detail ? location.state.detail : "User"},
+            Hello {user?user.firstname:"Tracy"},
           </h2>
         </div>
 
@@ -138,7 +150,7 @@ export default function Index() {
         <div className="dashbordCard1">
           <div
             className="gr-1 card col-md-6 col-lg-4 column"
-            onClick={() => history.push(`/book_delivery`)}
+            onClick={() => history.push(`/refer_friend`)}
             style={{ width: "49.5%" }}
           >
             <div className="card-item" style={{ padding: "10px 0 0 15px" }}>
@@ -171,7 +183,7 @@ export default function Index() {
           </div>
           <div
             className="gr-1 card col-md-6 col-lg-4 column"
-            onClick={() => history.push(`/tracking_page1`)}
+            onClick={() => history.push(`/book_delivery`)}
             style={{ width: "49.5%" }}
           >
             <div className="card-item" style={{ padding: "10px 0 0 15px" }}>

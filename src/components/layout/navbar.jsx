@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { Logo } from "../../assets/svg";
@@ -6,6 +6,24 @@ export default function Navbar() {
   let location = useLocation();
   let history = useHistory();
   const [showNav, setShowNav] = React.useState(false);
+  const [user, setUser] = React.useState("");
+  const logout = () =>{
+    localStorage.removeItem('user')
+    window.location.reload();
+
+  }
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+      console.log(foundUser)
+    }
+    else{
+      history.push('/home')
+    }
+  }, []);
+
   return (
     <div className="navbar-ch-con" style={{}}>
       <div className="navbarChild">
@@ -55,10 +73,17 @@ export default function Navbar() {
               location.pathname == "/hmenu" ? "activeNvaLink" : ""
             }`} style={{display:"flex"}}
           >
+            {user?<><button style={{height:"50px",background:"#fff",width:"100%"}}><p style={{width:"120px",color:"#000"}}>Welcome, {user.firstname}</p></button>
+               <button onClick={() => history.push(`/app`)} style={{height:"50px",background:"rgba(2, 5, 161, 0.91)",border:"0px",width:"100%"}}><p style={{width:"80px",color:"#fff"}}>Cockpit</p></button>
+            <button onClick={logout} style={{height:"50px",background:"#000",border:"0px",width:"100%"}}><p style={{width:"50px",fontSize:"12px",color:"#fff"}}>Log Out</p></button>
+                        </>:
+                        <>
             <button onClick={() => history.push(`/signup`)} style={{height:"50px"}}><p style={{width:"80px"}}>Sign Up</p></button>
 
             <button onClick={() => history.push(`/login`)} style={{height:"50px"}}><p style={{width:"80px"}}>Sign In</p></button>
-          </li>
+            </>
+            }
+            </li>
         </ul>
       </div>
 
@@ -93,6 +118,7 @@ export default function Navbar() {
               }`}
               // style={{ marginTop: "20px" }}
             >
+              
               <Link to="/">
                 <button
                   style={{

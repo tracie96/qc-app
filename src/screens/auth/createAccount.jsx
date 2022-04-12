@@ -2,55 +2,89 @@ import React, { isValidElement, useState } from "react";
 import "./index.scss";
 import contries from "../../components/countries";
 import NIGStates from "../../components/nigeriaStates";
-import authBanner from "../../assets/1.jpeg";
+import authBanner from "../../assets/4.jpeg";
 import { useHistory } from "react-router-dom";
 import validatePassword from "../../components/validatePassword";
 import validateEmail from "../../components/validateEmail";
 import { NotificationManager } from "react-notifications";
 import { axiosCalls } from "../../components/_api";
 import { hideLoader, showLoader } from "../../components/loader";
-// import { SMTPClient } from 'emailjs';
-
+import axios from "axios";
 const Auth = () => {
   const history = useHistory();
   const [auth, setAuth] = useState({
     firstname: "",
     lastname: "",
-    othernames: "",
     email: "",
-    username: "",
     password: "",
-    mobile: "",
-    formaddress:""
-  });
-  console.log(auth);
-  window.localStorage.setItem("user", JSON.stringify(auth));
-
-  const [appLoading, setAppLoading] = useState(false);
-  const [tab, setTab] = useState("tab1");
-  const [delivery, setDelivery] = useState({
-    fromaddress: "",
-    zone: "",
-    weight: "",
-    length: "",
-    breath: "",
-    deliverylocation: "",
-    itemname: "",
-    recipientname: "",
-    recipientnumber: "",
+    phonenumber: "",
     state: "",
     city: "",
-    rCity: "",
-    rState: "",
+    address: "",
+    country: "",
+    referral: "",
   });
+  window.localStorage.setItem("user", JSON.stringify(auth));
 
-  const handlesave = () => {
-    window.localStorage.setItem("user", JSON.stringify(auth));
-    history.push({
-      pathname: "/app",
-      state: { detail: auth.firstname },
-    });
+  const [tab, setTab] = useState("tab1");
+  const [appLoading, setAppLoading] = useState(false);
+
+  
+  const emailVerify = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log(tab)
+       axios
+        .post("http://localhost:4000/api/verify_token", {
+          email: auth.email,
+        })
+        .then((res) => {
+      
+        });
+        setTab("tab2");          
+
+    } catch (e) {
+      console.log(e);
+    }
+
   };
+
+  const handlesave = async (e) => {
+    e.preventDefault();
+    try {
+      await axios
+        .post("http://localhost:4000/api/register-user", {
+          firstname: auth.firstname,
+          country: auth.country,
+          email: auth.email,
+          lastname: auth.lastname,
+          phonenumber: auth.phonenumber,
+          city: auth.city,
+          state: auth.state,
+          address: auth.address,
+          password: auth.password,
+          referral: auth.referral,
+        })
+        .then((res) => {
+          NotificationManager.success("Success", "Account Created Successful ");
+          // sessionStorage.setItem("token", res.data.token);
+          // const auth = {
+          //   firstname: res.data.firstname,
+          //   referral: res.data.referral,
+          // };
+          // localStorage.setItem("user", JSON.stringify(auth));
+          history.push({
+            pathname: "/login",
+            // state: { detail: res.data.firstname },
+          });
+        });
+    } catch (error) {
+      if (error.response) {
+      }
+    }
+  };
+
   const login = async (e) => {
     // hideLoader();
     e.preventDefault();
@@ -108,8 +142,8 @@ const Auth = () => {
     }
   };
   const handleChange = ({ target }) => {
-    setDelivery({ ...delivery, [target.name]: target.value });
-    console.log(delivery);
+    // setDelivery({ ...delivery, [target.name]: target.value });
+    // console.log(delivery);
   };
   const handleTab = (e) => {
     e.preventDefault();
@@ -220,11 +254,16 @@ const Auth = () => {
                     <select
                       className="where-address-input-option"
                       name="zone"
-                      onChange={handleChange}
-                      value={delivery.zone}
+                      onChange={(e)=>
+                        setAuth({
+                          ...auth,
+                          country: e.target.value,
+                        })
+                      }
+                      value={auth.country}
                       required
                     >
-                      <option value="">Nigeria</option>
+                      <option value="">Select</option>
                       {contries.map((data) => {
                         return (
                           <option value={data.Zone}>{data.Countries}</option>
@@ -241,13 +280,21 @@ const Auth = () => {
                     type="text"
                     placeholder="Input Email"
                     name="email"
-                    value={delivery.email}
-                    onChange={handleChange}
+                    value={auth.email}
+                    onChange={(e) => {
+                      setAuth({
+                        ...auth,
+                        email: e.target.value,
+                      });
+                    }}
                   />
                 </div>
 
                 <div className="btnsfd">
-                  <button onClick={handleTab} className="where-address-button">
+                  <button
+                    onClick={emailVerify}
+                    className="where-address-button"
+                  >
                     Continue
                   </button>
                 </div>
@@ -360,7 +407,7 @@ const Auth = () => {
                       onChange={(e) => {
                         setAuth({
                           ...auth,
-                          email: e.target.value,
+                          phonenumber: e.target.value,
                         });
                       }}
                       type="text"
@@ -375,8 +422,13 @@ const Auth = () => {
                           type="text"
                           placeholder="Input city"
                           name="city"
-                          value={delivery.city}
-                          onChange={handleChange}
+                          value={auth.city}
+                          onChange={(e) => {
+                            setAuth({
+                              ...auth,
+                              city: e.target.value,
+                            });
+                          }}
                         />
                       </div>{" "}
                     </div>
@@ -387,8 +439,13 @@ const Auth = () => {
                         <select
                           className="where-address-input-option"
                           name="state"
-                          onChange={handleChange}
-                          value={delivery.state}
+                          onChange={(e) => {
+                            setAuth({
+                              ...auth,
+                              state: e.target.value,
+                            });
+                          }}
+                          value={auth.state}
                           required
                         >
                           <option value="">Select state</option>
@@ -398,30 +455,30 @@ const Auth = () => {
                         </select>
                       </div>{" "}
                     </div>
-                  </div> 
+                  </div>
 
-                    <div className="col">
-                      <div className="inputWrapBook">
-                      <div className="row">
+                  <div className="col">
                     <div className="inputWrapBook">
-                      <label htmlFor="">House/APT/Flat Number</label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="34a, Ago Iwoye"
-                        name="form"
-                        value={delivery.form}
-                        onChange={(e) => {
-                          setAuth({
-                            ...auth,
-                            formaddress: e.target.value,
-                          });
-                        }}                      />
+                      <div className="row">
+                        <div className="inputWrapBook">
+                          <label htmlFor="">House/APT/Flat Number</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Please input Address"
+                            name="form"
+                            value={auth.address}
+                            onChange={(e) => {
+                              setAuth({
+                                ...auth,
+                                address: e.target.value,
+                              });
+                            }}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                    </div>
-</div>
-
 
                   <div className="inputWrap">
                     <label htmlFor="">Password</label>
@@ -444,7 +501,7 @@ const Auth = () => {
                       onChange={(e) => {
                         setAuth({
                           ...auth,
-                          username: e.target.value,
+                          referral: e.target.value,
                         });
                       }}
                       type="text"
@@ -454,7 +511,21 @@ const Auth = () => {
                     <p>
                       By continuing, I represent that I have read, understand,
                       and fully agree to the QC Express{" "}
-                      <a onClick={()=>{history.push('/terms')}}>terms of service </a>and <a onClick={()=>{history.push('/privacy')}}>privacy policy.</a>
+                      <a
+                        onClick={() => {
+                          history.push("/terms");
+                        }}
+                      >
+                        terms of service{" "}
+                      </a>
+                      and{" "}
+                      <a
+                        onClick={() => {
+                          history.push("/privacy");
+                        }}
+                      >
+                        privacy policy.
+                      </a>
                     </p>
                   </div>
 

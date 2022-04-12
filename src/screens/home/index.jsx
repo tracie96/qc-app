@@ -4,7 +4,7 @@ import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -17,7 +17,7 @@ import team3 from "../../assets/team3.png";
 import team4 from "../../assets/team4.png";
 import international from "../../assets/earth.png";
 import hero3 from "../../assets/1.jpeg";
-import hero4 from "../../assets/4.jpeg";
+import hero4 from "../../assets/3.jpeg";
 import apd2 from "../../assets/apd2.png";
 import conversation from "../../assets/conversation.png";
 import ps from "../../assets/ps.svg";
@@ -102,7 +102,20 @@ export default function Index() {
   };
 
   const [expanded, setExpanded] = React.useState("");
+  const [user, setUser] = React.useState("");
+
   const history = useHistory();
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+      console.log(foundUser)
+    }
+  }, []);
+
+
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -118,11 +131,11 @@ export default function Index() {
             >
               <div data-aos="zoom-out">
                 <h1>
-                  Welcome to our world of seamless and simplified delivery
+                Welcome to our world of seamless and simplified delivery
                 </h1>
                 <h2>
-                  Welcome to our world of seamless and simplified delivery of
-                  your shipments locally and internationally
+                Your one-stop-shop for best-in-class delivery locally and internationally
+
                 </h2>
                 <div className="text-center text-lg-start">
                   <img src={ps} width="30%"></img>
@@ -624,7 +637,7 @@ export default function Index() {
           <img
             src={hero4}
             alt=""
-            style={{ width: "70%", marginTop: "-30px" }}
+            style={{ width: "70%", marginTop: "-50px" }}
           />
         </div>
       </div>
@@ -1400,10 +1413,10 @@ export default function Index() {
                   aria-labelledby="dropdownMenuButton"
                   style={{ display: "block", background: "none" }}
                 >
-                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
-                    terms
+                  <a class="dropdown-item" style={{ color: "#fff" }}  onClick={()=>{history.push('/terms')}}>
+                    Terms and Conditions
                   </a>
-                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
+                  <a class="dropdown-item" href="#" style={{ color: "#fff" }}onClick={()=>{history.push('/privacy')}}>
                     Privacy and Policy
                   </a>
                   <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
@@ -1411,6 +1424,9 @@ export default function Index() {
                   </a>
                   <a class="dropdown-item" href="#" style={{ color: "#fff" }}>
                     Contact Us
+                  </a>
+                  <a class="dropdown-item" href="#" style={{ color: "#fff" }} onClick={()=>{history.push('/login')}}>
+                    Cockpit
                   </a>
 
                   {/* <a class="dropdown-item" href="#">Something else here</a> */}
